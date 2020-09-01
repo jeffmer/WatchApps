@@ -1,9 +1,12 @@
 Espruino App Loader (and Apps)
-================================
+==============================
+
+**THIS IS BETA:** We're still trying things out, so there isn't a great
+app selection and things are liable to change.
 
 [![Build Status](https://travis-ci.org/espruino/EspruinoApps.svg?branch=master)](https://travis-ci.org/espruino/EspruinoApps)
 
-* Try the **release version** at [espruino.com/apps](https://espruino.com/apps)
+<!-- * Try the **release version** at [espruino.com/apps](https://espruino.com/apps) -->
 * Try the **development version** at [github.io](https://espruino.github.io/EspruinoApps/)
 
 **All software (including apps) in this repository is MIT Licensed - see [LICENSE](LICENSE)** By

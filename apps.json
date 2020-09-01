@@ -4,7 +4,7 @@
     "icon": "icon.png",
     "version":"0.01",
     "description": "Make device appear as a HID keyboard. When BTN1 is pressed send Enter",
-    "tags": "tool",
+    "tags": "bluetooth",
     "needsFeatures":["BLE","BLEHID"],
     "storage": [
       {"name":".bootcde","url":"app.js"}
@@ -15,7 +15,7 @@
     "icon": "icon.png",
     "version":"0.01",
     "description": "Uses the magnetometer to detect when a magnet is nearby (door closed) or not (door open). It then advertises the number of door openings to date on Bluetooth Manufacturer Data 0x0590",
-    "tags": "tool",
+    "tags": "bluetooth",
     "needsFeatures":["BLE"],
     "storage": [
       {"name":".bootcde","url":"app.js"}
@@ -26,7 +26,7 @@
     "icon": "icon.png",
     "version":"0.01",
     "description": "Configure your device to be an [Eddystone beacon](https://github.com/google/eddystone)",
-    "tags": "",
+    "tags": "bluetooth",
     "custom": "custom.html",
     "needsFeatures":["BLE"],
     "storage": [
