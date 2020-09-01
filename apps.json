@@ -1,0 +1,47 @@
+[
+  { "id": "blehidkey",
+    "name": "Bluetooth HID key",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "Make device appear as a HID keyboard. When BTN1 is pressed send Enter",
+    "tags": "tool",
+    "needsFeatures":["BLE","BLEHID"],
+    "storage": [
+      {"name":".bootcde","url":"app.js"}
+    ]
+  },
+  { "id": "bledooropencounter",
+    "name": "Bluetooth Door Opening Counter",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "Uses the magnetometer to detect when a magnet is nearby (door closed) or not (door open). It then advertises the number of door openings to date on Bluetooth Manufacturer Data 0x0590",
+    "tags": "tool",
+    "needsFeatures":["BLE"],
+    "storage": [
+      {"name":".bootcde","url":"app.js"}
+    ]
+  },
+  { "id": "bleeddystone",
+    "name": "Bluetooth Eddystone Beacon",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "Configure your device to be an [Eddystone beacon](https://github.com/google/eddystone)",
+    "tags": "",
+    "custom": "custom.html",
+    "needsFeatures":["BLE"],
+    "storage": [
+      {"name":".bootcde"}
+    ]
+  },
+  { "id": "trex",
+    "name": "T-Rex (Dinosaur game)",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "T-Rex game in the style of Chrome's offline game",
+    "tags": "game",
+    "needsFeatures":["GRAPHICS"],
+    "storage": [
+      {"name":".bootcde","url":"app.js"}
+    ]
+  }
+]
