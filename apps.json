@@ -67,6 +67,19 @@
       {"name":".bootcde","url":"app.js"}
     ]
   },
+  { "id": "pixlmulticolbadge",
+    "name": "Pixl.js Multicolor Badge",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "If you've got a [Pixl.js Multicolor Badge](http://www.espruino.com/Pixl.js+Multicolour) then you can easily program it with your name using this app",
+    "tags": "bluetooth",
+    "custom": "custom.html",
+    "needsFeatures":["BLE","NFC"],
+    "storage": [
+      {"name":".boot0"},
+      {"name":".bootcde","url":"app.js"}
+    ]
+  },
   { "id": "trex",
     "name": "T-Rex (Dinosaur game)",
     "icon": "icon.png",
