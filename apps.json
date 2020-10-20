@@ -90,5 +90,16 @@
     "storage": [
       {"name":".bootcde","url":"app.js"}
     ]
+  },
+  { "id": "simpleclock",
+    "name": "Simple Clock",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "Simple 7 segment clock that will scale to fit your display size",
+    "tags": "clock",
+    "needsFeatures":["GRAPHICS"],
+    "storage": [
+      {"name":".bootcde","url":"app.js"}
+    ]
   }
 ]
