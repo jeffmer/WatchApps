@@ -1,0 +1,21 @@
+{
+  "name": "EspruinoApps",
+  "description": "Espruino App Loader (and Apps)",
+  "author": "Gordon Williams <gw@pur3.co.uk> (http://espruino.com)",
+  "version": "0.0.1",
+  "devDependencies": {
+    "eslint": "7.1.0"
+  },
+  "scripts": {
+    "lint-apps": "eslint ./apps --ext .js",
+    "test": "eslint ./apps --ext .js",
+    "start": "npx http-server -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/espruino/EspruinoApps.git"
+  },
+  "dependencies": {
+    "acorn": "^7.2.0"
+  }
+}

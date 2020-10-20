@@ -35,5 +35,11 @@ const DEVICEINFO = {
   },
   "PIXLJS" : {
     features : ["BLE","BLEHID","NFC","GRAPHICS"]
+  },
+  "BANGLEJS" : {
+    features : ["BLE","BLEHID","GRAPHICS"]
+  },
+  "MICROBIT" : {
+    features : ["BLE","BLEHID"]
   }
 };
