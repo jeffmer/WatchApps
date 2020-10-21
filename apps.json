@@ -91,6 +91,17 @@
       {"name":".bootcde","url":"app.js"}
     ]
   },
+  { "id": "lunarlander",
+    "name": "Lunar Lander game",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "Simple Lunar lander game using BTN2/3 to steer and BTN4 for thrust. Designed for 128x64 screens.",
+    "tags": "game",
+    "needsFeatures":["GRAPHICS"],
+    "storage": [
+      {"name":".bootcde","url":"app.js"}
+    ]
+  },
   { "id": "simpleclock",
     "name": "Simple Clock",
     "icon": "icon.png",
