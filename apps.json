@@ -102,6 +102,17 @@
       {"name":".bootcde","url":"app.js"}
     ]
   },
+  { "id": "breakout",
+    "name": "Breakout game",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "Simple breakout game using BTN1/BTN4 to control the bat. Designed for 128x64 screens.",
+    "tags": "game",
+    "needsFeatures":["GRAPHICS"],
+    "storage": [
+      {"name":".bootcde","url":"app.js"}
+    ]
+  },
   { "id": "simpleclock",
     "name": "Simple Clock",
     "icon": "icon.png",
