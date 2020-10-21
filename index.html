@@ -17,6 +17,10 @@
     <meta name="application-name" content="EspruinoApps">
     <meta name="msapplication-TileColor" content="#5755d9">
     <meta name="theme-color" content="#5755d9">
+    <style>
+      .devicechooser { cursor:pointer; }
+      .devicechooser:hover { border: 1px solid black; }
+    </style>
     <title>Espruino App Loader BETA</title>
   </head>
   <body>
@@ -67,10 +71,9 @@
           <label class="chip" filterid="tool">Tools</label>
           <label class="chip" filterid="bluetooth">Bluetooth</label>
           <label class="chip" filterid="nfc">NFC</label>
-          <label class="chip" filterid="outdoors">Outdoors</label>
           <label class="chip" filterid="favourites">Favourites</label>
         </div>
-        <div class="sort-nav hidden">
+        <div class="hidden sort-nav">
           <span>Sort by:</span>
           <label class="chip active" sortid="">None</label>
           <label class="chip" sortid="created">New</label>

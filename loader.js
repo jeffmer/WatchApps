@@ -4,6 +4,9 @@ Puck.debug = 3;
 apps should all be saved as .bootcde and we write info
 about the current app into app.info */
 Const.SINGLE_APP_ONLY = true;
+/* Assume - until we know more - that we have no command
+to show messages. */
+Const.HAS_E_SHOWMESSAGE = true;
 
 if (window.location.host=="espruino.com") {
   document.getElementById("apploaderlinks").innerHTML =
@@ -18,28 +21,90 @@ if (window.location.host=="espruino.com") {
     'This is not the official Espruino App Loader - you can try the <a href="https://espruino.com/apps/">Official Version</a> here.';
 }
 
-var APP_SOURCECODE_URL;
 (function() {
   let username = "espruino";
   let githubMatch = window.location.href.match(/\/(\w+)\.github\.io/);
   if (githubMatch) username = githubMatch[1];
-  APP_SOURCECODE_URL = `https://github.com/${username}/EspruinoApps/tree/master/apps`;
+  Const.APP_SOURCECODE_URL = `https://github.com/${username}/EspruinoApps/tree/master/apps`;
 })();
 
-const DEVICEINFO = {
-  "PUCKJS" : {
-    features : ["BLE","BLEHID","NFC"]
-  },
-  "MDBT42Q" : {
-    features : ["BLE","BLEHID"]
-  },
-  "PIXLJS" : {
-    features : ["BLE","BLEHID","NFC","GRAPHICS"]
-  },
-  "BANGLEJS" : {
-    features : ["BLE","BLEHID","GRAPHICS"]
-  },
-  "MICROBIT" : {
-    features : ["BLE","BLEHID"]
-  }
-};
+const DEVICEINFO = [ {
+    id : "BANGLEJS",
+    name : "Bangle.js",
+    features : ["BLE","BLEHID","GRAPHICS"],
+    img : "https://www.espruino.com/img/BANGLEJS_thumb.jpg"
+  }, {
+    id : "PUCKJS",
+    name : "Puck.js",
+    features : ["BLE","BLEHID","NFC"],
+    img : "https://www.espruino.com/img/PUCKJS_thumb.jpg"
+  }, {
+    id : "PIXLJS",
+    name : "Pixl.js",
+    features : ["BLE","BLEHID","NFC","GRAPHICS"],
+    img : "https://www.espruino.com/img/PIXLJS_thumb.jpg"
+  }, {
+    id : "MDBT42Q",
+    name : "MDBT42Q",
+    features : ["BLE","BLEHID"],
+    img : "https://www.espruino.com/img/MDBT42Q_thumb.jpg"
+  }/*, {
+    id : "MICROBIT",
+    name : "micro:bit",
+    features : ["BLE","BLEHID"],
+    img : "https://www.espruino.com/img/MICROBIT_thumb.jpg"
+  }*/
+];
+
+function onFoundDeviceInfo(deviceId, deviceVersion) {
+  // check against features shown?
+  filterAppsForDevice(deviceId);
+}
+
+var originalAppJSON = undefined;
+function filterAppsForDevice(deviceId) {
+  var device = DEVICEINFO.find(d=>d.id==deviceId);
+  if (!device) throw new Error(`Device ID ${deviceId} not found`);
+
+  if (originalAppJSON===undefined)
+    originalAppJSON = appJSON;
+
+  appJSON = originalAppJSON.filter(app => {
+    // No features needed? all good!
+    if (!app.needsFeatures) return true;
+    // if every feature satisfied, that's great!
+    if (app.needsFeatures.every(feature => device.features.includes(feature)))
+      return true;
+    // uh-oh
+    console.log(`Dropping ${app.id} because ${deviceId} doesn't contain all features`);
+    return false;
+  });
+  refreshLibrary();
+}
+
+window.addEventListener('load', (event) => {
+  var html = `<div class="columns">
+    ${DEVICEINFO.map(d=>`
+    <div class="column col-3 col-xs-6">
+      <div class="card devicechooser" deviceid="${d.id}">
+        <div class="card-header">
+          <div class="card-title h5">${d.name}</div>
+          <!--<div class="card-subtitle text-gray">...</div>-->
+        </div>
+        <div class="card-image">
+          <img src="${d.img}" alt="${d.name}" class="img-responsive">
+        </div>
+      </div>
+    </div>`).join("\n")}
+  </div>`;
+  showPrompt("Which device?",html,{},false);
+  htmlToArray(document.querySelectorAll(".devicechooser")).forEach(button => {
+    button.addEventListener("click",event => {
+      let button = event.currentTarget;
+      let deviceId = button.getAttribute("deviceid");
+      hidePrompt();
+      console.log(deviceId);
+      filterAppsForDevice(deviceId);
+    });
+  });
+});
