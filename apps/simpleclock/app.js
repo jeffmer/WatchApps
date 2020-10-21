@@ -5,7 +5,7 @@ function draw() {
   var d = new Date();
   var size = Math.floor(g.getWidth()/(7*5));
   var x = (g.getWidth()/2) - size*6,
-      y = (g.getHeight()/2) - size*7;
+    y = (g.getHeight()/2) - size*7;
   g.setFont("7x11Numeric7Seg",size).setFontAlign(1,-1);
   g.drawString(d.getHours(), x, y);
   g.setFontAlign(-1,-1);
