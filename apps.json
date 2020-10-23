@@ -38,7 +38,7 @@
     "icon": "icon.png",
     "version":"0.01",
     "description": "Configure your Espruino device with a specific URL",
-    "tags": "NFC,tool",
+    "tags": "nfc,tool",
     "custom": "custom.html",
     "needsFeatures":["NFC"],
     "storage": [
@@ -72,7 +72,7 @@
     "icon": "icon.png",
     "version":"0.01",
     "description": "If you've got a [Pixl.js Multicolor Badge](http://www.espruino.com/Pixl.js+Multicolour) then you can easily program it with your name using this app",
-    "tags": "bluetooth",
+    "tags": "bluetooth,nfc",
     "custom": "custom.html",
     "needsFeatures":["BLE","NFC"],
     "storage": [
