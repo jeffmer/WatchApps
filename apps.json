@@ -59,7 +59,7 @@
   { "id": "bletemperature",
     "name": "Bluetooth Temperature Beacon",
     "icon": "icon.png",
-    "version":"0.01",
+    "version":"0.02",
     "description": "Turns the given device into a Bluetooth Temperature sensor that advertises the current temperature on Bluetooth UUID 0x1809 ('Health Thermometer'). The device won't be connectable again until it is rebooted without loading saved code.",
     "tags": "bluetooth",
     "needsFeatures":["BLE"],
@@ -120,6 +120,18 @@
     "description": "Simple 7 segment clock that will scale to fit your display size",
     "tags": "clock",
     "needsFeatures":["GRAPHICS"],
+    "storage": [
+      {"name":".bootcde","url":"app.js"}
+    ]
+  },
+  { "id": "bletemplogger",
+    "name": "Bluetooth Temperature Logger",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "Log temperature every half hour. Connect again, choose 'My Apps', then 'Upload', and view the data.",
+    "tags": "bluetooth",
+    "needsFeatures":["BLE"],
+    "interface": "interface.html",
     "storage": [
       {"name":".bootcde","url":"app.js"}
     ]
