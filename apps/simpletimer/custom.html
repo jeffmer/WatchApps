@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../../css/spectre.min.css">
+  </head>
+  <body>
+
+    <p>Count down from <input type="number" min="0" id="time" class="form-input" value="60"> seconds</p>
+    <p><button id="upload" class="btn btn-primary">Upload</button></p>
+
+    <script src="../../core/lib/customize.js"></script>
+
+    <script>
+      // When the 'upload' button is clicked...
+      document.getElementById("upload").addEventListener("click", function() {
+        // get the text to add
+        var time = parseInt(document.getElementById("time").value);
+        if (!isFinite(time) || (time <= 0)) {
+          alert("Time must be nonzero");
+          return;
+        }
+        // build the app's text using a Templated String
+        var app = `
+var COUNTDOWNTIME = ${JSON.stringify(time)}; // seconds
+
+// actual timer count
+var count = COUNTDOWNTIME;
+// toggle to use when flashing the screen/led
+var toggle = false;
+// interval
+var interval;
+// size of font to use
+var fontSize;
+
+function pad2(t) {
+  return ("0"+t.toString()).substr(-2);
+}
+function secsToText(s) {
+  if (s<=60) return s.toString();
+  if (s<60*60) return Math.floor(s/60)+":"+pad2(s%60);
+  return Math.floor(s/3600)+":"+pad2(Math.floor(s/60)%60)+":"+pad2(s%60);
+}
+
+function draw() {
+  if (global.g) {
+    g.reset();
+    if (count==0 && toggle) {
+      g.setBgColor(-1);
+      g.setColor(0);
+    }
+    g.clear()
+    g.setFontAlign(-1,1,1).drawString(interval?"STOP":"START",0,0);
+    g.setFont("Vector",fontSize).setFontAlign(0,0,0);
+    var txt = secsToText(count);
+    g.setFontAlign(0,0);
+    g.drawString(txt,g.getWidth()/2,g.getHeight()/2);
+    g.flip();
+  } else {
+    if (count==0) {
+      digitalPulse(LED1,1,100);
+      setTimeout(function() { digitalPulse(LED2,1,100); }, 250);
+      setTimeout(function() { digitalPulse(LED1,1,100); }, 500);
+      setTimeout(function() { digitalPulse(LED2,1,100); }, 750);
+    } else {
+      digitalPulse(LED1,1,50);
+    }
+  }
+}
+
+function onTimer() {
+  toggle = !toggle;
+  if (count>0) count--;
+  draw();
+}
+
+function startStop() {
+  if (interval) {
+    clearInterval(interval);
+    interval = undefined;
+    toggle = false;
+    draw();
+  } else {
+    count = COUNTDOWNTIME;
+    interval = setInterval(onTimer, 1000);
+    draw();
+  }
+}
+
+// if GFX find best size to fit text on
+if (global.g) {
+  var txt = secsToText(COUNTDOWNTIME);
+  fontSize = g.getHeight();
+  g.setFontVector(fontSize);
+  while (g.stringWidth(txt) > g.getWidth()-16) {
+    g.setFontVector(--fontSize);
+  }
+}
+// Startup
+setWatch(startStop, BTN1, {repeat:true});
+draw();
+`;
+        // send finished app
+        sendCustomizedApp({
+          storage:[
+            {name:".bootcde", url:"app.js", content:app},
+          ]
+        });
+      });
+
+    </script>
+  </body>
+</html>

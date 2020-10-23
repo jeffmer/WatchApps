@@ -74,7 +74,7 @@
     "description": "Programs a [Pixl.js Multicolor Badge](http://www.espruino.com/Pixl.js+Multicolour) to display your name, the time, and to include Flappy Bird and T-Rex games.",
     "tags": "bluetooth,nfc",
     "custom": "custom.html",
-    "needsFeatures":["BLE","NFC"],
+    "needsFeatures":["BLE","NFC","GRAPHICS"],
     "storage": [
       {"name":".boot0"},
       {"name":".bootcde","url":"app.js"}
@@ -87,7 +87,7 @@
     "description": "Programs a [Pixl.js](http://www.espruino.com/Pixl.js) to display your name, the time, and to include Flappy Bird and T-Rex games.",
     "tags": "bluetooth,nfc",
     "custom": "custom.html",
-    "needsFeatures":["BLE","NFC"],
+    "needsFeatures":["BLE","NFC","GRAPHICS"],
     "storage": [
       {"name":".boot0"},
       {"name":".bootcde","url":"app.js"}
@@ -135,6 +135,17 @@
     "needsFeatures":["GRAPHICS"],
     "storage": [
       {"name":".bootcde","url":"app.js"}
+    ]
+  },
+  { "id": "simpletimer",
+    "name": "Countdown Timer",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "Count down from a predefined time. Either displays the countdown on the display, or flashes LEDs to show coundown state. BTN1 starts & stops.",
+    "tags": "clock",
+    "custom": "custom.html",
+    "storage": [
+      {"name":".bootcde"}
     ]
   },
   { "id": "bletemplogger",
