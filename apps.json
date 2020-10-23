@@ -148,5 +148,17 @@
     "storage": [
       {"name":".bootcde","url":"app.js"}
     ]
+  },
+  { "id": "qrcode",
+    "name": "Custom QR Code",
+    "icon": "app.png",
+    "version":"0.02",
+    "description": "Use this to upload a customised (64x64) QR code to a device with a screen",
+    "tags": "qrcode",
+    "needsFeatures":["GRAPHICS"],
+    "custom": "custom.html",
+    "storage": [
+      {"name":".bootcde"}
+    ]
   }
 ]
