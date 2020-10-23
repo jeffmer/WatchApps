@@ -70,8 +70,21 @@
   { "id": "pixlmulticolbadge",
     "name": "Pixl.js Multicolor Badge",
     "icon": "icon.png",
+    "version":"0.02",
+    "description": "Programs a [Pixl.js Multicolor Badge](http://www.espruino.com/Pixl.js+Multicolour) to display your name, the time, and to include Flappy Bird and T-Rex games.",
+    "tags": "bluetooth,nfc",
+    "custom": "custom.html",
+    "needsFeatures":["BLE","NFC"],
+    "storage": [
+      {"name":".boot0"},
+      {"name":".bootcde","url":"app.js"}
+    ]
+  },
+  { "id": "pixlbadge",
+    "name": "Pixl.js Badge",
+    "icon": "icon.png",
     "version":"0.01",
-    "description": "If you've got a [Pixl.js Multicolor Badge](http://www.espruino.com/Pixl.js+Multicolour) then you can easily program it with your name using this app",
+    "description": "Programs a [Pixl.js](http://www.espruino.com/Pixl.js) to display your name, the time, and to include Flappy Bird and T-Rex games.",
     "tags": "bluetooth,nfc",
     "custom": "custom.html",
     "needsFeatures":["BLE","NFC"],

@@ -4,15 +4,12 @@ Badge.NAME = Badge.NAME || ["Your", "Name Here"]; // ISO10646-1 codepage
 
 // User-defined apps
 Badge.apps = Badge.apps || {};
-Badge.patterns = Badge.patterns || {};
 
-var NC = require("nodeconfeu2018");
 var BTNS = [BTN1, BTN2, BTN3, BTN4];
 // --------------------------------------------
 // Get Badge back to normal-ish
 Badge.reset = () => {
   E.showMenu();
-  Badge.pattern();
   clearInterval();
   clearWatch();
   Bluetooth.removeAllListeners();
@@ -22,7 +19,6 @@ Badge.reset = () => {
   g.clear();
   g.flip();
   Badge.updateBLE();
-  if (Badge.defaultPattern) Badge.pattern(Badge.defaultPattern);
 };
 // --------------------------------------------
 // Should the badge be connectable?
@@ -41,7 +37,6 @@ Badge.updateBLE = () => {
 // --------------------------------------------
 // Fullscreen stuff
 Badge.drawCenter = (txt, title, big) => {
-  E.showMenu();
   g.clear();
   g.setFontAlign(0, 0);
   if (title) {
@@ -61,19 +56,12 @@ Badge.drawCenter = (txt, title, big) => {
 Badge.alert = s => {
   Badge.reset();
   Badge.drawCenter(s, "Alert!", true /*big*/);
-  Badge.pattern("red");
   BTNS.forEach(p => setWatch(Badge.badge, p));
-  function bzzt() {
-    digitalPulse(VIBL, 1, 100);
-    digitalPulse(VIBR, 0, [120, 100]);
-  }
-  bzzt();
   setInterval(bzzt, 10000);
 };
 Badge.info = s => {
   Badge.reset();
   Badge.drawCenter(s, "Information", true /*big*/);
-  Badge.pattern("info");
   BTNS.forEach(p => setWatch(Badge.badge, p));
 };
 // https://raw.githubusercontent.com/Tecate/bitmap-fonts/master/bitmap/dylex/7x13.bdf
@@ -179,7 +167,6 @@ Badge.badge = () => {
     lastTime = t;
 
     g.clear();
-    g.setRotation(NC.accel().y < -0.1 ? 2 : 0);
     // Draw the Name
     var y = 20; // y offset
     var l = Badge.NAME;
@@ -194,8 +181,7 @@ Badge.badge = () => {
       .toISOString()
       .split("T")[1]
       .substr(0, 5);
-    if (NC.getBatteryState().charging) timeStr += " CHARGING";
-    if (E.getAnalogVRef() < 3.25) timeStr += " LOW BATTERY";
+    if (E.getAnalogVRef() < 2.9) timeStr += " LOW BATTERY";
     g.drawString(timeStr, 0, 59);
     // now write to the screen
     g.flip();
@@ -216,17 +202,10 @@ Badge.badge = () => {
 Badge.apps["Backlight"] = () => {
   var menu = {
     "": { title: "-- Select Backlight --" },
-    "Back to Badge": Badge.badge
+    "Back to Badge": Badge.badge,
+    "On" : () => LED.set(),
+    "Off" : () => LED.reset(),
   };
-  function bl(i) {
-    return function() {
-      Badge.defaultPattern = i;
-      Badge.pattern(Badge.defaultPattern);
-    };
-  }
-  menu.off = bl();
-  for (var i in Badge.patterns) menu[i] = bl(i);
-  Badge.defaultPattern = undefined;
   Badge.reset();
   E.showMenu(menu);
 };
@@ -381,8 +360,6 @@ Badge.apps["T-Rex"] = () => {
     setInterval(onFrame, 50);
   }
   function gameStop() {
-    digitalPulse(VIBL, 1, 1000);
-    digitalPulse(VIBR, 1, 1000);
     rex.alive = false;
     rex.img = 2; // dead
     clearInterval();
@@ -400,7 +377,6 @@ Badge.apps["T-Rex"] = () => {
       if (BTN4.read() && rex.x > 0) rex.x--;
       if (BTN3.read() && rex.x < 20) rex.x++;
       if (BTN2.read() && rex.y == 0) {
-        digitalPulse(VIBL, 1, 20);
         rex.vy = 4;
       }
       rex.y += rex.vy;
@@ -503,7 +479,7 @@ Badge.apps["Flappy Bird"] = () => {
   }
 
   function onFrame() {
-    var buttonState = BTN2.read() || BTN3.read() || NC.accel().z > 0;
+    var buttonState = BTN2.read() || BTN3.read();
 
     g.clear();
     if (!running) {
@@ -515,7 +491,6 @@ Badge.apps["Flappy Bird"] = () => {
     }
 
     if (buttonState && !wasPressed) {
-      digitalPulse(VIBL, 1, 20);
       birdvy -= 2;
     }
     wasPressed = buttonState;
@@ -549,211 +524,11 @@ Badge.apps["Flappy Bird"] = () => {
   gameStart();
   setWatch(Badge.menu, BTN1);
 };
-Badge.apps["Compass"] = () => {
-  Badge.reset();
-  var min, max;
-  function op(a, b, fn) {
-    if (!b) return a;
-    return { x: fn(a.x, b.y), y: fn(a.y, b.y) };
-  }
-  function xy(a, r) {
-    return { x: 96 + r * Math.sin(a), y: 32 - r * Math.cos(a) };
-  }
-  setInterval(() => {
-    var m = NC.mag();
-    min = op(m, min, Math.min);
-    max = op(m, max, Math.max);
-    var c = op(max, min, (a, b) => (a + b) / 2); //centre
-    var d = op(max, min, (a, b) => a - b); //difference
-    var diff = Math.sqrt(d.x * d.x + d.y * d.y);
-    var ang = Math.atan2(m.x - c.x, m.y - c.y);
-    if (ang < 0) ang += 2 * Math.PI;
-    g.clear();
-    if (diff < 4000) g.drawString("Turn 360 degrees\nto calibrate", 0, 0);
-    var p = xy(-ang, 24);
-    g.drawLine(96, 32, p.x, p.y);
-    g.setFontAlign(0, 0);
-    ["-N-", "NE", "E", "SE", "S", "SW", "W", "NW"].map((t, a) => {
-      var p = xy((a * Math.PI) / 4 - ang, 28);
-      g.drawString(t, p.x, p.y);
-    });
-    g.setFontAlign(-1, -1);
-    g.flip();
-  }, 50);
-  BTNS.forEach(p => setWatch(Badge.badge, p));
-};
-
-// --------------------------------------------
-// LED patterns - each is [callback, period_in_ms]
-Badge.patterns.simple = () => {
-  var n = 0;
-  return [
-    () => {
-      var c = [127, 127, 127];
-      NC.backlight(c.concat(c, c, c));
-    },
-    0
-  ];
-};
-Badge.patterns.dim = () => {
-  var n = 0;
-  return [
-    () => {
-      var c = [31, 31, 31];
-      NC.backlight(c.concat(c, c, c));
-    },
-    0
-  ];
-};
-Badge.patterns.dimrainbow = () => {
-  var n = 0;
-  return [
-    () => {
-      n += 0.02;
-      var b = 0.05;
-      NC.backlight(
-        E.HSBtoRGB(n, 1, b, 1).concat(
-          E.HSBtoRGB(n + 0.1, 1, b, 1),
-          E.HSBtoRGB(n + 0.2, 1, b, 1),
-          E.HSBtoRGB(n + 0.3, 1, b, 1)
-        )
-      );
-      NC.ledTop(E.HSBtoRGB(n + 0.4, 1, b, 1));
-      NC.ledBottom(E.HSBtoRGB(n + 0.5, 1, b, 1));
-    },
-    200
-  ];
-};
-Badge.patterns.rainbow = () => {
-  var n = 0;
-  return [
-    () => {
-      n += 0.01;
-      NC.backlight(
-        E.HSBtoRGB(n, 1, 1, 1).concat(
-          E.HSBtoRGB(n + 0.1, 1, 1, 1),
-          E.HSBtoRGB(n + 0.2, 1, 1, 1),
-          E.HSBtoRGB(n + 0.3, 1, 1, 1)
-        )
-      );
-      NC.ledTop(E.HSBtoRGB(n + 0.4, 1, 1, 1));
-      NC.ledBottom(E.HSBtoRGB(n + 0.5, 1, 1, 1));
-    },
-    50
-  ];
-};
-Badge.patterns.hues = () => {
-  var hues = [0, 0.2, 0.4];
-  return [
-    () => {
-      hues = hues.map(Math.random);
-      var c = E.HSBtoRGB(hues[0], 1, 1, 1);
-      NC.backlight(c.concat(c, c, c));
-      NC.ledTop(E.HSBtoRGB(hues[1], 1, 1, 1));
-      NC.ledBottom(E.HSBtoRGB(hues[2], 1, 1, 1));
-    },
-    500
-  ];
-};
-Badge.patterns.rave = () => {
-  var n = 0;
-  return [
-    () => {
-      n += 0.01;
-      var d = new Uint8Array(18);
-      E.mapInPlace(d, d, x => Math.random() * 2048 - 1792);
-      NC.ledBottom(d); // hack to send to *all* LEDs
-    },
-    50
-  ];
-};
-Badge.patterns.lightning = () => {
-  var n = 0;
-  return [
-    () => {
-      var d = new Uint8Array(18);
-      r = (0 | (50 * Math.random())) * 3;
-      d.set([255, 255, 255], r); // will silently set out of bounds most of the time
-      NC.ledBottom(d); // hack to send to *all* LEDs
-    },
-    20
-  ];
-};
-Badge.patterns.red = () => {
-  var n = 0;
-  return [
-    () => {
-      n += 50;
-      if (n > 1536) n = 0;
-      NC.ledTop([0, 0, Math.max(255 - Math.abs(n - 1024), 0)]);
-      NC.ledBottom([0, 0, Math.max(255 - Math.abs(n - 1384), 0)]);
-      NC.backlight([
-        0,
-        0,
-        Math.max(255 - Math.abs(n - 640), 0),
-        0,
-        0,
-        Math.max(255 - Math.abs(n - 512), 0),
-        0,
-        0,
-        Math.max(255 - Math.abs(n - 384), 0),
-        0,
-        0,
-        Math.max(255 - Math.abs(n - 256), 0)
-      ]);
-    },
-    50
-  ];
-};
-Badge.patterns.info = () => {
-  var n = 0;
-  return [
-    () => {
-      n += 20;
-      if (n > 3072) n = 0;
-      var ca = Math.max(127 - Math.abs(n - 256), 0);
-      var cb = Math.max(127 - Math.abs(n - 384), 0);
-      var cl = 16 + 14 * Math.sin((n * Math.PI * 2) / 3072);
-      NC.ledTop([cl, cl, cl]);
-      NC.ledBottom([cl, cl, cl]);
-      NC.backlight([cb, cb, cb, ca, ca, ca, ca, ca, ca, cb, cb, cb]);
-    },
-    50
-  ];
-};
-// Actually display a pattern
-Badge.pattern = name => {
-  NC.ledTop();
-  NC.ledBottom();
-  NC.backlight();
-  if (Badge._pattern) clearInterval(Badge._pattern);
-  delete Badge._pattern;
-  if (Badge.patterns[name]) {
-    var p = Badge.patterns[name]();
-    if (p[1]) Badge._pattern = setInterval(p[0], p[1]);
-    p[0]();
-  }
-};
 
 // --------------------------------------------
 // Run at boot...
 function onInit() {
   Badge.drawCenter("Hold down BTN4 to\nenable connection.");
-  // buzz after a delay to give stuff like the accelerometer a chance to init
-  setTimeout(function() {
-    digitalPulse(LED1, 1, 100);
-    digitalPulse(LED2, 0, [500, 100]);
-  }, 100);
-  // flashy lights!
-  var hue = -0.2;
-  setTimeout(function anim() {
-    hue += 0.1;
-    var c = E.HSBtoRGB(hue, 1, hue <= 1 ? 0.3 : 0, 1);
-    NC.backlight(c.concat(c, c, c));
-    NC.ledTop(E.HSBtoRGB(hue, 1, 1, 1));
-    NC.ledBottom(E.HSBtoRGB(hue, 1, 1, 1));
-    if (hue <= 1) setTimeout(anim, 200);
-  }, 250);
   // finally start up
   setTimeout(x => {
     if (!BTN4.read()) {
