@@ -63,22 +63,29 @@ function onFoundDeviceInfo(deviceId, deviceVersion) {
 
 var originalAppJSON = undefined;
 function filterAppsForDevice(deviceId) {
-  var device = DEVICEINFO.find(d=>d.id==deviceId);
-  if (!device) throw new Error(`Device ID ${deviceId} not found`);
-
   if (originalAppJSON===undefined)
     originalAppJSON = appJSON;
 
-  appJSON = originalAppJSON.filter(app => {
-    // No features needed? all good!
-    if (!app.needsFeatures) return true;
-    // if every feature satisfied, that's great!
-    if (app.needsFeatures.every(feature => device.features.includes(feature)))
-      return true;
-    // uh-oh
-    console.log(`Dropping ${app.id} because ${deviceId} doesn't contain all features`);
-    return false;
-  });
+  var device = DEVICEINFO.find(d=>d.id==deviceId);
+  if (!device) {
+    showToast(`Device ID ${deviceId} not recognised. Some apps may not work`, "warning");
+    Const.HAS_E_SHOWMESSAGE = false; // assume no display
+    appJSON = originalAppJSON;
+  } else {
+    // assume showmessage if device has a display
+    Const.HAS_E_SHOWMESSAGE = device.features.includes("GRAPHICS");
+    // Now filter apps
+    appJSON = originalAppJSON.filter(app => {
+      // No features needed? all good!
+      if (!app.needsFeatures) return true;
+      // if every feature satisfied, that's great!
+      if (app.needsFeatures.every(feature => device.features.includes(feature)))
+        return true;
+      // uh-oh
+      console.log(`Dropping ${app.id} because ${deviceId} doesn't contain all features`);
+      return false;
+    });
+  }
   refreshLibrary();
 }
 
