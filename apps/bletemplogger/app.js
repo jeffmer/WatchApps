@@ -12,7 +12,7 @@ Averager.prototype.add = function(value, bucket) {
   if (bucket != this.lastBucket) {
     this.sum = this.cnt = 0;
     if (bucket < this.lastBucket) {
-      this.lastBuckets.set(buckets);
+      this.lastBuckets.set(this.buckets);
       this.buckets.fill(0);
     }
     this.lastBucket = bucket;
