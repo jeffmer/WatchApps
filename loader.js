@@ -31,12 +31,12 @@ if (window.location.host=="espruino.com") {
 const DEVICEINFO = [ {
     id : "BANGLEJS",
     name : "Bangle.js",
-    features : ["BLE","BLEHID","GRAPHICS"],
+    features : ["BLE","BLEHID","GRAPHICS","ACCEL","MAG"],
     img : "https://www.espruino.com/img/BANGLEJS_thumb.jpg"
   }, {
     id : "PUCKJS",
     name : "Puck.js",
-    features : ["BLE","BLEHID","NFC"],
+    features : ["BLE","BLEHID","NFC","GYRO","ACCEL","MAG"],
     img : "https://www.espruino.com/img/PUCKJS_thumb.jpg"
   }, {
     id : "PIXLJS",
