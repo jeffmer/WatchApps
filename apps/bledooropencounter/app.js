@@ -6,7 +6,7 @@ var doorOpen = false;
 var counter = 0;
 
 function setAdvertising() {
-  NRF.setAdvertising({},{manufacturer: 0x0590, manufacturerData:[counter]});
+  NRF.setAdvertising({},{manufacturer: 0x0590, manufacturerData:JSON.stringify({n:counter})});
 }
 
 function onMag(p) {

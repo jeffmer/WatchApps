@@ -13,9 +13,10 @@
   { "id": "bledooropencounter",
     "name": "Bluetooth Door Opening Counter",
     "icon": "icon.png",
-    "version":"0.01",
-    "description": "Uses the magnetometer to detect when a magnet is nearby (door closed) or not (door open). It then advertises the number of door openings to date on Bluetooth Manufacturer Data 0x0590",
+    "version":"0.02",
+    "description": "Uses the magnetometer to detect when a magnet is nearby (door closed) or not (door open), and advertises the number of door openings.",
     "tags": "bluetooth",
+    "readme": "README.md",
     "needsFeatures":["BLE"],
     "storage": [
       {"name":".bootcde","url":"app.js"}
@@ -170,6 +171,18 @@
     "custom": "custom.html",
     "storage": [
       {"name":".bootcde"}
+    ]
+  },
+  { "id": "puckrotate",
+    "name": "Puck.js rotation advertising",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "Uses Puck.js to detect rotation, and advertises it over Bluetooth as JSON",
+    "tags": "bluetooth",
+    "readme": "README.md",
+    "needsFeatures":["BLE","GYRO","ACCEL"],
+    "storage": [
+      {"name":".bootcde","url":"app.js"}
     ]
   }
 ]
