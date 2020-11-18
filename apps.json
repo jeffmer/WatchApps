@@ -184,5 +184,27 @@
     "storage": [
       {"name":".bootcde","url":"app.js"}
     ]
+  },
+  { "id": "tilthydro",
+    "name": "Tilt Hydrometer Display",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "A display for the [Tilt Hydrometer](https://tilthydrometer.com/) - [more info here](http://www.espruino.com/Tilt+Hydrometer+Display)",
+    "tags": "",
+    "needsFeatures":["BLE","GRAPHICS"],
+    "storage": [
+      {"name":".bootcde","url":"app.js"}
+    ]
+  },
+  { "id": "tiltrepeater",
+    "name": "Tilt Hydrometer Repeater",
+    "icon": "icon.png",
+    "version":"0.01",
+    "description": "A repeater/signal booster for the [Tilt Hydrometer](https://tilthydrometer.com/) - [more info here](http://www.espruino.com/Tilt+Repeater)",
+    "tags": "",
+    "needsFeatures":["BLE"],
+    "storage": [
+      {"name":".bootcde","url":"app.js"}
+    ]
   }
 ]
