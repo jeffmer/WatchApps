@@ -21,3 +21,5 @@ function update() {
 
 setInterval(update, 30000);
 update();
+// More TX power
+NRF.setTxPower(4);
