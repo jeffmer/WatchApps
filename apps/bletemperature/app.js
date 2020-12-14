@@ -1,5 +1,6 @@
 function update() {
-  var t = Math.round(E.getTemperature()*100);
+  var currentTemp = E.getTemperature();
+  var t = Math.round(currentTemp*100);
   NRF.setAdvertising({
     0x1809 : [t&255, t>>8]
   }, { showName:false, connectable: false, scannable:false });
