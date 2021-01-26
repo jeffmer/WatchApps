@@ -161,6 +161,18 @@
       {"name":".bootcde","url":"app.js"}
     ]
   },
+  { "id": "blechargemonitor",
+    "name": "Bluetooth Battery Charge Monitor",
+    "icon": "icon.png",
+    "version":"0.02",
+    "description": "Connect voltage to D31 and current to D29. The values will be logged and can be viewed in the 'interface' app",
+    "tags": "bluetooth",
+    "needsFeatures":["BLE"],
+    "interface": "interface.html",
+    "storage": [
+      {"name":".bootcde","url":"app.js"}
+    ]
+  },
   { "id": "qrcode",
     "name": "Custom QR Code",
     "icon": "app.png",
