@@ -28,34 +28,6 @@ if (window.location.host=="espruino.com") {
   Const.APP_SOURCECODE_URL = `https://github.com/${username}/EspruinoApps/tree/master/apps`;
 })();
 
-const DEVICEINFO = [ {
-    id : "BANGLEJS",
-    name : "Bangle.js",
-    features : ["BLE","BLEHID","GRAPHICS","ACCEL","MAG"],
-    img : "https://www.espruino.com/img/BANGLEJS_thumb.jpg"
-  }, {
-    id : "PUCKJS",
-    name : "Puck.js",
-    features : ["BLE","BLEHID","NFC","GYRO","ACCEL","MAG"],
-    img : "https://www.espruino.com/img/PUCKJS_thumb.jpg"
-  }, {
-    id : "PIXLJS",
-    name : "Pixl.js",
-    features : ["BLE","BLEHID","NFC","GRAPHICS"],
-    img : "https://www.espruino.com/img/PIXLJS_thumb.jpg"
-  }, {
-    id : "MDBT42Q",
-    name : "MDBT42Q",
-    features : ["BLE","BLEHID"],
-    img : "https://www.espruino.com/img/MDBT42Q_thumb.jpg"
-  }/*, {
-    id : "MICROBIT",
-    name : "micro:bit",
-    features : ["BLE","BLEHID"],
-    img : "https://www.espruino.com/img/MICROBIT_thumb.jpg"
-  }*/
-];
-
 function onFoundDeviceInfo(deviceId, deviceVersion) {
   // check against features shown?
   filterAppsForDevice(deviceId);
