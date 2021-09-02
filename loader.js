@@ -69,7 +69,7 @@ Bangle.js, please see the <a href="https://www.banglejs.com/apps">Bangle.js App 
 window.addEventListener('load', (event) => {
   var html = `<div class="columns">
     ${DEVICEINFO.map(d=>`
-    <div class="column col-3 col-xs-6">
+    <div class="column col-4 col-xs-6">
       <div class="card devicechooser" deviceid="${d.id}">
         <div class="card-header">
           <div class="card-title h5">${d.name}</div>
