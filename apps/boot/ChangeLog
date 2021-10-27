@@ -1,0 +1,6 @@
+0.01: Initial version
+0.02: update to Vector font, add vibrate control
+0.03: Reduce standby current to ~250ua by dealing with anomaly 89
+0.04: Interrupt driven daceup signal = read now works
+
+
