@@ -1,10 +1,10 @@
-P8.drawWidgets = function() {
+wOS.drawWidgets = function() {
     var w=g.getWidth(), h=g.getHeight();
     var pos = {
-        tl:{x:4, y:0, r:0, c:0}, // if r==1, we're right->left
-        tr:{x:w-4, y:0, r:1, c:0},
-        bl:{x:24, y:h-24, r:0, c:0},
-        br:{x:w-24, y:h-24, r:1, c:0}
+        tl:{x:30, y:0, r:0, c:0}, // if r==1, we're right->left
+        tr:{x:w-30, y:0, r:1, c:0},
+        bl:{x:30, y:h-24, r:0, c:0},
+        br:{x:w-30, y:h-24, r:1, c:0}
     };
     if (global.WIDGETS) {
       for (var wd of WIDGETS) {
@@ -22,7 +22,7 @@ P8.drawWidgets = function() {
     }
   };
 
-  P8.loadWidgets = function() {
+  wOS.loadWidgets = function() {
     global.WIDGETS={};
     require("Storage").list(/\.wid\.js$/).forEach(widget=>eval(require("Storage").read(widget)));
   };

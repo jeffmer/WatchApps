@@ -1,18 +1,18 @@
 // touch driver
-const TOUCH_PIN = D28;
-const RESET_PIN = D13;
+const TOUCH_PIN = D32;
+const RESET_PIN = D39;
 
 pinMode(TOUCH_PIN,'input');
 
-var TC = {
+global.TC = {
     DOWN:1, UP:2, LEFT:3, RIGHT:4, CLICK:5, LONG:12,
     _wid:undefined,
     writeByte:(a,d) => { 
-        P8I2C.writeTo(0x15,a,d);
+        wOSI2C.writeTo(0x15,a,d);
     }, 
     readBytes:(a,n) => {
-        P8I2C.writeTo(0x15, a);
-        return P8I2C.readFrom(0x15,n); 
+        wOSI2C.writeTo(0x15, a);
+        return wOSI2C.readFrom(0x15,n); 
     },
     getXY:()=>{
         var _data = TC.readBytes(0x00,8);
@@ -21,8 +21,8 @@ var TC = {
                  gest:_data[1]
                };
     },
-    enable:()=>{TC.writeByte(0xED, 0xC8);},
-    sleepMode:()=>{TC.writeByte(0xA5,0x03);},
+    enable:()=>{TC.writeByte(0xFA, 0x11);},  // set to gesture mode
+    sleepMode:()=>{TC.writeByte(0xE5,0x03);},
     touchevent:() => {
         var p = TC.getXY();
         if (p.gest==TC.CLICK) TC.emit("touch",p);

@@ -1,3 +1,12 @@
+D7.set();
+
+E.kickWatchdog();
+function KickWd(){
+  if( (typeof(BTN1)=='undefined')||(!BTN1.read()) ) E.kickWatchdog();
+}
+var wdint=setInterval(KickWd,5000);
+E.enableWatchdog(20, false);
+
 /* 
 Copyright (c) 2015 Gordon Williams, Pur3 Ltd. See the file LICENSE for copying permission.
 
@@ -8,7 +17,7 @@ function ST7789() {
     var LCD_WIDTH = 240;
     var LCD_HEIGHT = 280;
     var XOFF = 0;
-    var YOFF = 0;
+    var YOFF = 24;
     var INVERSE = 1;
     var cmd = lcd_spi_unbuf.command;
 
@@ -85,59 +94,19 @@ function ST7789() {
     return connect({spi:SPI1, dc:D47, cs:D3, rst:D2});
 }
 
-global.ROCK = {}
-
-//screen brightness function
-ROCK.setLCDBrightness = function(val){
-    var val = val>1 ? 1 : val<0 ? 0: val;
-    if (val==0||val==1)
-        digitalWrite(D12,val);
-      else
-        analogWrite(D12,val,{freq:60});
+E.showMessage = function(msg,title) {
+    g.clear(1); // clear screen
+    g.setFont("Vector",18).setFontAlign(0,0);
+    var W = g.getWidth();
+    var H = g.getHeight()-26;
+    if (title) {
+      g.drawString(title,W/2,18);
+      var w = (g.stringWidth(title)+12)/2;
+      g.fillRect((W/2)-w,26,(W/2)+w,26);
+    }
+    var lines = g.wrapString(msg,W-2);
+    var offset = 26+(H - lines.length*18)/2 ;
+    lines.forEach((line,y)=>g.drawString(line,W/2,offset+y*18));
+    g.flip();
 };
 
-var g = ST7789();
-
-ROCK.setLCDBrightness(0.5);
-
-D7.set(); //turn off LED
-
-setTimeout(()=>{
-    g.setFont("6x8",2).drawString("Time Test",40,80);
-},500);
-
-function sleep(){
-    ROCK.setLCDBrightness(0);
-    g.lcd_sleep();
-}
-
-function wake(){
-    ROCK.setLCDBrightness(0.5);
-    g.lcd_wake();
-}
-
-function time_fill(){
-    g.setColor(0x07E0);
-    var time= Date.now();
-    g.fillRect(0,80,239,239);
-    g.flip();
-    time = Math.floor(Date.now()-time);
-    console.log("Time to Draw Rectangle: "+time+"ms");
-}
-
-var pal1color = new Uint16Array([0x0000,0xF100]);
-var buf = Graphics.createArrayBuffer(240,160,1,{msb:true});
-buf.setColor(1);
-buf.fillRect(0,0,239,159);
-
-function time_image(){
-    var time= Date.now();
-    g.drawImage({width:240,height:160,bpp:1,buffer:buf.buffer, palette:pal1color},0,80);
-    g.flip();
-    time = Math.floor(Date.now()-time);
-    console.log("Time to Draw Image: "+time+"ms");
-}
-
-
-
-  
