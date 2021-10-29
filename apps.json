@@ -23,6 +23,7 @@
       {"name":"main.js","url":"main.js"},
       {"name":"accel.js","url":"accel.js"},
       {"name":"touch.js","url":"touch.js"},
+      {"name":"setui.js","url":"setui.js"},
       {"name":"menu.js","url":"menu.js"},
       {"name":"prompt.js","url":"prompt.js"},
       {"name":"widgets.js","url":"widgets.js"}
