@@ -3,7 +3,7 @@ Puck.debug = 3;
 /* Are we only putting a single app on a device? If so
 apps should all be saved as .bootcde and we write info
 about the current app into app.info */
-Const.SINGLE_APP_ONLY = false;
+Const.SINGLE_APP_ONLY = true;
 /* Assume - until we know more - that we have no command
 to show messages. */
 Const.HAS_E_SHOWMESSAGE = true;
@@ -22,19 +22,20 @@ if (window.location.host=="espruino.com") {
 }
 
 (function() {
-  let username = "espruino";
+  let username = "jeffmer";
   let githubMatch = window.location.href.match(/\/(\w+)\.github\.io/);
   if (githubMatch) username = githubMatch[1];
-  Const.APP_SOURCECODE_URL = `https://github.com/${username}/ROCKApps/tree/master/apps`;
+  Const.APP_SOURCECODE_URL = `https://github.com/${username}/ROCK/tree/master/apps`;
 })();
 
 const DEVICEINFO = [ {
-    id : "ROCK",
-    name : "ROCK",
-    features : ["BLE","BLEHID","NFC","GRAPHICS"],
-    img : "img/dk08.png"
-  }
+  id : "ROCK",
+  name : "ROCK",
+  features : ["BLE","BLEHID","NFC","GRAPHICS"],
+  img : "img/dk08.png"
+}
 ];
+
 
 function onFoundDeviceInfo(deviceId, deviceVersion) {
   // check against features shown?
@@ -45,6 +46,12 @@ var originalAppJSON = undefined;
 function filterAppsForDevice(deviceId) {
   if (originalAppJSON===undefined)
     originalAppJSON = appJSON;
+  if (deviceId=="BANGLEJS") {
+    showToast(`Looks like you've got a <a href="https://www.espruino.com/Bangle.js" target="_blank">Bangle.js</a>.
+This Espruino App loader will make your Bangle run <b>just a single app</b>. For multiple apps specifically for
+Bangle.js, please see the <a href="https://www.banglejs.com/apps">Bangle.js App Loader</a>`, "warning", 20000);
+  }
+
   var device = DEVICEINFO.find(d=>d.id==deviceId);
   if (!device) {
     showToast(`Device ID ${deviceId} not recognised. Some apps may not work`, "warning");
@@ -71,7 +78,7 @@ function filterAppsForDevice(deviceId) {
 window.addEventListener('load', (event) => {
   var html = `<div class="columns">
     ${DEVICEINFO.map(d=>`
-    <div class="column col-3 col-xs-6">
+    <div class="column col-4 col-xs-6">
       <div class="card devicechooser" deviceid="${d.id}">
         <div class="card-header">
           <div class="card-title h5">${d.name}</div>

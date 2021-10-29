@@ -56,7 +56,7 @@
     "tags": "widget,battery",
     "type":"widget",
     "storage": [
-      {"name":"widbat.wid.js","url":"widbat.wid.js"}
+      {"name":"widbat.wid.js","url":"widget.js"}
     ]
   },
   { "id": "setting",
