@@ -1,47 +1,32 @@
-[
-  { "id": "boot",
-    "name": "Bootloader",
+{ "id": "boot",
+    "name": "boot",
     "tags": "tool,system",
     "type":"bootloader",
     "icon": "bootloader.png",
-    "version":"0.04",
-    "description": "This loads the P8 App execution environment - boot, lcd, touch & accel",
+    "version":"0.01",
+    "description": "THIS MUST BE LOADED FIRST IN A NEW SYSTEM",
     "storage": [
-      {"name":".boot0","url":"boot0.js"},
+      {"name":".boot0","url":"boot0.js"}
+    ],
+    "sortorder" : -15
+  },
+  { "id": "main",
+    "name": "Main",
+    "tags": "tool,system",
+    "type":"bootloader",
+    "icon": "bootloader.png",
+    "version":"0.01",
+    "description": "This loads the ROCK App execution environment, drivers etc",
+    "storage": [
       {"name":"lcd.js","url":"lcd.js"},
-      {"name":"touch.js","url":"toucher.js"},
+      {"name":"main.js","url":"main.js"},
       {"name":"accel.js","url":"accel.js"},
-      {"name":"prompt.js","url":"prompt.js"},
+      {"name":"touch.js","url":"touch.js"},
       {"name":"menu.js","url":"menu.js"},
+      {"name":"prompt.js","url":"prompt.js"},
       {"name":"widgets.js","url":"widgets.js"}
     ],
     "sortorder" : -10
-  },
-  { "id": "launch",
-    "name": "Launcher (Default)",
-    "shortName":"Launcher",
-    "icon": "launch.png",
-    "version":"0.03",
-    "description": "Added display of widgets.",
-    "tags": "tool,system,launcher",
-    "type":"launch",
-    "storage": [
-      {"name":"launch.js","url":"launch.js"}
-    ],
-    "sortorder" : -10
-  },
-  { "id": "setting",
-    "name": "Setting",
-    "icon": "setting.png",
-    "version":"0.03",
-    "description": "A menu for aadjusting P8 settings",
-    "tags": "tool,system",
-    "storage": [
-      {"name":"setting.app.js","url":"setting.app.js"},
-      {"name":"bletime.js","url":"bletime.js"},
-      {"name":"setting.img","url":"setting-icon.js","evaluate":true }
-    ],
-    "sortorder" : -2
   },
   { "id": "clock",
     "name": "Clock",
@@ -62,263 +47,28 @@
       {"name":"clock.img","url":"clock-icon.js","evaluate":true }
     ]
   },
-  { "id": "life",
-    "name": "Life",
-    "icon": "life.png",
-    "version":"0.06",
-    "description": "Conway's Game of Life cellular automata",
-    "tags": "game",
-    "allow_emulator":true,
-    "storage": [
-      {"name":"life.app.js","url":"life.min.js"},
-      {"name":"life.img","url":"life-icon.js","evaluate":true }
-    ]
-  },
-  { "id": "file",
-    "name": "Files",
-    "icon": "file.png",
-    "version":"0.03",
-    "description": "App and File Manager",
-    "tags": "tool",
-    "allow_emulator":false,
-    "storage": [
-      {"name":"file.app.js","url":"file.app.js"},
-      {"name":"file.img","url":"file-icon.js","evaluate":true }
-    ]
-  },
-  { "id": "calc",
-    "name": "Calc",
-    "icon": "calc.png",
-    "version":"0.01",
-    "description": "Simple Calculator",
-    "tags": "tool",
-    "allow_emulator":false,
-    "storage": [
-      {"name":"calc.app.js","url":"calc.min.js"},
-      {"name":"calc.img","url":"calc-icon.js","evaluate":true }
-    ]
-  },
-  { "id": "calendar",
-    "name": "Dates",
-    "icon": "calendar.png",
-    "version":"0.02",
-    "description": "Calendar",
-    "tags": "tool",
-    "allow_emulator":false,
-    "storage": [
-      {"name":"calendar.app.js","url":"calendar.app.js"},
-      {"name":"calendar.img","url":"calendar-icon.js","evaluate":true }
-    ]
-  },
   { "id": "widbat",
     "name": "Battery Level Widget",
     "icon": "widget.png",
-    "version":"0.05",
+    "version":"0.01",
     "description": "Show the current battery level and charging status in the top right of the clock",
     "tags": "widget,battery",
     "type":"widget",
     "storage": [
-      {"name":"widbat.wid.js","url":"widget.js"}
+      {"name":"widbat.wid.js","url":"widbat.wid.js"}
     ]
   },
-  { "id": "widram",
-    "name": "RAM Widget",
-    "shortName":"RAM Widget",
-    "icon": "widget.png",
-    "version":"0.01",
-    "description": "Display available RAM percentage in a widget",
-    "tags": "widget",
-    "type": "widget",
+  { "id": "setting",
+    "name": "Setting",
+    "icon": "setting.png",
+    "version":"0.03",
+    "description": "A menu for aadjusting P8 settings",
+    "tags": "tool,system",
     "storage": [
-      {"name":"widram.wid.js","url":"widget.js"}
-    ]
-  },
-  { "id": "widancs",
-    "name": "Apple Notification Widget",
-    "shortName":"ANCS Widget",
-    "icon": "widget.png",
-    "version":"0.07",
-    "description": "Displays calls and messages from a paired iPhone. Read README before installation as it only works with compatible apps",
-    "readme": "README.md",
-    "tags": "widget",
-    "type": "widget",
-    "storage": [
-      {"name":"widancs.wid.js","url":"ancs.min.js"},
-      {"name":"widancs.settings.js","url":"settings.js"}
-    ]
-  },
-  { "id": "widmp",
-    "name": "Moon Phase Widget",
-    "icon": "widget.png",
-    "version":"0.04",
-    "description": "Display the current moon phase in blueish for the northern hemisphere in eight phases",
-    "tags": "widget,tools",
-    "type":"widget",
-    "storage": [
-      {"name":"widmp.wid.js","url":"widget.js"}
-    ]
-  },
-  { "id": "animclk",
-    "name": "Anim",
-    "shortName":"Anim",
-    "icon": "app.png",
-    "version":"0.02",
-    "description": "An animated clock face using Mark Ferrari's amazing 8 bit game art and palette cycling",
-    "tags": "clock,animated",
-    "type": "clock",
-    "storage": [
-      {"name":"animclk.app.js","url":"app.js"},
-      {"name":"animclk.pixels1","url":"animclk.pixels1"},
-      {"name":"animclk.pixels2","url":"animclk.pixels2"},
-      {"name":"animclk.pal","url":"animclk.pal"},
-      {"name":"animclk.img","url":"app-icon.js","evaluate":true}
-    ]
-  },
-  { "id": "blackjack",
-    "name": "21",
-    "shortName":"21",
-    "icon": "blackjack.png",
-    "version":"0.02",
-    "description": "Simple implementation of card game Black Jack",
-    "tags": "game",
-    "allow_emulator":false,
-    "storage": [
-      {"name":"blackjack.app.js","url":"blackjack.app.js"},
-      {"name":"hearts.js","url":"hearts.js"},
-      {"name":"spades.js","url":"spades.js"},
-      {"name":"clubs.js","url":"clubs.js"},
-      {"name":"diamonds.js","url":"diamonds.js"},
-      {"name":"blackjack.img","url":"blackjack-icon.js","evaluate":true}
+      {"name":"setting.app.js","url":"setting.app.js"},
+      {"name":"bletime.js","url":"bletime.js"},
+      {"name":"setting.img","url":"setting-icon.js","evaluate":true }
     ],
-    "sortorder" : 10
+    "sortorder" : -2
   },
-  { "id": "pairs",
-    "name": "Pairs",
-    "shortName":"Pairs",
-    "icon": "pairs.png",
-    "version":"0.01",
-    "description": "Pairs matching card game",
-    "tags": "game",
-    "allow_emulator":false,
-    "storage": [
-      {"name":"pairs.app.js","url":"pairs.app.js"},
-      {"name":"pairs.img","url":"pairs_icon.js","evaluate":true}
-    ],
-    "sortorder" : 10
-  },
-  { "id": "clotris",
-    "name": "Tetris",
-    "icon": "clock-tris.png",
-    "version":"0.04",
-    "description": "A fully functional clone of a classic game of falling blocks",
-    "tags": "game",
-    "allow_emulator":true,
-    "storage": [
-      {"name":"clotris.app.js","url":"clock-tris.js"},
-      {"name":"clotris.img","url":"clock-tris-icon.js","evaluate":true},
-      {"name":".trishig","url":"clock-tris-high"}
-    ],
-    "sortorder" : 5
-  },
-  {
-    "id": "gallifr",
-    "name": "Time Traveller's Chronometer",
-    "shortName": "Chrono",
-    "icon": "gallifr.png",
-    "version": "0.01",
-    "description": "A clock for time travellers. The light pie segment shows the minutes, the black circle, the hour. The dial itself reads 'time' just in case you forget.",
-    "tags": "clock",
-    "readme": "README.md",
-    "type": "clock",
-    "allow_emulator":true,
-    "storage": [
-      { "name": "gallifr.app.js", "url": "app.js" },
-      { "name": "gallifr.img", "url": "app-icon.js", "evaluate": true },
-      { "name": "gallifr.settings.js", "url": "settings.js" }
-    ],
-    "data": [
-      {"name":"gallifr.json"}
-    ]
-  },
-  { "id": "heart",
-    "name": "Heart",
-    "icon": "heartrate.png",
-    "version":"0.06",
-    "description": "Measure your current heart rate",
-    "readme": "README.md",
-    "tags": "health",
-    "storage": [
-      {"name":"heart.app.js","url":"heart.min.js"},
-      {"name":"heart.img","url":"heartrate-icon.js","evaluate":true}
-    ]
-  },
-  { "id": "alarm",
-    "name": "Default Alarm",
-    "shortName":"Alarms",
-    "icon": "app.png",
-    "version":"0.10",
-    "description": "Set and respond to alarms",
-    "tags": "tool,alarm,widget",
-    "storage": [
-      {"name":"alarm.app.js","url":"app.js"},
-      {"name":"alarm.boot.js","url":"boot.js"},
-      {"name":"alarm.js","url":"alarm.js"},
-      {"name":"alarm.img","url":"app-icon.js","evaluate":true},
-      {"name":"alarm.wid.js","url":"widget.js"}
-    ],
-    "data": [
-      {"name":"alarm.json"}
-    ]
-  },
-  { "id": "widviz",
-    "name": "Widget Visibility Widget",
-    "shortName":"Viz Widget",
-    "icon": "eye.png",
-    "version":"0.02",
-    "description": "Touch top left to hide top bar widgets, again to redisplay.",
-    "tags": "widget",
-    "type": "widget",
-    "storage": [
-      {"name":"widviz.wid.js","url":"widget.js"}
-    ]
-  },
-  { "id": "widclkbttm",
-    "name": "Digital clock p8 widget",
-    "shortName":"Digital clock Widget",  
-    "icon": "widclkbttm.png",	
-    "version":"0.02",
-    "description": "Displays time in the bottom area.",
-	"readme": "README.md",
-    "tags": "widget",
-    "type": "widget",
-    "storage": [
-      {"name":"widclkbttm.wid.js","url":"widclkbttm.wid.js"}
-    ]
-  },
-  { "id": "widtextbottom",
-    "name": "Text at Bottom Widget area",
-    "shortName":"Text at Bottom Widget", 
-    "icon": "widtextbottom.png",	
-    "version":"0.02",
-    "description": "Prints a text in the widget areas.",
-	"readme": "README.md",
-    "tags": "widget",
-    "type": "widget",
-    "storage": [
-      {"name":"widtextbottom.wid.js","url":"widtextbottom.wid.js"}
-    ]
-  },
-  { "id": "widtexttop",
-    "name": "Text at Top Widget area",
-    "shortName":"Text at Top Widget", 
-    "icon": "widtexttop.png",	
-    "version":"0.01",
-    "description": "Prints a text in the widget areas.",
-	"readme": "README.md",
-    "tags": "widget",
-    "type": "widget",
-    "storage": [
-      {"name":"widtexttop.wid.js","url":"widtexttop.wid.js"}
-    ]
-  }
-]
+ ]

@@ -32,7 +32,7 @@ const DEVICEINFO = [ {
   id : "ROCK",
   name : "ROCK",
   features : ["BLE","BLEHID","NFC","GRAPHICS"],
-  img : "img/rock.jpeg"
+  img : "img/dk08.png"
 }
 ];
 
