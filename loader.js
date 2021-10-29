@@ -28,11 +28,11 @@ if (window.location.host=="espruino.com") {
   Const.APP_SOURCECODE_URL = `https://github.com/${username}/ROCKApps/tree/master/apps`;
 })();
 
-const DEVICEINFO = [ {
+const MYDEVICEINFO = [ {
     id : "ROCK",
     name : "ROCK",
     features : ["BLE","BLEHID","NFC","GRAPHICS"],
-    img : "img/dk08.png"
+    img : "img/rock.jpeg"
   }
 ];
 
@@ -45,7 +45,7 @@ var originalAppJSON = undefined;
 function filterAppsForDevice(deviceId) {
   if (originalAppJSON===undefined)
     originalAppJSON = appJSON;
-  var device = DEVICEINFO.find(d=>d.id==deviceId);
+  var device = MYDEVICEINFO.find(d=>d.id==deviceId);
   if (!device) {
     showToast(`Device ID ${deviceId} not recognised. Some apps may not work`, "warning");
     Const.HAS_E_SHOWMESSAGE = false; // assume no display
@@ -70,7 +70,7 @@ function filterAppsForDevice(deviceId) {
 
 window.addEventListener('load', (event) => {
   var html = `<div class="columns">
-    ${DEVICEINFO.map(d=>`
+    ${MYDEVICEINFO.map(d=>`
     <div class="column col-3 col-xs-6">
       <div class="card devicechooser" deviceid="${d.id}">
         <div class="card-header">
