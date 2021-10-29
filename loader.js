@@ -8,6 +8,8 @@ Const.SINGLE_APP_ONLY = false;
 to show messages. */
 Const.HAS_E_SHOWMESSAGE = true;
 
+Const.MESSAGE_RELOAD ="Press BTN1 to reload";
+
 if (window.location.host=="espruino.com") {
   document.getElementById("apploaderlinks").innerHTML =
     'This is the official Espruino App Loader - you can also try the <a href="https://espruino.github.io/EspruinoApps/">Development Version</a> for the most recent apps.';

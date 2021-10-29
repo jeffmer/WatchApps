@@ -65,14 +65,14 @@ E.showPrompt = function(msg,options) {
     });
     g.setColor(-1).flip();  // turn screen on
   }
-  if (P8.prompt) {TC.removeListener("touch",P8.prompt); P8.prompt=undefined;}
+  if (wOS.prompt) {TC.removeListener("touch",wOS.prompt); wOS.prompt=undefined;}
   g.clear(1); // clear screen
   if (!msg) {
     return Promise.resolve();
   }
   draw();
   var RES = null;
-  P8.prompt =  function(p){
+  wOS.prompt =  function(p){
     var x = p.x; var y = p.y;
     if (y<200)return -1;
     if (btns.length==1) {
@@ -104,7 +104,7 @@ E.showPrompt = function(msg,options) {
   };
   return new Promise(resolve=>{
     RES = resolve;
-    TC.on("touch",uOS.prompt);
+    TC.on("touch",wOS.prompt);
   });
 };
 
@@ -112,7 +112,7 @@ E.showAlert = function(msg,title) {
   return E.showPrompt(msg,{title:title,buttons:{Ok:1}});
 };
 /*
-P8.setLCDTimeout(300);
+wOS.setLCDTimeout(300);
 
 setTimeout(()=>{
   E.showAlert("this is a message","TITLE").then((b)=>{console.log("Result: ",b);});
