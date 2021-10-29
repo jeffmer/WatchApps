@@ -85,14 +85,19 @@ function watchBat(){
   },D8,{edge:"both",repeat:true,debounce:500});
 }
 
-
 setWatch(() =>{
     if(wOS.awake) 
-        {wOS.time_left=wOS.ON_TIME; load("clock.app.js");}
+        {wOS.time_left=wOS.ON_TIME;}
     else
         wOS.wake();
   },BTN1,{repeat:true,edge:"rising"});
 
+setWatch(() =>{
+    if(wOS.awake) 
+        {wOS.time_left=wOS.ON_TIME;}
+    else
+        wOS.wake();
+},BTN2,{repeat:true,edge:"rising"});
 
 wOS.init();
 eval(STOR.read("lcd.js"));
@@ -101,9 +106,6 @@ wOS.brightness(wOS.BRIGHT);
 //console.log("loaded lcd");
 eval(STOR.read("touch.js"));
 TC.start();
-TC.on('touch',(p)=>{wOS.time_left=wOS.ON_TIME;});
-TC.on('swipe',(d)=>{wOS.time_left=wOS.ON_TIME;});
-TC.on("longtouch", (p)=> {wOS.time_left=wOS.ON_TIME;}); 
 //console.log("loaded touch");
 if (wOS.FACEUP && STOR.read("accel.js")){ 
     eval(STOR.read("accel.js"));
@@ -117,6 +119,12 @@ wOS.POWER=wOS.isPower();
 watchBat();
 
 if (STOR.read("alarm.boot.js")) eval(STOR.read("alarm.boot.js"));
+
+wOS.btnWatches = [
+    setWatch(function() { 
+        if (wOS.awake && STOR.read("clock.app.js")) eval(STOR.read("clock.app.js"));
+    }, BTN1, {repeat:0}),
+  ];
 
 
 

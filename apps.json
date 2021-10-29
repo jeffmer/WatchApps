@@ -1,235 +1,324 @@
 [
-  { "id": "blehidkey",
-    "name": "Bluetooth HID key",
-    "icon": "icon.png",
-    "version":"0.01",
-    "description": "Make device appear as a HID keyboard. When BTN1 is pressed send Enter",
-    "tags": "bluetooth",
-    "needsFeatures":["BLE","BLEHID"],
+  { "id": "boot",
+    "name": "Bootloader",
+    "tags": "tool,system",
+    "type":"bootloader",
+    "icon": "bootloader.png",
+    "version":"0.04",
+    "description": "This loads the P8 App execution environment - boot, lcd, touch & accel",
     "storage": [
-      {"name":".bootcde","url":"app.js"}
-    ]
+      {"name":".boot0","url":"boot0.js"},
+      {"name":"lcd.js","url":"lcd.js"},
+      {"name":"touch.js","url":"toucher.js"},
+      {"name":"accel.js","url":"accel.js"},
+      {"name":"prompt.js","url":"prompt.js"},
+      {"name":"menu.js","url":"menu.js"},
+      {"name":"widgets.js","url":"widgets.js"}
+    ],
+    "sortorder" : -10
   },
-  { "id": "bledooropencounter",
-    "name": "Bluetooth Door Opening Counter",
-    "icon": "icon.png",
-    "version":"0.02",
-    "description": "Uses the magnetometer to detect when a magnet is nearby (door closed) or not (door open), and advertises the number of door openings.",
-    "tags": "bluetooth",
-    "readme": "README.md",
-    "needsFeatures":["BLE"],
-    "storage": [
-      {"name":".bootcde","url":"app.js"}
-    ]
-  },
-  { "id": "bleeddystone",
-    "name": "Bluetooth Eddystone Beacon",
-    "icon": "icon.png",
-    "version":"0.01",
-    "description": "Configure your device to be an [Eddystone beacon](https://github.com/google/eddystone)",
-    "tags": "bluetooth",
-    "custom": "custom.html",
-    "needsFeatures":["BLE"],
-    "storage": [
-      {"name":".bootcde"}
-    ]
-  },
-  { "id": "nfcurl",
-    "name": "NFC URL",
-    "icon": "icon.png",
-    "version":"0.01",
-    "description": "Configure your Espruino device with a specific URL",
-    "tags": "nfc,tool",
-    "custom": "custom.html",
-    "needsFeatures":["NFC"],
-    "storage": [
-      {"name":".bootcde"}
-    ]
-  },
-  { "id": "blescanner",
-    "name": "Bluetooth Scanner",
-    "icon": "icon.png",
-    "version":"0.02",
-    "description": "Scans for Bluetooth LE devices and shows their names on the screen",
-    "tags": "bluetooth",
-    "needsFeatures":["BLE","GRAPHICS"],
-    "storage": [
-      {"name":".bootcde","url":"app.js"}
-    ]
-  },
-  { "id": "bletemperature",
-    "name": "Bluetooth Temperature Beacon",
-    "icon": "icon.png",
+  { "id": "launch",
+    "name": "Launcher (Default)",
+    "shortName":"Launcher",
+    "icon": "launch.png",
     "version":"0.03",
-    "description": "Turns the given device into a Bluetooth Temperature sensor that advertises the current temperature on Bluetooth UUID 0x1809 ('Health Thermometer'). The device won't be connectable again until it is rebooted without loading saved code.",
-    "tags": "bluetooth",
-    "needsFeatures":["BLE"],
+    "description": "Added display of widgets.",
+    "tags": "tool,system,launcher",
+    "type":"launch",
     "storage": [
-      {"name":".bootcde","url":"app.js"}
-    ]
+      {"name":"launch.js","url":"launch.js"}
+    ],
+    "sortorder" : -10
   },
-  { "id": "pixlmulticolbadge",
-    "name": "Pixl.js Multicolor Badge",
-    "icon": "icon.png",
-    "version":"0.02",
-    "description": "Programs a [Pixl.js Multicolor Badge](http://www.espruino.com/Pixl.js+Multicolour) to display your name, the time, and to include Flappy Bird and T-Rex games.",
-    "tags": "bluetooth,nfc",
-    "custom": "custom.html",
-    "needsFeatures":["BLE","NFC","GRAPHICS"],
+  { "id": "setting",
+    "name": "Setting",
+    "icon": "setting.png",
+    "version":"0.03",
+    "description": "A menu for aadjusting P8 settings",
+    "tags": "tool,system",
     "storage": [
-      {"name":".boot0"},
-      {"name":".bootcde","url":"app.js"}
-    ]
+      {"name":"setting.app.js","url":"setting.app.js"},
+      {"name":"bletime.js","url":"bletime.js"},
+      {"name":"setting.img","url":"setting-icon.js","evaluate":true }
+    ],
+    "sortorder" : -2
   },
-  { "id": "pixlbadge",
-    "name": "Pixl.js Badge",
-    "icon": "icon.png",
-    "version":"0.01",
-    "description": "Programs a [Pixl.js](http://www.espruino.com/Pixl.js) to display your name, the time, and to include Flappy Bird and T-Rex games.",
-    "tags": "bluetooth,nfc",
-    "custom": "custom.html",
-    "needsFeatures":["BLE","NFC","GRAPHICS"],
-    "storage": [
-      {"name":".boot0"},
-      {"name":".bootcde","url":"app.js"}
-    ]
-  },
-  { "id": "trex",
-    "name": "T-Rex (Dinosaur game)",
-    "icon": "icon.png",
-    "version":"0.01",
-    "description": "T-Rex game in the style of Chrome's offline game",
-    "tags": "game",
-    "needsFeatures":["GRAPHICS"],
-    "storage": [
-      {"name":".bootcde","url":"app.js"}
-    ]
-  },
-  { "id": "lunarlander",
-    "name": "Lunar Lander game",
-    "icon": "icon.png",
-    "version":"0.01",
-    "description": "Simple Lunar lander game using BTN2/3 to steer and BTN4 for thrust. Designed for 128x64 screens.",
-    "tags": "game",
-    "needsFeatures":["GRAPHICS"],
-    "storage": [
-      {"name":".bootcde","url":"app.js"}
-    ]
-  },
-  { "id": "breakout",
-    "name": "Breakout game",
-    "icon": "icon.png",
-    "version":"0.01",
-    "description": "Simple breakout game using BTN1/BTN4 to control the bat. Designed for 128x64 screens.",
-    "tags": "game",
-    "needsFeatures":["GRAPHICS"],
-    "storage": [
-      {"name":".bootcde","url":"app.js"}
-    ]
-  },
-  { "id": "simpleclock",
-    "name": "Simple Clock",
-    "icon": "icon.png",
-    "version":"0.01",
-    "description": "Simple 7 segment clock that will scale to fit your display size",
+  { "id": "clock",
+    "name": "Clock",
+    "icon": "clock.png",
+    "version":"0.03",
+    "description": "Clock with multiple faces - Big, Analogue, Digital, Text.\n Switch between faces by swipe left/right",
     "tags": "clock",
-    "needsFeatures":["GRAPHICS"],
+    "type":"clock",
+    "allow_emulator":false,
     "storage": [
-      {"name":".bootcde","url":"app.js"}
+      {"name":"clock.app.js","url":"clock.app.js"},
+      {"name":"nclock.app.js","url":"nclock.app.js"},
+      {"name":"big.face.js","url":"big.face.js"},
+      {"name":"ana.face.js","url":"ana.face.js"},
+      {"name":"digi.face.js","url":"digi.face.js"},
+      {"name":"txt.face.js","url":"txt.face.js"},
+      {"name":"dk.face.js","url":"dk.face.js"},
+      {"name":"clock.img","url":"clock-icon.js","evaluate":true }
     ]
   },
-  { "id": "simpletimer",
-    "name": "Countdown Timer",
-    "icon": "icon.png",
+  { "id": "life",
+    "name": "Life",
+    "icon": "life.png",
+    "version":"0.06",
+    "description": "Conway's Game of Life cellular automata",
+    "tags": "game",
+    "allow_emulator":true,
+    "storage": [
+      {"name":"life.app.js","url":"life.min.js"},
+      {"name":"life.img","url":"life-icon.js","evaluate":true }
+    ]
+  },
+  { "id": "file",
+    "name": "Files",
+    "icon": "file.png",
+    "version":"0.03",
+    "description": "App and File Manager",
+    "tags": "tool",
+    "allow_emulator":false,
+    "storage": [
+      {"name":"file.app.js","url":"file.app.js"},
+      {"name":"file.img","url":"file-icon.js","evaluate":true }
+    ]
+  },
+  { "id": "calc",
+    "name": "Calc",
+    "icon": "calc.png",
     "version":"0.01",
-    "description": "Count down from a predefined time. Either displays the countdown on the display, or flashes LEDs to show coundown state. BTN1 starts & stops.",
-    "tags": "clock",
-    "custom": "custom.html",
+    "description": "Simple Calculator",
+    "tags": "tool",
+    "allow_emulator":false,
     "storage": [
-      {"name":".bootcde"}
+      {"name":"calc.app.js","url":"calc.min.js"},
+      {"name":"calc.img","url":"calc-icon.js","evaluate":true }
     ]
   },
-  { "id": "bletemplogger",
-    "name": "Bluetooth Temperature Logger",
-    "icon": "icon.png",
+  { "id": "calendar",
+    "name": "Dates",
+    "icon": "calendar.png",
     "version":"0.02",
-    "description": "Log temperature every half hour. Connect again, choose 'My Apps', then 'Upload', and view the data.",
-    "tags": "bluetooth",
-    "needsFeatures":["BLE"],
-    "interface": "interface.html",
+    "description": "Calendar",
+    "tags": "tool",
+    "allow_emulator":false,
     "storage": [
-      {"name":".bootcde","url":"app.js"}
+      {"name":"calendar.app.js","url":"calendar.app.js"},
+      {"name":"calendar.img","url":"calendar-icon.js","evaluate":true }
     ]
   },
-  { "id": "blechargemonitor",
-    "name": "Bluetooth Battery Charge Monitor",
-    "icon": "icon.png",
-    "version":"0.02",
-    "description": "Connect voltage to D31 and current to D29. The values will be logged and can be viewed in the 'interface' app",
-    "tags": "bluetooth",
-    "needsFeatures":["BLE"],
-    "interface": "interface.html",
+  { "id": "widbat",
+    "name": "Battery Level Widget",
+    "icon": "widget.png",
+    "version":"0.05",
+    "description": "Show the current battery level and charging status in the top right of the clock",
+    "tags": "widget,battery",
+    "type":"widget",
     "storage": [
-      {"name":".bootcde","url":"app.js"}
+      {"name":"widbat.wid.js","url":"widget.js"}
     ]
   },
-  { "id": "qrcode",
-    "name": "Custom QR Code",
+  { "id": "widram",
+    "name": "RAM Widget",
+    "shortName":"RAM Widget",
+    "icon": "widget.png",
+    "version":"0.01",
+    "description": "Display available RAM percentage in a widget",
+    "tags": "widget",
+    "type": "widget",
+    "storage": [
+      {"name":"widram.wid.js","url":"widget.js"}
+    ]
+  },
+  { "id": "widancs",
+    "name": "Apple Notification Widget",
+    "shortName":"ANCS Widget",
+    "icon": "widget.png",
+    "version":"0.07",
+    "description": "Displays calls and messages from a paired iPhone. Read README before installation as it only works with compatible apps",
+    "readme": "README.md",
+    "tags": "widget",
+    "type": "widget",
+    "storage": [
+      {"name":"widancs.wid.js","url":"ancs.min.js"},
+      {"name":"widancs.settings.js","url":"settings.js"}
+    ]
+  },
+  { "id": "widmp",
+    "name": "Moon Phase Widget",
+    "icon": "widget.png",
+    "version":"0.04",
+    "description": "Display the current moon phase in blueish for the northern hemisphere in eight phases",
+    "tags": "widget,tools",
+    "type":"widget",
+    "storage": [
+      {"name":"widmp.wid.js","url":"widget.js"}
+    ]
+  },
+  { "id": "animclk",
+    "name": "Anim",
+    "shortName":"Anim",
     "icon": "app.png",
     "version":"0.02",
-    "description": "Use this to upload a customised (64x64) QR code to a device with a screen",
-    "tags": "qrcode",
-    "needsFeatures":["GRAPHICS"],
-    "custom": "custom.html",
+    "description": "An animated clock face using Mark Ferrari's amazing 8 bit game art and palette cycling",
+    "tags": "clock,animated",
+    "type": "clock",
     "storage": [
-      {"name":".bootcde"}
+      {"name":"animclk.app.js","url":"app.js"},
+      {"name":"animclk.pixels1","url":"animclk.pixels1"},
+      {"name":"animclk.pixels2","url":"animclk.pixels2"},
+      {"name":"animclk.pal","url":"animclk.pal"},
+      {"name":"animclk.img","url":"app-icon.js","evaluate":true}
     ]
   },
-  { "id": "puckrotate",
-    "name": "Puck.js rotation advertising",
-    "icon": "icon.png",
+  { "id": "blackjack",
+    "name": "21",
+    "shortName":"21",
+    "icon": "blackjack.png",
+    "version":"0.02",
+    "description": "Simple implementation of card game Black Jack",
+    "tags": "game",
+    "allow_emulator":false,
+    "storage": [
+      {"name":"blackjack.app.js","url":"blackjack.app.js"},
+      {"name":"hearts.js","url":"hearts.js"},
+      {"name":"spades.js","url":"spades.js"},
+      {"name":"clubs.js","url":"clubs.js"},
+      {"name":"diamonds.js","url":"diamonds.js"},
+      {"name":"blackjack.img","url":"blackjack-icon.js","evaluate":true}
+    ],
+    "sortorder" : 10
+  },
+  { "id": "pairs",
+    "name": "Pairs",
+    "shortName":"Pairs",
+    "icon": "pairs.png",
     "version":"0.01",
-    "description": "Uses Puck.js to detect rotation, and advertises it over Bluetooth as JSON",
-    "tags": "bluetooth",
+    "description": "Pairs matching card game",
+    "tags": "game",
+    "allow_emulator":false,
+    "storage": [
+      {"name":"pairs.app.js","url":"pairs.app.js"},
+      {"name":"pairs.img","url":"pairs_icon.js","evaluate":true}
+    ],
+    "sortorder" : 10
+  },
+  { "id": "clotris",
+    "name": "Tetris",
+    "icon": "clock-tris.png",
+    "version":"0.04",
+    "description": "A fully functional clone of a classic game of falling blocks",
+    "tags": "game",
+    "allow_emulator":true,
+    "storage": [
+      {"name":"clotris.app.js","url":"clock-tris.js"},
+      {"name":"clotris.img","url":"clock-tris-icon.js","evaluate":true},
+      {"name":".trishig","url":"clock-tris-high"}
+    ],
+    "sortorder" : 5
+  },
+  {
+    "id": "gallifr",
+    "name": "Time Traveller's Chronometer",
+    "shortName": "Chrono",
+    "icon": "gallifr.png",
+    "version": "0.01",
+    "description": "A clock for time travellers. The light pie segment shows the minutes, the black circle, the hour. The dial itself reads 'time' just in case you forget.",
+    "tags": "clock",
     "readme": "README.md",
-    "needsFeatures":["BLE","GYRO","ACCEL"],
+    "type": "clock",
+    "allow_emulator":true,
     "storage": [
-      {"name":".bootcde","url":"app.js"}
+      { "name": "gallifr.app.js", "url": "app.js" },
+      { "name": "gallifr.img", "url": "app-icon.js", "evaluate": true },
+      { "name": "gallifr.settings.js", "url": "settings.js" }
+    ],
+    "data": [
+      {"name":"gallifr.json"}
     ]
   },
-  { "id": "pucksiren",
-    "name": "Puck.js Siren",
-    "icon": "icon.png",
-    "version":"0.01",
-    "description": "Attach LEDs and speaker as in http://www.espruino.com/Puck.js+Duplo+Siren, upload this code and your Puck will flash the lights and make sound whenever moved!",
-    "tags": "",
-    "needsFeatures":["BLE","ACCEL"],
+  { "id": "heart",
+    "name": "Heart",
+    "icon": "heartrate.png",
+    "version":"0.06",
+    "description": "Measure your current heart rate",
+    "readme": "README.md",
+    "tags": "health",
     "storage": [
-      {"name":".bootcde","url":"app.js"}
+      {"name":"heart.app.js","url":"heart.min.js"},
+      {"name":"heart.img","url":"heartrate-icon.js","evaluate":true}
     ]
   },
-  { "id": "tilthydro",
-    "name": "Tilt Hydrometer Display",
-    "icon": "icon.png",
-    "version":"0.01",
-    "description": "A display for the [Tilt Hydrometer](https://tilthydrometer.com/) - [more info here](http://www.espruino.com/Tilt+Hydrometer+Display)",
-    "tags": "",
-    "needsFeatures":["BLE","GRAPHICS"],
+  { "id": "alarm",
+    "name": "Default Alarm",
+    "shortName":"Alarms",
+    "icon": "app.png",
+    "version":"0.10",
+    "description": "Set and respond to alarms",
+    "tags": "tool,alarm,widget",
     "storage": [
-      {"name":".bootcde","url":"app.js"}
+      {"name":"alarm.app.js","url":"app.js"},
+      {"name":"alarm.boot.js","url":"boot.js"},
+      {"name":"alarm.js","url":"alarm.js"},
+      {"name":"alarm.img","url":"app-icon.js","evaluate":true},
+      {"name":"alarm.wid.js","url":"widget.js"}
+    ],
+    "data": [
+      {"name":"alarm.json"}
     ]
   },
-  { "id": "tiltrepeater",
-    "name": "Tilt Hydrometer Repeater",
-    "icon": "icon.png",
-    "version":"0.01",
-    "description": "A repeater/signal booster for the [Tilt Hydrometer](https://tilthydrometer.com/) - [more info here](http://www.espruino.com/Tilt+Repeater)",
-    "tags": "",
-    "needsFeatures":["BLE"],
+  { "id": "widviz",
+    "name": "Widget Visibility Widget",
+    "shortName":"Viz Widget",
+    "icon": "eye.png",
+    "version":"0.02",
+    "description": "Touch top left to hide top bar widgets, again to redisplay.",
+    "tags": "widget",
+    "type": "widget",
     "storage": [
-      {"name":".bootcde","url":"app.js"}
+      {"name":"widviz.wid.js","url":"widget.js"}
+    ]
+  },
+  { "id": "widclkbttm",
+    "name": "Digital clock p8 widget",
+    "shortName":"Digital clock Widget",  
+    "icon": "widclkbttm.png",	
+    "version":"0.02",
+    "description": "Displays time in the bottom area.",
+	"readme": "README.md",
+    "tags": "widget",
+    "type": "widget",
+    "storage": [
+      {"name":"widclkbttm.wid.js","url":"widclkbttm.wid.js"}
+    ]
+  },
+  { "id": "widtextbottom",
+    "name": "Text at Bottom Widget area",
+    "shortName":"Text at Bottom Widget", 
+    "icon": "widtextbottom.png",	
+    "version":"0.02",
+    "description": "Prints a text in the widget areas.",
+	"readme": "README.md",
+    "tags": "widget",
+    "type": "widget",
+    "storage": [
+      {"name":"widtextbottom.wid.js","url":"widtextbottom.wid.js"}
+    ]
+  },
+  { "id": "widtexttop",
+    "name": "Text at Top Widget area",
+    "shortName":"Text at Top Widget", 
+    "icon": "widtexttop.png",	
+    "version":"0.01",
+    "description": "Prints a text in the widget areas.",
+	"readme": "README.md",
+    "tags": "widget",
+    "type": "widget",
+    "storage": [
+      {"name":"widtexttop.wid.js","url":"widtexttop.wid.js"}
     ]
   }
-
-
 ]

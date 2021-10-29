@@ -22,11 +22,20 @@ if (window.location.host=="espruino.com") {
 }
 
 (function() {
-  let username = "espruino";
+  let username = "jeffmer";
   let githubMatch = window.location.href.match(/\/(\w+)\.github\.io/);
   if (githubMatch) username = githubMatch[1];
-  Const.APP_SOURCECODE_URL = `https://github.com/${username}/EspruinoApps/tree/master/apps`;
+  Const.APP_SOURCECODE_URL = `https://github.com/${username}/ROCK/tree/master/apps`;
 })();
+
+const DEVICEINFO = [ {
+  id : "ROCK",
+  name : "ROCK",
+  features : ["BLE","BLEHID","NFC","GRAPHICS"],
+  img : "img/dk08.png"
+}
+];
+
 
 function onFoundDeviceInfo(deviceId, deviceVersion) {
   // check against features shown?

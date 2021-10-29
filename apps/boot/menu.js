@@ -3,13 +3,13 @@ wOS.setUI =function(mode, cb) {
     wOS.btnWatches.forEach(clearWatch);
     delete wOS.btnWatches;
   }
-  if (wOS.swipeHandler) {
-    wOS.removeListener("swipe", wOS.swipeHandler);
-    delete wOS.swipeHandler;
+  if (TC.swipeHandler) {
+    TC.removeListener("swipe", TC.swipeHandler);
+    delete TC.swipeHandler;
   }
-  if (wOS.touchandler) {
-    wOS.removeListener("touch", wOS.touchHandler);
-    delete wOS.touchHandler;
+  if (TC.touchHandler) {
+    TC.removeListener("touch", TC.touchHandler);
+    delete TC.touchHandler;
   }
   if (!mode) return;
   else if (mode=="updown") {
@@ -17,9 +17,10 @@ wOS.setUI =function(mode, cb) {
       setWatch(function() { cb(-1); }, BTN1, {repeat:1}),
       setWatch(function() { cb(1); }, BTN2, {repeat:1}),
     ];
-    wOS.swipeHandler = d => {if (d==3) cb(-1); else if (d==4)  cb(1);};
-    wOS.on("swipe", wOS.swipeHandler);
-    wOS.touchHandler = d => {cb();};
+    TC.swipeHandler = d => {if (d==2) cb(-1); else if (d==1)  cb(1);};
+    TC.on("swipe", TC.swipeHandler);
+    TC.touchHandler = d => {wOS.buzz(20); cb();};
+    TC.on("touch", TC.touchHandler);
   } else
     throw new Error("Unknown UI mode");
 }
@@ -31,7 +32,7 @@ E.showMenu = function(items) {
   wOS.setLCDPower(1); // ensure screen is on
   //wOS.drawWidgets();
   if (!items) {
-    wOS.setUI();
+    setUI();
     return;
   }
   var w = g.getWidth()-9;
@@ -41,8 +42,8 @@ E.showMenu = function(items) {
   if (options) menuItems.splice(menuItems.indexOf(""),1);
   if (!(options instanceof Object)) options = {};
   options.fontHeight=16;
-  options.x=0;
-  options.x2=w-2;
+  options.x=2;
+  options.x2=w-4;
   options.y=24;
   options.y2=220;
   if (options.selected === undefined)
@@ -55,7 +56,7 @@ E.showMenu = function(items) {
   var y2 = options.y2||(g.getHeight()-1);
   if (options.title)
     y += options.fontHeight+2;
-  var loc = require("locale");
+  //var loc = require("locale");
   var l = {
     lastIdx : 0,
     draw : function(rowmin,rowmax) {
@@ -87,12 +88,12 @@ E.showMenu = function(items) {
         g.fillRect(x,iy,x2,iy+options.fontHeight-1);
         g.setColor(hl ? g.theme.fgH : g.theme.fg);
         g.setFontAlign(-1,-1);
-        g.drawString(loc.translate(name),x,iy);
+        g.drawString(name,x,iy);
         if ("object" == typeof item) {
           var xo = x2;
           var v = item.value;
           if (item.format) v=item.format(v);
-          v = loc.translate(""+v);
+          //v = loc.translate(""+v);
           if (l.selectEdit && idx==options.selected) {
             xo -= 24 + 1;
             g.setColor(g.theme.bgH).fillRect(xo-(g.stringWidth(v)+4),iy,x2,iy+options.fontHeight-1);
