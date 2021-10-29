@@ -62,6 +62,12 @@ global.wOS = {
         wOS.brightness(wOS.BRIGHT);
         wOS.ticker = setInterval(wOS.tick,1000);
     },
+    setLCDPower:(b)=>{
+        if (b){
+            if (wOS.awake) wOS.time_left = wOS.ON_TIME; else wOS.wake();
+        } else 
+            wOS.sleep();
+    },
     tick:()=>{
         wOS.time_left--;
         if (wOS.time_left<=0){
