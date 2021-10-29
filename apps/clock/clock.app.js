@@ -1,6 +1,7 @@
 var FACES = [];
 var STOR = require("Storage");
 eval(STOR.read("prompt.js"));
+eval(STOR.read("setui.js"));
 eval(STOR.read("widgets.js"));
 STOR.list(/\.face\.js$/).forEach(face=>FACES.push(eval(require("Storage").read(face))));
 var lastface = STOR.readJSON("clock.json") || {pinned:0}
@@ -53,11 +54,7 @@ function setButtons(){
     face = FACES[iface]();
     startdraw();
   }
-  TC.on('swipe',(dir)=>{
-    if (!SCREENACCESS.withApp) return;
-    if (dir ==TC.RIGHT) newFace(1);
-    else if (dir == TC.LEFT) newFace(-1);
-  });
+  wOS.setUI("clock", newFace);
 }
 
 E.on('kill',()=>{
@@ -67,7 +64,6 @@ E.on('kill',()=>{
     }
 });
 
-TC.on("longtouch", (p)=>{load("nclock.app.js");}); 
 
 wOS.loadWidgets();
 

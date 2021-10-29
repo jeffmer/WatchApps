@@ -16,7 +16,7 @@
     "tags": "tool,system",
     "type":"bootloader",
     "icon": "bootloader.png",
-    "version":"0.01",
+    "version":"0.02",
     "description": "This loads the ROCK App execution environment, drivers etc",
     "storage": [
       {"name":"lcd.js","url":"lcd.js"},
@@ -29,17 +29,29 @@
     ],
     "sortorder" : -10
   },
+  { "id": "launch",
+    "name": "Launcher (Default)",
+    "shortName":"Launcher",
+    "icon": "launch.png",
+    "version":"0.03",
+    "description": "Added display of widgets.",
+    "tags": "tool,system,launcher",
+    "type":"launch",
+    "storage": [
+      {"name":"launch.js","url":"launch.js"}
+    ],
+    "sortorder" : -10
+  },
   { "id": "clock",
     "name": "Clock",
     "icon": "clock.png",
-    "version":"0.03",
+    "version":"0.04",
     "description": "Clock with multiple faces - Big, Analogue, Digital, Text.\n Switch between faces by swipe left/right",
     "tags": "clock",
     "type":"clock",
     "allow_emulator":false,
     "storage": [
       {"name":"clock.app.js","url":"clock.app.js"},
-      {"name":"nclock.app.js","url":"nclock.app.js"},
       {"name":"big.face.js","url":"big.face.js"},
       {"name":"ana.face.js","url":"ana.face.js"},
       {"name":"digi.face.js","url":"digi.face.js"},
@@ -63,7 +75,7 @@
     "name": "Setting",
     "icon": "setting.png",
     "version":"0.03",
-    "description": "A menu for aadjusting P8 settings",
+    "description": "A menu for adjusting device settings",
     "tags": "tool,system",
     "storage": [
       {"name":"setting.app.js","url":"setting.app.js"},
