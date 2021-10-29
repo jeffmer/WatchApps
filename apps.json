@@ -71,5 +71,5 @@
       {"name":"setting.img","url":"setting-icon.js","evaluate":true }
     ],
     "sortorder" : -2
-  },
+  }
  ]
