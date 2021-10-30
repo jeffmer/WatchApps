@@ -109,7 +109,7 @@ if (STOR.read("alarm.boot.js")) eval(STOR.read("alarm.boot.js"));
 
 wOS.btnWatches = [
     setWatch(function() { 
-            if (wOS.awake && STOR.read("clock.app.js")) eval(STOR.read("clock.app.js"));
+            if (wOS.awake) load("clock.app.js");
     }, BTN1, {repeat:1})
 ];
 
