@@ -1,7 +1,6 @@
 var FACES = [];
 var STOR = require("Storage");
 eval(STOR.read("prompt.js"));
-eval(STOR.read("setui.js"));
 eval(STOR.read("widgets.js"));
 STOR.list(/\.face\.js$/).forEach(face=>FACES.push(eval(require("Storage").read(face))));
 var lastface = STOR.readJSON("clock.json") || {pinned:0}
@@ -33,6 +32,7 @@ var SCREENACCESS = {
     this.withApp=true;
     if (this.alertTO) {clearTimeout(this.alertTO); this.alertTO=undefined;}
     startdraw(); 
+    setButtons();
   }
 }; 
 
