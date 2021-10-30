@@ -118,7 +118,7 @@ setWatch(() =>{
         wOS.time_left=wOS.ON_TIME;
     } else
         wOS.wake();
-  },BTN1,{repeat:true,edge:"rising"});
+  },BTN1,{repeat:true,edge:"falling"});
 
 setWatch(() =>{
     if(wOS.awake) {
@@ -126,7 +126,7 @@ setWatch(() =>{
         if (!wOS.btnWatches) setTimeout(reset, 500);
       } else
           wOS.wake();
-},BTN2,{repeat:true,edge:"rising"});
+},BTN2,{repeat:true,edge:"falling"});
 
 
 

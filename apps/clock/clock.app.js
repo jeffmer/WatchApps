@@ -21,16 +21,10 @@ function startdraw() {
 }
 
 var SCREENACCESS = {
-  withApp:true,
-  alertTO:undefined,
   request:function(){
-    this.withApp=false;
     stopdraw();
-    this.alertTO = setTimeout(()=>{load("launch.js");},600000);
   },
   release:function(){
-    this.withApp=true;
-    if (this.alertTO) {clearTimeout(this.alertTO); this.alertTO=undefined;}
     startdraw(); 
     setButtons();
   }

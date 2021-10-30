@@ -22,7 +22,6 @@
   } 
 
   function displaymsg(m){
-    var message = wordwrap(m.message);
     //we may already be displaying a prompt, so clear it
     E.showPrompt();
     if (screentimeout) clearTimeout(screentimeout);
