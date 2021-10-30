@@ -1,7 +1,5 @@
 
-eval(STOR.read("setui.js"));
-
-g.theme={fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true};
+if (!E.setUI) eval(STOR.read("setui.js"));
 
 E.showMenu = function(items) {
   g.clear(1); // clear screen if no menu supplied

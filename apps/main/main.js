@@ -85,23 +85,10 @@ function watchBat(){
   },D8,{edge:"both",repeat:true,debounce:500});
 }
 
-setWatch(() =>{
-    if(wOS.awake) 
-        {wOS.time_left=wOS.ON_TIME;}
-    else
-        wOS.wake();
-  },BTN1,{repeat:true,edge:"rising"});
-
-setWatch(() =>{
-    if(wOS.awake) 
-        {wOS.time_left=wOS.ON_TIME;}
-    else
-        wOS.wake();
-},BTN2,{repeat:true,edge:"rising"});
-
 wOS.init();
 eval(STOR.read("lcd.js"));
 var g = ST7789();
+g.theme={fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true};
 wOS.brightness(wOS.BRIGHT);
 //console.log("loaded lcd");
 eval(STOR.read("touch.js"));
@@ -125,6 +112,22 @@ wOS.btnWatches = [
             if (wOS.awake && STOR.read("clock.app.js")) eval(STOR.read("clock.app.js"));
     }, BTN1, {repeat:1})
 ];
+
+setWatch(() =>{
+    if(wOS.awake) {
+        wOS.time_left=wOS.ON_TIME;
+    } else
+        wOS.wake();
+  },BTN1,{repeat:true,edge:"rising"});
+
+setWatch(() =>{
+    if(wOS.awake) {
+        wOS.time_left=wOS.ON_TIME;
+        if (!wOS.btnWatches) setTimeout(reset, 500);
+      } else
+          wOS.wake();
+},BTN2,{repeat:true,edge:"rising"});
+
 
 
 

@@ -16,7 +16,7 @@
     "tags": "tool,system",
     "type":"bootloader",
     "icon": "bootloader.png",
-    "version":"0.02",
+    "version":"0.04",
     "description": "This loads the ROCK App execution environment, drivers etc",
     "storage": [
       {"name":"lcd.js","url":"lcd.js"},
@@ -70,6 +70,20 @@
     "type":"widget",
     "storage": [
       {"name":"widbat.wid.js","url":"widget.js"}
+    ]
+  },
+  { "id": "widancs",
+    "name": "Apple Notification Widget",
+    "shortName":"ANCS Widget",
+    "icon": "widget.png",
+    "version":"0.08",
+    "description": "Displays calls and messages from a paired iPhone. Read README before installation as it only works with compatible apps",
+    "readme": "README.md",
+    "tags": "widget",
+    "type": "widget",
+    "storage": [
+      {"name":"widancs.wid.js","url":"ancs.min.js"},
+      {"name":"widancs.settings.js","url":"settings.js"}
     ]
   },
   { "id": "setting",

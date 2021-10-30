@@ -1,10 +1,14 @@
+
+
+if (!E.setUI) eval(STOR.read("setui.js"));
+
 E.showMessage = function(msg,options) {
   if ("string" == typeof options)
     options = { title : options };
   options = options||{};
   g.clear(1); // clear screen
-  Bangle.drawWidgets(); // redraw widgets
-  g.reset().setFont("6x8",(g.getWidth()>128)?2:1).setFontAlign(0,-1);
+  if (global.WIDGETS) wOS.drawWidgets(); // redraw widgets
+  g.reset().setFont("Vector",18).setFontAlign(0,-1);
   var Y = global.WIDGETS ? 24 : 0;
   var W = g.getWidth(), H = g.getHeight()-Y, FH=g.getFontHeight();
   var titleLines = g.wrapString(options.title, W-2);
@@ -20,9 +24,8 @@ E.showMessage = function(msg,options) {
     g.setColor(g.theme.fgH).setBgColor(g.theme.bgH).
       clearRect(0,Y,W-1,Y+4+titleLines.length*FH).
       drawString(titleLines.join("\n"),W/2,Y+2);
-  Bangle.setLCDPower(1); // ensure screen is on
-}
-
+  wOS.setLCDPower(1); // ensure screen is on
+};
 
 E.showPrompt = function(msg,options) {
   if (!options) options={};
@@ -82,7 +85,7 @@ E.showPrompt = function(msg,options) {
     wOS.setLCDPower(1); // ensure screen is on
   }
   g.clear(1); // clear screen
-  wOS.drawWidgets(); // redraw widgets
+  if (global.WIDGETS) wOS.drawWidgets(); // redraw widgets
   if (!msg) {
     wOS.setUI(); // remove watches
     return Promise.resolve();
@@ -101,6 +104,6 @@ E.showPrompt = function(msg,options) {
   });
 }
 
-(function(msg,title) {
-  return E.showPrompt(msg,{title:title,buttons:{Ok:1},img:require("heatshrink").decompress(atob("lEo4UBov+///BIMggFVAAQHBAoYIEBQ1QBIcFBIdABIcBBAVUHYsVDgweEDggeELQ4JKGAcP+AyDGAcO2AyDBJI6DBIkBBLpKDBIgAEBOKBEABSyGMYwJTGIkBWabRJd6dVIw0BBIIyDGAYJBGQYwEDwwcCDwwcCAAQ5FBQwFDA="))});
-})
+E.showAlert = function(msg,title) {
+  return E.showPrompt(msg,{title:title,buttons:{Ok:1}});
+}

@@ -1,7 +1,12 @@
 (() => {
 
   function getFace(){
-      
+  
+
+  var W = g.getWidth();
+  var H = g.getHeight();
+  var F = 44;
+
   function drawTime(d) {    
       function convert(n){
           var t0 = [" ","one","two","three","four","five","six","seven","eight","nine"];
@@ -13,16 +18,20 @@
           return "error";     
       }
       g.reset();
-      g.clearRect(0,40,239,210);
-      g.setColor(1,1,1);
+      g.clearRect(0,40,W-1,H-1);
+      g.setColor(g.theme.fg);
       g.setFontAlign(0,0);
       g.setFont("Vector",44);
       var txt = convert(d.getHours());
-      g.drawString(txt.top,120,60);
-      g.drawString(txt.bot,120,100);
+      g.setColor(g.theme.fg);
+      g.drawString(txt.top,W/2,H/2-2*F);
+      g.setColor(g.theme.fg2);
+      g.drawString(txt.bot,W/2,H/2-F);
       txt = convert(d.getMinutes());
-      g.drawString(txt.top,120,140);
-      g.drawString(txt.bot,120,180);
+      g.setColor(g.theme.fg);
+      g.drawString(txt.top,W/2,H/2);
+      g.setColor(g.theme.fg2);
+      g.drawString(txt.bot,W/2,H/2+F);
     }
 
   function onSecond(){

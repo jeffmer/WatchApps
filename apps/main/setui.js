@@ -28,6 +28,9 @@ wOS.setUI =function(mode, cb) {
         ];
         TC.swipeHandler = d => {if (d==3) cb(-1); else if (d==4)  cb(1);};
         TC.on("swipe", TC.swipeHandler);
+    } else if (mode=="touch") {
+      TC.touchHandler = d => {cb(d);};
+      TC.on("touch", TC.touchHandler);
     } else
       throw new Error("Unknown UI mode");
   }
