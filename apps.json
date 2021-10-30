@@ -99,6 +99,18 @@
     ],
     "sortorder" : -2
   },
+  { "id": "calc",
+    "name": "Calc",
+    "icon": "calc.png",
+    "version":"0.01",
+    "description": "Simple Calculator",
+    "tags": "tool",
+    "allow_emulator":false,
+    "storage": [
+      {"name":"calc.app.js","url":"calc.js"},
+      {"name":"calc.img","url":"calc-icon.js","evaluate":true }
+    ]
+  },
   { "id": "life",
     "name": "Life",
     "icon": "life.png",

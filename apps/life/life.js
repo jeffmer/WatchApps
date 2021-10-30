@@ -1,10 +1,10 @@
 wOS.setLCDTimeout(30);
-if (!Element.setUI) eval(STORE.read("setui.js"));
+if (!wOS.setUI) eval(STOR.read("setui.js"));
 
 var buf = Graphics.createArrayBuffer(160,160,1,{msb:true});
 
-function flip() {
- g.setColor(1,1,1);
+function flip(c) {
+ g.setColor(c);
  g.drawImage({width:160,height:160,bpp:1,buffer:buf.buffer},40,40);
  buf.clear();
 }
@@ -26,7 +26,7 @@ function initDraw(gen){
             buf.fillRect(Xr,Yr, Xr+7,Yr+7);
         } 
     } 
-    flip();
+    flip(g.theme.fg2);
 }
 
 function howlong(){
@@ -34,6 +34,7 @@ function howlong(){
   g.setFont("6x8",2);
   g.setFontAlign(-1,-1,0);
   gentime = Math.floor(gentime);
+  g.setColor(g.theme.fg);
   g.drawString('Gen:'+generation+'  '+gentime+'ms  ',20,220,true);
   gentime=0;
 }
@@ -56,7 +57,7 @@ function next(){
     }
     gentime+=(Date.now()-start);
     if (y==16){
-      flip();
+      flip(g.theme.fg2);
       var tmp = genA; genA=genB; genB=tmp;
       howlong();
       currentY=1;
@@ -91,14 +92,14 @@ function regen(){
   setTimeout(()=>{
     g.clear();
     startdraw(true);
-    E.setUI("touch",regen);
+    wOS.setUI("touch",regen);
     buf.setFont('Vector',40);
     buf.setFontAlign(0,0);
     buf.drawString('LIFE',80,80);
     buf.setFont('6x8',2);
     buf.drawString("Conway's",80,20);
     buf.drawString('(Touch Start)',80,140);
-    flip();
+    flip(g.theme.fg);
   },500);
 
     

@@ -1,6 +1,6 @@
 
 
-if (!E.setUI) eval(STOR.read("setui.js"));
+if (!wOS.setUI) eval(STOR.read("setui.js"));
 
 E.showMessage = function(msg,options) {
   if ("string" == typeof options)

@@ -1,5 +1,5 @@
 
-if (!E.setUI) eval(STOR.read("setui.js"));
+if (!wOS.setUI) eval(STOR.read("setui.js"));
 
 E.showMenu = function(items) {
   g.clear(1); // clear screen if no menu supplied
