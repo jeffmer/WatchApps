@@ -12,6 +12,7 @@ global.wOS = {
     awake : true,
     time_left:10,
     ticker:undefined,
+    settings:undefined,
     buzz: (v)=>{
         if (!wOS.VIBRATE) return;
         v = v? v : 100;
@@ -42,6 +43,7 @@ global.wOS = {
             wOS.BRIGHT=s.bright;
             wOS.FACEUP=s.faceup;
             wOS.VIBRATE=(typeof s.vibrate!='undefined')?s.vibrate:true;
+            wOS.settings=s;
             E.setTimeZone(s.timezone);
     },
     sleep:() => {
@@ -110,7 +112,7 @@ if (STOR.read("alarm.boot.js")) eval(STOR.read("alarm.boot.js"));
 
 wOS.btnWatches = [
     setWatch(function() { 
-            if (wOS.awake) load("clock.app.js");
+            if (wOS.awake) load(wOS.settings.clock);
     }, BTN1, {repeat:1})
 ];
 
