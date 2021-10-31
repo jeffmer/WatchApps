@@ -91,7 +91,7 @@ function watchBat(){
 wOS.init();
 eval(STOR.read("lcd.js"));
 var g = ST7789();
-g.theme={fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true};
+g.theme= (wOS.settings.theme)? wOS.settings.theme : {fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true};
 wOS.brightness(wOS.BRIGHT);
 //console.log("loaded lcd");
 eval(STOR.read("touch.js"));
