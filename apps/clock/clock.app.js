@@ -1,7 +1,5 @@
 var FACES = [];
 var STOR = require("Storage");
-eval(STOR.read("prompt.js"));
-eval(STOR.read("widgets.js"));
 STOR.list(/\.face\.js$/).forEach(face=>FACES.push(eval(require("Storage").read(face))));
 var lastface = STOR.readJSON("clock.json") || {pinned:0}
 var iface = lastface.pinned;
@@ -61,14 +59,10 @@ E.on('kill',()=>{
     }
 });
 
-
-wOS.loadWidgets();
-
-setTimeout(()=>{
-  g.clear();
-  startdraw();
-  setButtons();
-},500);
+Bangle.loadWidgets();
+g.clear();
+startdraw();
+setButtons();
 
 
 
