@@ -21,10 +21,13 @@ function startdraw() {
 }
 
 var SCREENACCESS = {
+  withApp:true,
   request:function(){
+    this.withApp=false;
     stopdraw();
   },
   release:function(){
+    this.withapp=true;
     startdraw(); 
     setButtons();
   }
