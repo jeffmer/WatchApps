@@ -136,6 +136,7 @@ setWatch(() =>{
 },BTN2,{repeat:true,edge:"falling"});
 
 
-
-
+global.Bangle = wOS;
+eval(STOR.read("menu.js"));
+eval(STOR.read("prompt.js"));
 
