@@ -8,7 +8,7 @@
   function draw() {
     var s = 39;
     var x = this.x, y = this.y;
-    if (wOS.isPower()) {
+    if (wOS.isCharging()) {
       g.setColor(CHARGING).drawImage(atob("DhgBHOBzgc4HOP////////////////////3/4HgB4AeAHgB4AeAHgB4AeAHg"),x,y);
       x+=16;
     }
