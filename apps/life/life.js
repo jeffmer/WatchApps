@@ -87,7 +87,7 @@ function regen(){
   intervalRef = setInterval(next,65);
 }
     
-  wOS.on("sleep",(b)=>{if (b) stopdraw(); else startdraw();});
+  wOS.on("lcdPower",(b)=>{if (!b) stopdraw(); else startdraw();});
   
   setTimeout(()=>{
     g.clear();
