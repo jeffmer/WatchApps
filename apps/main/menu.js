@@ -6,7 +6,7 @@ E.showMenu = function(items) {
   wOS.setLCDPower(1); // ensure screen is on
   //wOS.drawWidgets();
   if (!items) {
-    setUI();
+    wOS.setUI();
     return;
   }
   var w = g.getWidth()-9;
