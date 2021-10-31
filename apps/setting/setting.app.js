@@ -98,5 +98,5 @@ function showAppSettings(app) {
   }
 }
 
-function showMainMenu() {E.showMenu(mainmenu);};
-setTimeout(showMainMenu,500);
+E.showMenu(mainmenu);
+

@@ -141,4 +141,5 @@ E.getBattery = function (){
 wOS.showLauncher = function(){load("launch.js");};
 eval(STOR.read("menu.js"));
 eval(STOR.read("prompt.js"));
+eval(STOR.read("widgets.js"));
 
