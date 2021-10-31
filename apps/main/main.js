@@ -79,12 +79,6 @@ global.wOS = {
     }
 };
 
-E.getBattery = function (){
-    var v = wOS.batV();
-    v = v<3.7?3.7:v;
-    return Math.floor((v-3.7)*200);
-}
-
 function watchBat(){
     setWatch(()=>{
       if(!wOS.awake) wOS.wake();
@@ -137,6 +131,14 @@ setWatch(() =>{
 
 
 global.Bangle = wOS;
+
+E.getBattery = function (){
+    var v = wOS.batV();
+    v = v<3.7?3.7:v;
+    return Math.floor((v-3.7)*200);
+}
+
+wOS.showLauncher = function(){load("launch.js");};
 eval(STOR.read("menu.js"));
 eval(STOR.read("prompt.js"));
 
