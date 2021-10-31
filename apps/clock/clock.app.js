@@ -30,9 +30,9 @@ var SCREENACCESS = {
   }
 }; 
 
-wOS.on('sleep',function(b) {
+wOS.on('lcdPower',function(b) {
   if (!SCREENACCESS.withApp) return;
-  if (!b) {
+  if (b) {
       startdraw();
   } else {
       stopdraw();

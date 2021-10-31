@@ -25,7 +25,7 @@ global.wOS = {
     batV: () => {
         return  7.0*analogRead(D30);
     },
-    isPower:()=>{return !D8.read();},
+    isCharging:()=>{return !D8.read();},
     setLCDTimeout:(v)=>{wOS.ON_TIME=v<5?5:v;},
     brightness:(v)=>{
         v = v>1?1:v<0?0:v;
@@ -48,7 +48,7 @@ global.wOS = {
         wOS.awake = false;
         wOS.brightness(0);
         TC.stop();
-        wOS.emit("sleep",true);
+        wOS.emit("lcdPower",false);
         g.flip(); //make sure finished with SPI before stopping it.
         g.lcd_sleep();
        // setTimeout(anom89,100);
@@ -58,7 +58,7 @@ global.wOS = {
         wOS.time_left = wOS.ON_TIME;
         TC.start();
         g.lcd_wake();
-        wOS.emit("sleep",false);
+        wOS.emit("lcdPower",true);
         wOS.brightness(wOS.BRIGHT);
         wOS.ticker = setInterval(wOS.tick,1000);
     },
@@ -68,6 +68,7 @@ global.wOS = {
         } else 
             wOS.sleep();
     },
+    isLCDOn:()=>{ return wOS.awake;},
     tick:()=>{
         wOS.time_left--;
         if (wOS.time_left<=0){
@@ -78,10 +79,16 @@ global.wOS = {
     }
 };
 
+E.getBattery = function (){
+    var v = wOS.batV();
+    v = v<3.7?3.7:v;
+    return Math.floor((v-3.7)*200);
+}
+
 function watchBat(){
     setWatch(()=>{
       if(!wOS.awake) wOS.wake();
-      wOS.emit("power",wOS.isPower());
+      wOS.emit("charging",wOS.isCharging());
   },D8,{edge:"both",repeat:true,debounce:500});
 }
 
@@ -102,7 +109,7 @@ if (wOS.FACEUP && STOR.read("accel.js")){
 }
 wOS.ticker = setInterval(wOS.tick,1000);
 
-wOS.POWER=wOS.isPower();
+wOS.POWER=wOS.isCharging();
 watchBat();
 
 if (STOR.read("alarm.boot.js")) eval(STOR.read("alarm.boot.js"));

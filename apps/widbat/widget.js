@@ -2,13 +2,7 @@
   var CHARGING = 0x07E0;
 
   function setWidth() {
-    WIDGETS["bat"].width = 40 + (wOS.isPower()?16:0);
-  }
-
-  E.getBattery = function (){
-    var v = wOS.batV();
-    v = v<3.7?3.7:v;
-    return Math.floor((v-3.7)*200);
+    WIDGETS["bat"].width = 40 + (wOS.isCharging()?16:0);
   }
 
   function draw() {
@@ -26,7 +20,7 @@
     g.setColor(-1);
   }
 
-  wOS.on('power',function(charging) {
+  wOS.on('charging',function(charging) {
     setWidth();
     wOS.drawWidgets(); // relayout widgets
     g.flip();
