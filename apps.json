@@ -46,7 +46,7 @@
   { "id": "clock",
     "name": "Clock",
     "icon": "clock.png",
-    "version":"0.05",
+    "version":"0.06",
     "description": "Clock with multiple faces - Big, Analogue, Digital, Text.\n Switch between faces by swipe left/right",
     "tags": "clock",
     "type":"clock",
@@ -55,10 +55,10 @@
       {"name":"clock.app.js","url":"clock.app.js"},
       {"name":"big.face.js","url":"big.face.js"},
       {"name":"ana.face.js","url":"ana.face.js"},
-      {"name":"digi.face.js","url":"digi.face.js"},
       {"name":"txt.face.js","url":"txt.face.js"},
       {"name":"dk.face.js","url":"dk.face.js"},
       {"name":"nifty.face.js","url":"nifty.face.js"},
+      {"name":"digi.face.js","url":"digi.face.js"},
       {"name":"clock.img","url":"clock-icon.js","evaluate":true }
     ]
   },
