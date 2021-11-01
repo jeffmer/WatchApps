@@ -6,7 +6,8 @@
     var H = g.getHeight();
     var F = H/2;
 
-    function drawTime(d) {
+    function drawTime() {
+        d = new Date()
         g.reset();
         var da = d.toString().split(" ");
         var time = da[4].substr(0, 5).split(":");
@@ -21,16 +22,8 @@
         g.drawString(minutes,W/2,15+F,true);
       }
 
-    function onSecond(){
-       var t = new Date();
-       if (t.getSeconds() === 0) drawTime(t);
-    }
 
-    function drawAll(){
-       drawTime(new Date());
-    }
-
-    return {init:drawAll, tick:onSecond};
+    return {init:drawTime, tick:drawTime, tickpersecond:false};
     }
 
   return getFace;

@@ -5,16 +5,30 @@ var lastface = STOR.readJSON("clock.json") || {pinned:0}
 var iface = lastface.pinned;
 var face = FACES[iface]();
 var intervalRefSec;
+var intervalRefSec;
+var tickTimeout;
 
 function stopdraw() {
   if(intervalRefSec) {intervalRefSec=clearInterval(intervalRefSec);}
+  if(tickTimeout) {tickTimeout=clearTimeout(tickTimeout);}
   g.clear();
+}
+
+function queueMinuteTick(f) {
+  if (tickTimeout) clearTimeout(drawTimeout);
+  tickTimeout = setTimeout(function() {
+    tickTimeout = undefined;
+    f();
+  }, 60000 - (Date.now() % 60000));
 }
 
 function startdraw() {
   g.reset();
   face.init();
-  intervalRefSec = setInterval(face.tick,1000);
+  if (face.tickpersec)
+    intervalRefSec = setInterval(face.tick,1000);
+  else 
+    queueMinuteTick(face.tick);
   wOS.drawWidgets();
 }
 

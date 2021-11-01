@@ -29,7 +29,7 @@ function getFace(){
       buf.drawString(date, W/2, 70);
       flip();
     }  
-    return {init:drawTime, tick:drawTime};
+    return {init:drawTime, tick:drawTime, tickpersec:true};
 }
 
 return getFace;

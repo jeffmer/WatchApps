@@ -73,7 +73,7 @@
         onSecond();
     }
 
-    return {init:drawAll, tick:onSecond};
+    return {init:drawAll, tick:onSecond, tickpersec:true};
  }
 
 return getFace;

@@ -7,7 +7,7 @@
   var H = g.getHeight();
   var F = 44;
 
-  function drawTime(d) {    
+  function drawTime() {    
       function convert(n){
           var t0 = [" ","one","two","three","four","five","six","seven","eight","nine"];
           var t1 = ["ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"];
@@ -19,6 +19,7 @@
       }
       g.reset();
       g.clearRect(0,40,W-1,H-1);
+      var d = new Date();
       g.setColor(g.theme.fg);
       g.setFontAlign(0,0);
       g.setFont("Vector",44);
@@ -34,16 +35,8 @@
       g.drawString(txt.bot,W/2,H/2+F);
     }
 
-  function onSecond(){
-     var t = new Date();
-     if (t.getSeconds() === 0) drawTime(t);
-  }
 
-  function drawAll(){
-     drawTime(new Date());
-  }
-
-  return {init:drawAll, tick:onSecond};
+  return {init:drawTime, tick:drawTime, tickpersec:false};
   }
 
 return getFace;

@@ -22,9 +22,10 @@
           return ('0' + value).substr(-2);
         }
         
-        function drawClock(now) {
+        function drawClock() {
           g.reset();
-          g.clearRect(0, widget, viewport.width, viewport.height);    
+          g.clearRect(0, widget, viewport.width, viewport.height);   
+          var now = new Date(); 
           const hour = d02(now.getHours() - (is12Hour && now.getHours() > 12 ? 12 : 0));
           const minutes = d02(now.getMinutes());
           const day = d02(now.getDay());
@@ -44,16 +45,8 @@
           g.drawString(day2, center.x + 40 * scale, center.y + 66 * scale);
         }
 
-        function onSecond(){
-            var t = new Date();
-            if (t.getSeconds() === 0) drawClock(t);
-        }
-
-        function drawFirst(){
-            drawClock(new Date());
-        }
     
-        return {init:drawFirst, tick:onSecond};
+        return {init:drawClock, tick:drawClock, tickpersec:false};
      }
 
     return getFace;
