@@ -35,8 +35,10 @@
           const day2 = locale.dow(now, 3);      
           g.setFontAlign(1, 0).setFont("Vector", 90 * scale);
           g.drawString(hour, center.x + 32 * scale, center.y - 31 * scale);
-          g.drawString(minutes, center.x + 32 * scale, center.y + 46 * scale);       
-          g.fillRect(center.x + 30 * scale, center.y - 72 * scale, center.x + 32 * scale, center.y + 74 * scale);       
+          g.drawString(minutes, center.x + 32 * scale, center.y + 46 * scale); 
+          g.setColor(g.theme.fg2);      
+          g.fillRect(center.x + 30 * scale, center.y - 72 * scale, center.x + 32 * scale, center.y + 74 * scale);   
+          g.setColor(g.theme.fg);      
           g.setFontAlign(-1, 0).setFont("Vector", 16 * scale);
           g.drawString(year, center.x + 40 * scale, center.y - 62 * scale);
           g.drawString(month, center.x + 40 * scale, center.y - 44 * scale);
