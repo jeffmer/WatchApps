@@ -22,12 +22,16 @@ wOS.setUI =function(mode, cb) {
         TC.touchHandler = d => {cb();};
         TC.on("touch", TC.touchHandler);
     }
-    else if (mode=="clock") {
+    else if (mode=="leftright") {
         wOS.btnWatches = [
-          setWatch(function() {if (wOS.awake) load("launch.js"); }, BTN1, {repeat:1,edge:"rising"}),
+          setWatch(function() {cb();}, BTN1, {repeat:1,edge:"rising"}),
         ];
         TC.swipeHandler = d => {if (d==3) cb(-1); else if (d==4)  cb(1);};
         TC.on("swipe", TC.swipeHandler);
+    } else if (mode=="clock") {
+        wOS.btnWatches = [
+          setWatch(function() {if (wOS.awake) wOS.showLauncher(); }, BTN1, {repeat:1,edge:"rising"}),
+        ];
     } else if (mode=="touch") {
       wOS.btnWatches = [
         setWatch(function() {if (wOS.awake) load("launch.js"); }, BTN1, {repeat:1,edge:"rising"}),

@@ -2,9 +2,9 @@
 
     function getFace(){
 
-    var W = g.getWidth();
-    var H = g.getHeight();
-    var F = H/2;
+    const W = g.getWidth();
+    const H = g.getHeight();
+    const F = 132*H/240; // reasonable approximation
 
     function drawTime() {
         d = new Date()
@@ -17,9 +17,9 @@
         g.setColor(g.theme.fg);
         g.setFont("Vector",F);
         g.setFontAlign(0,-1);
-        g.drawString(hours,W/2,30,true);
+        g.drawString(hours,W/2,24,true);
         g.setColor(g.theme.fg2);
-        g.drawString(minutes,W/2,15+F,true);
+        g.drawString(minutes,W/2,12+H/2,true);
       }
 
 

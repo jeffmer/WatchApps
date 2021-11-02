@@ -43,22 +43,26 @@
     ],
     "sortorder" : -10
   },
-  { "id": "clock",
-    "name": "Clock",
-    "icon": "clock.png",
-    "version":"0.06",
-    "description": "Clock with multiple faces - Big, Analogue, Digital, Text.\n Switch between faces by swipe left/right",
+  {
+    "id": "multiclock",
+    "name": "Multi Clock",
+    "version": "0.07",
+    "description": "Clock with multiple faces.  Switch between faces with BTN1 & BTN3 or swipe left-right. For best display set theme Background 2 to cyan or some other bright colour in settings.",
+    "icon": "multiclock.png",
+    "type": "clock",
     "tags": "clock",
-    "type":"clock",
-    "allow_emulator":false,
+    "supports": ["BANGLEJS","BANGLEJS2","ROCK"],
+    "readme": "README.md",
+    "allow_emulator": true,
     "storage": [
-      {"name":"clock.app.js","url":"clock.app.js"},
+      {"name":"multiclock.app.js","url":"multiclock.app.js"},
       {"name":"big.face.js","url":"big.face.js"},
       {"name":"ana.face.js","url":"ana.face.js"},
+      {"name":"digi.face.js","url":"digi.face.js"},
       {"name":"txt.face.js","url":"txt.face.js"},
       {"name":"dk.face.js","url":"dk.face.js"},
-      {"name":"digi.face.js","url":"digi.face.js"},
-      {"name":"clock.img","url":"clock-icon.js","evaluate":true }
+      {"name":"nifty.face.js","url":"nifty.face.js"},
+      {"name":"multiclock.img","url":"multiclock-icon.js","evaluate":true}
     ]
   },
   { "id": "alarm",

@@ -29,7 +29,7 @@ function startdraw() {
     intervalRefSec = setInterval(face.tick,1000);
   else 
     queueMinuteTick(face.tick);
-  wOS.drawWidgets();
+  Bangle.drawWidgets();
 }
 
 var SCREENACCESS = {
@@ -45,7 +45,7 @@ var SCREENACCESS = {
   }
 }; 
 
-wOS.on('lcdPower',function(b) {
+Bangle.on('lcdPower',function(b) {
   if (!SCREENACCESS.withApp) return;
   if (b) {
       startdraw();
@@ -56,14 +56,17 @@ wOS.on('lcdPower',function(b) {
 
 function setButtons(){
   function newFace(inc){
-    var n = FACES.length-1;
-    iface+=inc;
-    iface = iface>n?0:iface<0?n:iface;
-    stopdraw();
-    face = FACES[iface]();
-    startdraw();
+    if (!inc) Bangle.showLauncher();
+    else  {
+      var n = FACES.length-1;
+      iface+=inc;
+      iface = iface>n?0:iface<0?n:iface;
+      stopdraw();
+      face = FACES[iface]();
+      startdraw();
+    }
   }
-  wOS.setUI("clock", newFace);
+  Bangle.setUI("leftright", newFace);
 }
 
 E.on('kill',()=>{

@@ -7,6 +7,8 @@
 
     var cx = g.getWidth()/2;
     var cy = 12+g.getHeight()/2;
+    var scale = (g.getHeight()-24)/(240-24);  
+    scale = scale>=1 ? 1 : scale;
 
     function seconds(angle, r) {
         const a = angle*PRad;
@@ -25,6 +27,7 @@
     }
 
     function hand(angle, r1,r2, r3) {
+        r1 = scale*r1; r2=scale*r2; r3 = scale*r3;
         const a = angle*PRad;
         g.fillPoly([
             cx+Math.sin(a)*r1,
@@ -63,7 +66,7 @@
         // draw seconds
         g.setColor(1,1,1);
         for (let i=0;i<60;i++)
-            seconds(360*i/60, 100);
+            seconds(360*i/60, 100*scale);
         onSecond();
     }
 
