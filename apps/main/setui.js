@@ -14,14 +14,10 @@ wOS.setUI =function(mode, cb) {
     if (!mode) return;
     else if (mode=="updown") {
         wOS.btnWatches = [
-          setWatch(function() { cb(-1); }, BTN1, {repeat:1}),
-          setWatch(function() { cb(1); }, BTN2, {repeat:1}),
+          setWatch(function() { cb(); }, BTN1, {repeat:1}),
         ];
         TC.swipeHandler = d => {if (d==2) cb(-1); else if (d==1)  cb(1);};
-        TC.on("swipe", TC.swipeHandler);
-        TC.touchHandler = d => {cb();};
-        TC.on("touch", TC.touchHandler);
-    }
+        TC.on("swipe", TC.swipeHandler);    }
     else if (mode=="leftright") {
         wOS.btnWatches = [
           setWatch(function() {cb();}, BTN1, {repeat:1,edge:"rising"}),

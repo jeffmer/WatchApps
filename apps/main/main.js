@@ -123,6 +123,7 @@ setWatch(() =>{
         wOS.wake();
   },BTN1,{repeat:true,edge:"falling"});
 
+if (typeof BTN2!='undefined')
 setWatch(() =>{
     if(wOS.awake) {
         wOS.time_left=wOS.ON_TIME;

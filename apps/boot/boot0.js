@@ -6,8 +6,8 @@ function KickWd(){
 var wdint=setInterval(KickWd,5000);
 E.enableWatchdog(20, false);
 E.showMessage = function(msg,title) {}
-if (!BTN2.read()){
-    var STOR = require("Storage");
-    if (STOR.read("main.js"))
-         eval(STOR.read("main.js"));
+
+var STOR = require("Storage");
+f (STOR.read("main.js"))
+    eval(STOR.read("main.js"));
 }
