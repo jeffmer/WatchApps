@@ -1,27 +1,16 @@
-Espruino App Loader (and Apps)
+Espruino App Loader (and Apps) for  ROCK and Magic 3 Smart Watches
 ==============================
 
-**THIS IS BETA:** We're still trying things out, so there isn't a great
-app selection and things are liable to change.
+## Installation
 
-[![Build Status](https://travis-ci.org/espruino/EspruinoApps.svg?branch=master)](https://travis-ci.org/espruino/EspruinoApps)
+For a brand-new watch, you need to follow the instructions [here](https://github.com/fanoush/ds-d6/tree/master/espruino/DFU/Magic3) produced by @fanoush. Also following these instructions downgrade to SoftDevice S140-6.0.0.  After that you can flash the zip file from the firmware [directory](https://github.com/jeffmer/ROCKApps/tree/main/firmware).
 
-<!-- * Try the **release version** at [espruino.com/apps](https://espruino.com/apps) -->
-* Try the **development version** at [github.io](https://espruino.github.io/EspruinoApps/)
+This build has a modified `lcd_spi_unbuf` module. The build makes the full 8 megabytes available to Espruino applications. 
 
-**All software (including apps) in this repository is MIT Licensed - see [LICENSE](LICENSE)** By
-submitting code to this repository you confirm that you are happy with it being MIT licensed,
-and that it is not licensed in another way that would make this impossible.
+Once Espruino is involved use the [App Loader](https://jeffmer.github.io/ROCKApps/) to load `Bootloader`, `Main`, `Launcher` and `Settings` followed by the apps and widgets you want.
 
-## How does it work?
 
-* A list of apps is in `apps.json`
-* Each element references an app in `apps/<id>` which is uploaded
-* When it starts, EspruinoAppLoader checks the JSON and compares
-it with the files it sees in storage.
-* To upload an app, EspruinoAppLoader checks the files that are
-listed in `apps.json`, loads them, and sends them over Web Bluetooth.
+These provide a simple Bangle emulation environment which will let you load Bangle Apps from its App Loader. Only clock apps are really supported as these watches do not have GPS, Compass etc.
 
-## Credits
+Someone brave can try GadgetBridge which may work.....
 
-The majority of icons used for these apps are from [Icons8](https://icons8.com/) - we have a commercial license but icons are also free for Open Source projects.
