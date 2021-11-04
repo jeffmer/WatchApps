@@ -2,7 +2,7 @@ function ST7789() {
     var LCD_WIDTH = 240;
     var LCD_HEIGHT = 280;
     var XOFF = 0;
-    var YOFF = 24;
+    var YOFF = process.env.BOARD=="ROCK"?24:20;
     var INVERSE = 1;
     var cmd = lcd_spi_unbuf.command;
 

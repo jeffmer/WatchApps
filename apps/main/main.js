@@ -94,7 +94,10 @@ var g = ST7789();
 g.theme= (wOS.settings.theme)? wOS.settings.theme : {fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true};
 wOS.brightness(wOS.BRIGHT);
 //console.log("loaded lcd");
-eval(STOR.read("touch.js"));
+if (process.env.BOARD=="ROCK")
+    eval(STOR.read("cst816s.js"));
+else    
+    eval(STOR.read("cst716.js"));
 TC.start();
 //console.log("loaded touch");
 if (wOS.FACEUP && STOR.read("accel.js")){ 
