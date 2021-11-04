@@ -115,7 +115,7 @@ if (STOR.read("alarm.boot.js")) eval(STOR.read("alarm.boot.js"));
 
 wOS.btnWatches = [
     setWatch(function() { 
-            if (wOS.awake) load(wOS.settings.clock);
+            if (wOS.awake) wOS.showLauncher();
     }, BTN1, {repeat:1})
 ];
 

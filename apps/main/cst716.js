@@ -35,8 +35,8 @@ global.TC = {
             var ay = Math.abs(p.y-TC.fy);
             TC.down=false;
             if (ax<30 && ay<30) {TC.emit("touch",p);return;}
-            if (ax>ay) p.gest = p.x>TC.fy ? TC.DOWN : TC.UP;
-            else p.gest = p.y>TC.fy ? TC.RIGHT : TC.LEFT;
+            if (ay>ax) p.gest = p.y>TC.fy ? TC.DOWN : TC.UP;
+            else p.gest = p.x>TC.fx ? TC.RIGHT : TC.LEFT;
             TC.emit("swipe",p.gest); 
         }
     },

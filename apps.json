@@ -5,7 +5,7 @@
     "type":"bootloader",
     "icon": "bootloader.png",
     "version":"0.01",
-    "description": "THIS MUST BE LOADED FIRST IN A NEW SYSTEM",
+    "description": "THIS MUST BE LOADED FIRST USING WEBIDE IN A NEW SYSTEM THEN RESET",
     "storage": [
       {"name":".boot0","url":"boot0.js"}
     ],
@@ -20,13 +20,14 @@
     "description": "This loads the ROCK App execution environment, drivers etc",
     "storage": [
       {"name":"lcd.js","url":"lcd.js"},
-      {"name":"main.js","url":"main.min.js"},
+      {"name":"main.js","url":"main.js"},
       {"name":"accel.js","url":"accel.js"},
       {"name":"cst816s.js","url":"cst816s.js"},
       {"name":"cst716.js","url":"cst716.js"},
       {"name":"setui.js","url":"setui.min.js"},
       {"name":"menu.js","url":"menu.min.js"},
       {"name":"prompt.js","url":"prompt.min.js"},
+      {"name":"locale","url":"locale.js"},
       {"name":"widgets.js","url":"widgets.js"}
     ],
     "sortorder" : -10
