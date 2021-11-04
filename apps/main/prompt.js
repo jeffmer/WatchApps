@@ -53,7 +53,7 @@ E.showPrompt = function(msg,options) {
     g.setColor(g.theme.fg).setBgColor(g.theme.bg).
       drawString(msgLines.join("\n"),W/2,y);
     y += msgLines.length*FH+32;
-    
+    y = y>Y+H-24?Y+H-24:y;
     var buttonWidths = 0;
     var buttonPadding = 24;
     g.setFontAlign(0,0);
