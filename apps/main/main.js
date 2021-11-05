@@ -81,6 +81,8 @@ global.wOS = {
     }
 };
 
+global.Bangle = wOS;
+
 function watchBat(){
     setWatch(()=>{
       if(!wOS.awake) wOS.wake();
@@ -135,8 +137,6 @@ setWatch(() =>{
           wOS.wake();
 },BTN2,{repeat:true,edge:"falling"});
 
-
-global.Bangle = wOS;
 
 E.getBattery = function (){
     var v = wOS.batV();
