@@ -36,7 +36,7 @@ global.TC = {
             TC.enable();
             if (TC._wid) clearWatch(TC._wid);
             TC._wid = setWatch(TC.touchevent,TOUCH_PIN,{repeat:true,edge:"falling"});
-        },100);
+        },150);
     },
     stop:()=>{
         if (TC._wid) {
