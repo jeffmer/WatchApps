@@ -79,4 +79,4 @@ TC.on("touch",(p)=>{
     }
 });  
 
-setTimeout(()=>{drawPage(0)},1000);
+drawPage(0);
