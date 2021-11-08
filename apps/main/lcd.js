@@ -68,7 +68,7 @@ function ST7789() {
         });
         g.lcd_sleep = function(){cmd(0x10);cmd(0x28);};
         g.lcd_wake = function(){cmd(0x29);cmd(0x11);};
-        dispinit(rst, ()=>{g.clear(1).setFont("Vector",16).drawString("*",20,20);});
+        dispinit(rst, ()=>{g.clear(1).setFont("6x8").drawString("Loading...",20,20);});
         return g;
     }
 
