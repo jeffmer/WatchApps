@@ -21,6 +21,11 @@
     }, 500);
   } 
 
+  var unicodeRemap = {
+    '2019':"'"
+  };
+  var replacer = ""; //(n)=>print('Unknown unicode '+n.toString(16));
+
   function displaymsg(m){
     //we may already be displaying a prompt, so clear it
     E.showPrompt();
@@ -28,13 +33,15 @@
     wOS.setLCDPower(1);
     SCREENACCESS.request();
     wOS.buzz();
+    var ttl = E.decodeUTF8(m.title, unicodeRemap, replacer);
+    var msg = E.decodeUTF8(m.message, unicodeRemap, replacer);
     if (current.cat!=1){
-      E.showAlert(m.message,m.title).then(()=>{
+      E.showAlert(msg,ttl).then(()=>{
         NRF.ancsAction(current.uid,0);
         release_screen();
       });
     } else {
-      E.showPrompt(message,{title:m.title,buttons:{"Accept":true,"Cancel":false}}).then((r)=>{
+      E.showPrompt(msg,{title:ttl,buttons:{"Accept":true,"Cancel":false}}).then((r)=>{
         NRF.ancsAction(current.uid,r);
         release_screen();
       });
