@@ -32,11 +32,10 @@ global.TC = {
     },
     start:()=>{
         digitalPulse(RESET_PIN,0,5);
-        setTimeout(()=>{
-            TC.enable();
-            if (TC._wid) clearWatch(TC._wid);
-            TC._wid = setWatch(TC.touchevent,TOUCH_PIN,{repeat:true,edge:"falling"});
-        },150);
+        var t = getTime()+50/1000; while(getTime()<t); // delay 150 ms
+        TC.enable();
+        if (TC._wid) clearWatch(TC._wid);
+        TC._wid = setWatch(TC.touchevent,TOUCH_PIN,{repeat:true,edge:"falling"});
     },
     stop:()=>{
         if (TC._wid) {
