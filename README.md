@@ -14,5 +14,9 @@ Once Espruino is installed use the [App Loader](https://jeffmer.github.io/ROCKAp
 
 These provide a simple Bangle emulation environment which will let you load Bangle Apps from its App Loader. Only clock apps are really supported as these watches do not have GPS, Compass etc.
 
+
+
 Someone brave can try GadgetBridge which may work.....
+
+![image](img/rock_pic.jpeg)
 
