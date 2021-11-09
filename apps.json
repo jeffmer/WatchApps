@@ -8,6 +8,7 @@
     "description": "THIS MUST BE LOADED FIRST USING WEBIDE IN A NEW SYSTEM THEN RESET",
     "storage": [
       {"name":"C:.boot0","url":"boot0.js"}
+      {"name":"C:.bootcde","url":"bootloader.js"}
     ],
     "sortorder" : -15
   },
