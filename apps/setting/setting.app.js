@@ -32,9 +32,14 @@ var mainmenu = {
                   onchange: () => {s.faceup = !s.faceup;}
                 },
     'Vibrate': {
-                  value: s.Vibrate,
+                  value: s.vibrate,
                   format: () => (s.vibrate ? 'Yes' : 'No'),
                   onchange: () => {s.vibrate = !s.vibrate;}
+                },
+    'Enable GPS': {
+                  value: s.gpsclient,
+                  format: () => (s.gpsclient ? 'Yes' : 'No'),
+                  onchange: () => {s.gpsclient = !s.gpsclient;}
                 },
     'Set Time from Phone':()=>{
                   if (!setTimefromPhone) return;
