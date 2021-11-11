@@ -115,18 +115,17 @@ watchBat();
 
 if (STOR.read("alarm.boot.js")) eval(STOR.read("alarm.boot.js"));
 
-wOS.btnWatches = [
-    setWatch(function() { 
-            if (wOS.awake) wOS.showLauncher();
-    }, BTN1, {repeat:1})
-];
-
 setWatch(() =>{
     if(wOS.awake) {
         wOS.time_left=wOS.ON_TIME;
     } else
         wOS.wake();
-  },BTN1,{repeat:true,edge:"falling"});
+    wOS.longBTN1TO=setTimeout(wOS.showLauncher,3000);
+  },BTN1,{repeat:true,edge:"rising"});
+
+setWatch(function() { 
+    if (wOS.longBTN1TO) wOS.longBTN1TO = clearTimeout(wOS.longBTN1TO);
+}, BTN1, {repeat:1,edge:"falling"})
 
 if (typeof BTN2!='undefined')
 setWatch(() =>{

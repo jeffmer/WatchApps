@@ -1,5 +1,5 @@
 Bangle.setGPSPower = function(on){
-    if (Bangle.gpsgatt) return; //already started
+    if (Bangle.gpsOn && on) return; //already started
     function unpack(v){
         var fix = v.getInt8(29);
         function ck(d) {return d==-1 ? NaN : d;}
@@ -16,6 +16,7 @@ Bangle.setGPSPower = function(on){
         }
     }
     if (on) {
+        Bangle.gpsOn=true;
         NRF.requestDevice({timeout:4000, filters: [{ name: 'gps' }] }).then(function(device) {
         //console.log("Found");
         return device.gatt.connect();
@@ -38,6 +39,7 @@ Bangle.setGPSPower = function(on){
             E.showMessage("GPS: "+e,"ERROR");
         });
     } else {
+        Bangle.gpsOn=false;
         if (Bangle.gpsInterval) Bangle.gpsInterval = clearInterval(Bangle.gpsInterval);
         if(Bangle.gpsgatt) Bangle.gpsgatt.disconnect();
         delete Bangle.gpsgatt;
