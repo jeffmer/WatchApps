@@ -16,7 +16,7 @@ Bangle.setGPSPower = function(on){
         }
     }
     if (on) {
-        NRF.requestDevice({ filters: [{ name: 'gps' }] }).then(function(device) {
+        NRF.requestDevice({timeout:4000, filters: [{ name: 'gps' }] }).then(function(device) {
         //console.log("Found");
         return device.gatt.connect();
         }).then(function(g) {
