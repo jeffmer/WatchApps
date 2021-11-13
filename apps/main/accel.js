@@ -1,5 +1,7 @@
 //sc7a20   - use datasheet for LIS3DH
 
+var ACCELPIN = process.env.BOARD=="P8" ? D8 : D16;
+
 var ACCEL = {
     writeByte:(a,d) => { 
       wOSI2C.writeTo(0x18,a,d);
@@ -21,8 +23,12 @@ var ACCEL = {
         pinMode(D16,"input",false);
         setWatch(()=>{
            var  v = ACCEL.read0();
-           if (v>10 && v<192) ACCEL.emit("faceup");
-        },D16,{repeat:true,edge:"rising",debounce:50});
+           if (process.env.BOARD=="P8") {
+            if (v>192) ACCEL.emit("faceup");
+           } else {
+            if (v>10 && v<192) ACCEL.emit("faceup");
+           }
+        },ACCELPIN,{repeat:true,edge:"rising",debounce:50});
         return id;
     },
     read0:()=>{
