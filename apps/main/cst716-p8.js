@@ -24,6 +24,7 @@ var TC = {
     enable:()=>{TC.writeByte(0xED, 0xC8);},
     sleepMode:()=>{TC.writeByte(0xA5,0x03);},
     touchevent:() => {
+        wOS.time_left = wOS.ON_TIME; //reset LCD on time 
         var p = TC.getXY();
         if (p.gest==TC.CLICK) TC.emit("touch",p);
         else if (p.gest>=1 && p.gest<=4) TC.emit("swipe",p.gest); 
