@@ -98,7 +98,7 @@ window.addEventListener('load', (event) => {
     </div>`).join("\n")}
   </div><div class="columns">
     <div class="column col-12 text-center">
-      <p><a href="https://www.espruino.com/Order" target="_blank">Non-Bluetooth Espruino Devices</a> will be added soon.</p>
+      <p>Choose One</p>
     </div>
   </div>`;
   showPrompt("Which device?",html,{},false);
