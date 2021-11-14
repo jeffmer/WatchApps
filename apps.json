@@ -162,5 +162,49 @@
       {"name":"life.app.js","url":"life.js"},
       {"name":"life.img","url":"life-icon.js","evaluate":true }
     ]
+  },
+  { "id": "blackjack",
+    "name": "21",
+    "shortName":"21",
+    "icon": "blackjack.png",
+    "version":"0.02",
+    "description": "Simple implementation of card game Black Jack",
+    "tags": "game",
+    "allow_emulator":false,
+    "storage": [
+      {"name":"blackjack.app.js","url":"blackjack.app.js"},
+      {"name":"hearts.js","url":"hearts.js"},
+      {"name":"spades.js","url":"spades.js"},
+      {"name":"clubs.js","url":"clubs.js"},
+      {"name":"diamonds.js","url":"diamonds.js"},
+      {"name":"blackjack.img","url":"blackjack-icon.js","evaluate":true}
+    ],
+    "sortorder" : 10
+  },
+  { "id": "pairs",
+    "name": "Pairs",
+    "shortName":"Pairs",
+    "icon": "pairs.png",
+    "version":"0.01",
+    "description": "Pairs matching card game",
+    "tags": "game",
+    "allow_emulator":false,
+    "storage": [
+      {"name":"pairs.app.js","url":"pairs.app.js"},
+      {"name":"pairs.img","url":"pairs_icon.js","evaluate":true}
+    ],
+    "sortorder" : 10
+  },
+  { "id": "heart",
+    "name": "Heart",
+    "icon": "heartrate.png",
+    "version":"0.06",
+    "description": "Measure your current heart rate - P8 ONLY!!",
+    "readme": "README.md",
+    "tags": "health",
+    "storage": [
+      {"name":"heart.app.js","url":"heart.app.js"},
+      {"name":"heart.img","url":"heartrate-icon.js","evaluate":true}
+    ]
   }
  ]
