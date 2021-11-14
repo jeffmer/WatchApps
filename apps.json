@@ -19,7 +19,7 @@
     "icon": "bootloader.png",
     "version":"0.04",
     "supports": ["ROCK","P8","Magic3"],
-    "description": "This loads the ROCK App execution environment, drivers etc",
+    "description": "This loads the Bangle App execution emulation environment, drivers etc",
     "storage": [
       {"name":"C:lcd.js","url":"lcd.js"},
       {"name":"C:lcd-p8.js","url":"lcd-p8.js"},
