@@ -10,13 +10,14 @@ IMPORTANT - you need to downgrade the SoftDevice before loading my Espruino zip 
 
 This build has a modified `lcd_spi_unbuf` module. The build makes the full 8 megabytes available to Espruino applications. 
 
-Once Espruino is installed use the [App Loader](https://jeffmer.github.io/WatchApps/) to load `Bootloader`, `Main`, `Launcher` and `Settings` followed by the apps and widgets you want.
-
 ### P8
 For a brand-new P8, you need to follow the instructions [here](https://github.com/fanoush/ds-d6/tree/master/espruino/DFU/P8) produced by @fanoush to get the right bootloader required by Espruino - SDK12 with Softdevice S132 3.0. After that you can flash the zip file from the firmware [directory](https://github.com/jeffmer/WatchApps/tree/main/firmware).
 
 This build has a modified `lcd_spi_unbuf` module that works with SPI FLASH. The build makes the full 4 megabytes available to Espruino applications. 
 
+________________________________________________________
+
+Once Espruino is installed use the [App Loader](https://jeffmer.github.io/WatchApps/) to load `Bootloader`, `Main`, `Launcher` and `Settings` followed by the apps and widgets you want.
 
 These provide a simple Bangle emulation environment which will let you load Bangle Apps from its App Loader. 
 
