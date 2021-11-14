@@ -20,7 +20,7 @@ var ACCEL = {
         ACCEL.writeByte(0x32,0x10); //threshold = 250 milli g's
         ACCEL.writeByte(0x33,0x01); //duration = 1 * 20ms
         ACCEL.writeByte(0x30,0x02); //XH interrupt 
-        pinMode(D16,"input",false);
+        pinMode(ACCELPIN,"input",false);
         setWatch(()=>{
            var  v = ACCEL.read0();
            if (process.env.BOARD=="P8") {

@@ -23,7 +23,7 @@ global.wOS = {
     batV: () => {
         return  7.0*analogRead(wOS.BATVOLT);
     },
-    isCharging:()=>{return process.env.BOARD=="P8" ? wOS.BATPIN.read() : !wOS.BATPIN.read();},
+    isCharging:()=>{!wOS.BATPIN.read();},
     setLCDTimeout:(v)=>{wOS.ON_TIME=v<5?5:v;},
     setLCDBrightness:(v)=>{wOS.BRIGHT=v; wOS.brightness(v);},
     init:()=>{

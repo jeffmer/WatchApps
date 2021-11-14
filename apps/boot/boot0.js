@@ -1,4 +1,4 @@
-D7.set();
+if (process.env.BOARD!="P8") D7.set();
 E.kickWatchdog();
 function KickWd(){
   if( (typeof(BTN1)=='undefined')||(!BTN1.read()) ) E.kickWatchdog();
