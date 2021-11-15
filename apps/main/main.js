@@ -23,7 +23,7 @@ global.wOS = {
     batV: () => {
         return  7.0*analogRead(wOS.BATVOLT);
     },
-    isCharging:()=>{!wOS.BATPIN.read();},
+    isCharging:()=>{return !wOS.BATPIN.read();},
     setLCDTimeout:(v)=>{wOS.ON_TIME=v<5?5:v;},
     setLCDBrightness:(v)=>{wOS.BRIGHT=v; wOS.brightness(v);},
     init:()=>{
@@ -125,7 +125,7 @@ setWatch(() =>{
         wOS.time_left=wOS.ON_TIME;
     } else
         wOS.wake();
-    wOS.longBTN1TO=setTimeout(wOS.showLauncher,3000);
+    wOS.longBTN1TO=setTimeout(wOS.showLauncher,1500);
   },BTN1,{repeat:true,edge:"rising"});
 
 setWatch(function() { 
