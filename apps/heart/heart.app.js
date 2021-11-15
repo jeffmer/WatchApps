@@ -341,8 +341,7 @@ function showBPM(){
 
 function startMeasure() {
   if (interval) return;
-  g.clear();
-  g.reset();
+  g.clear(1);
   g.setFont("6x8",2);
   g.drawString("BPM: -- ",120,0,true);
   x=0;
