@@ -1,4 +1,5 @@
 wOS.setUI =function(mode, cb) {
+    function tt() {setTimeout(cb,10);}
     if (wOS.btnWatches) {
       wOS.btnWatches.forEach(clearWatch);
       delete wOS.btnWatches;
@@ -14,13 +15,13 @@ wOS.setUI =function(mode, cb) {
     if (!mode) return;
     else if (mode=="updown") {
         wOS.btnWatches = [
-          setWatch(function() { cb(); }, BTN1, {repeat:1,edge:"falling"}),
+          setWatch(tt, BTN1, {repeat:1,edge:"falling"}),
         ];
         TC.swipeHandler = d => {if (d==2) cb(-1); else if (d==1)  cb(1);};
         TC.on("swipe", TC.swipeHandler);    }
     else if (mode=="leftright") {
         wOS.btnWatches = [
-          setWatch(function() {cb();}, BTN1, {repeat:1,edge:"falling"}),
+          setWatch(tt, BTN1, {repeat:1,edge:"falling"}),
         ];
         TC.swipeHandler = d => {if (d==3) cb(-1); else if (d==4)  cb(1);};
         TC.on("swipe", TC.swipeHandler);
@@ -30,7 +31,7 @@ wOS.setUI =function(mode, cb) {
         ];
     } else if (mode=="touch") {
       wOS.btnWatches = [
-        setWatch(function() {if (wOS.awake) load("launch.js"); }, BTN1, {repeat:1,edge:"falling"}),
+        setWatch(function() {if (wOS.awake) wOS.showLauncher(); }, BTN1, {repeat:1,edge:"falling"}),
       ];
       TC.touchHandler = d => {cb(d);};
       TC.on("touch", TC.touchHandler);
