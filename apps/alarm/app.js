@@ -32,8 +32,8 @@ function showMainMenu() {
     menu[txt] = function() {
       editAlarm(idx);
     };
-  });
-  menu['< Back'] =  ()=>{load("clock.app.js");};
+  });=
+  menu['< Back'] =  ()=>{load();};
   return E.showMenu(menu);
 }
 
