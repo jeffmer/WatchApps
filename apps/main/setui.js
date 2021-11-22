@@ -29,6 +29,12 @@ wOS.setUI =function(mode, cb) {
         wOS.btnWatches = [
           setWatch(function() {if (wOS.awake) wOS.showLauncher(); }, BTN1, {repeat:1,edge:"falling"}),
         ];
+    } else if (mode=="clockupdown") {
+        wOS.btnWatches = [
+          setWatch(function() {if (wOS.awake) wOS.showLauncher(); }, BTN1, {repeat:1,edge:"falling"}),
+        ];
+        TC.swipeHandler = d => {if (d==2) cb(-1); else if (d==1)  cb(1);};
+        TC.on("swipe", TC.swipeHandler);    
     } else if (mode=="touch") {
       wOS.btnWatches = [
         setWatch(function() {if (wOS.awake) wOS.showLauncher(); }, BTN1, {repeat:1,edge:"falling"}),

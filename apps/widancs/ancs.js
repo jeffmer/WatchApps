@@ -30,9 +30,9 @@
     //we may already be displaying a prompt, so clear it
     E.showPrompt();
     if (screentimeout) clearTimeout(screentimeout);
-    wOS.setLCDPower(1);
+    Bangle.setLCDPower(1);
     SCREENACCESS.request();
-    wOS.buzz();
+    Bangle.buzz();
     var ttl = E.decodeUTF8(m.title, unicodeRemap, replacer);
     var msg = E.decodeUTF8(m.message, unicodeRemap, replacer);
     if (current.cat!=1){
@@ -85,6 +85,10 @@
   }
     
   WIDGETS["ancs"] ={area:"tl", width:24,draw:draw};
+
+  E.showAlert = function(msg,title) {
+    return E.showPrompt(msg,{title:title,buttons:{Ok:1}});
+  }
   
   function changed(){
     stage = NRF.getSecurityStatus().connected ? 4 : 3;
