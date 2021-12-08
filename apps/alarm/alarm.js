@@ -35,7 +35,7 @@ function showAlarm(alarm) {
       if (!alarm.rp) alarm.on = false;
     }
     require("Storage").write("alarm.json",JSON.stringify(alarms));
-    load("clock.app.js");
+    load();
   });
   function buzz() {
     wOS.buzz(100);
@@ -63,5 +63,5 @@ if (active.length) {
   setTimeout(()=>{showAlarm(active[0]);},500);
 } else {
   // otherwise just go back to default app
-   load("clock.app.js");
+   load();
 }

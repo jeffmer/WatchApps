@@ -32,7 +32,7 @@ function showMainMenu() {
     menu[txt] = function() {
       editAlarm(idx);
     };
-  });=
+  });
   menu['< Back'] =  ()=>{load();};
   return E.showMenu(menu);
 }
