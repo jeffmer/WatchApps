@@ -7,8 +7,8 @@
     "version":"0.01",
     "description": "THIS MUST BE LOADED FIRST USING WEBIDE IN A NEW SYSTEM THEN RESET",
     "storage": [
-      {"name":"C:.boot0","url":"boot0.js"},
-      {"name":"C:.bootcde","url":"bootloader.js"}
+      {"name":".boot0","url":"boot0.js"},
+      {"name":".bootcde","url":"bootloader.js"}
     ],
     "sortorder" : -15
   },
@@ -21,19 +21,19 @@
     "supports": ["ROCK","P8","Magic3"],
     "description": "This loads the Bangle App execution emulation environment, drivers etc",
     "storage": [
-      {"name":"C:lcd.js","url":"lcd.js"},
-      {"name":"C:lcd-p8.js","url":"lcd-p8.js"},
-      {"name":"C:main.js","url":"main.js"},
-      {"name":"C:accel.js","url":"accel.js"},
-      {"name":"C:cst816s.js","url":"cst816s.js"},
-      {"name":"C:cst716.js","url":"cst716.js"},
-      {"name":"C:cst716-p8.js","url":"cst716-p8.js"},
-      {"name":"C:setui.js","url":"setui.min.js"},
-      {"name":"C:menu.js","url":"menu.min.js"},
-      {"name":"C:prompt.js","url":"prompt.min.js"},
-      {"name":"C:locale","url":"locale.js"},
-      {"name":"C:widgets.js","url":"widgets.js"},
-      {"name":"C:gps.js","url":"gps.js"}
+      {"name":"lcd.js","url":"lcd.js"},
+      {"name":"lcd-p8.js","url":"lcd-p8.js"},
+      {"name":"main.js","url":"main.js"},
+      {"name":"accel.js","url":"accel.js"},
+      {"name":"cst816s.js","url":"cst816s.js"},
+      {"name":"cst716.js","url":"cst716.js"},
+      {"name":"cst716-p8.js","url":"cst716-p8.js"},
+      {"name":"setui.js","url":"setui.min.js"},
+      {"name":"menu.js","url":"menu.min.js"},
+      {"name":"prompt.js","url":"prompt.min.js"},
+      {"name":"locale","url":"locale.js"},
+      {"name":"widgets.js","url":"widgets.js"},
+      {"name":"gps.js","url":"gps.js"}
     ],
     "sortorder" : -10
   },
