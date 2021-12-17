@@ -152,6 +152,10 @@ wOS.showLauncher = function(){load("launch.js");};
 eval(STOR.read("menu.js"));
 eval(STOR.read("prompt.js"));
 eval(STOR.read("widgets.js"));
-if (wOS.settings.gpsclient) eval(STOR.read("gps.js"));
+if (wOS.settings.gpsclient) 
+    eval(STOR.read("gps.js"));
+else {
+    Bangle.setGPSPower = function(on){};
+}
 
 
