@@ -51,6 +51,18 @@
     "sortorder" : -10
   },
   {
+    "id": "files",
+    "name": "App Manager",
+    "version": "0.07",
+    "description": "Show currently installed apps, free space, and allow their deletion from the watch",
+    "icon": "files.png",
+    "tags": "tool,system,files",
+    "storage": [
+      {"name":"files.app.js","url":"files.js"},
+      {"name":"files.img","url":"files-icon.js","evaluate":true}
+    ]
+  },
+  {
     "id": "multiclock",
     "name": "Multi Clock",
     "version": "0.07",
