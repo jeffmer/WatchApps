@@ -229,7 +229,7 @@
     "tags": "widget",
     "type": "widget",
     "storage": [
-      {"name":"widviz.wid.js","url":"widget.js"}
+      {"name":"widviz.wid.js","url":"widviz.wid.js"}
     ]
   }
  ]
