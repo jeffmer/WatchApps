@@ -219,5 +219,17 @@
       {"name":"heart.app.js","url":"heart.app.js"},
       {"name":"heart.img","url":"heartrate-icon.js","evaluate":true}
     ]
+  },
+  { "id": "widviz",
+    "name": "Widget Visibility Widget",
+    "shortName":"Viz Widget",
+    "icon": "eye.png",
+    "version":"0.02",
+    "description": "Touch top left to hide top bar widgets, again to redisplay.",
+    "tags": "widget",
+    "type": "widget",
+    "storage": [
+      {"name":"widviz.wid.js","url":"widget.js"}
+    ]
   }
  ]
