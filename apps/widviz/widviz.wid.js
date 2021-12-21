@@ -30,7 +30,7 @@
   WIDGETS["viz"] ={area:"tl", width:24,draw:draw};
 
   TC.on('touch',(pt)=>{
-    if (pt.x<40 && pt.y<40) {
+    if (pt.y<40) {
       hidewid = !hidewid;
       if (hidewid) hide(); else reveal();
     }

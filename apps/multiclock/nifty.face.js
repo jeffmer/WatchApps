@@ -15,7 +15,7 @@
 
         const center = {
           x: viewport.width / 2,
-          y: Math.round(((viewport.height - widget) / 2) + widget),
+          y: viewport.height>290? viewport.height/2 : Math.round(((viewport.height - widget) / 2) + widget),
         }
 
         function d02(value) {
