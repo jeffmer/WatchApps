@@ -51,7 +51,7 @@ var mainmenu = {
     'Select Clock': ()=>showClockMenu(),
     'Theme': ()=>showThemeMenu(),
     'Reboot': ()=>{E.showMenu(); setTimeout(doreboot,300)},
-    "Exit" : function() { storage.writeJSON("settings.json",s); load("launch.js");}
+    "Exit" : function() { storage.writeJSON("settings.json",s); Bangle.showLauncher();}
 };
 
 function showClockMenu() {

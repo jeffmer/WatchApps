@@ -320,8 +320,7 @@ function doread(){
     var bpm = Math.floor(60000/(peakTime-lastPeak));
     if (bpm > 0 && bpm < 200) {
       bpm = bf(bpm);
-      g.setColor(-1);
-      g.drawString("BPM: "+bpm+" ",120,0,true);
+      g.setColor(-1).setFontAlign(-1,-1).drawString(" BPM: "+bpm+" ",120,20,true);
     }
     lastPeak=peakTime;
   }
@@ -336,14 +335,13 @@ function doread(){
 
 function showBPM(){
   var bpm = correlator.bpm();
-  g.setColor(0xFFE0).drawString("BPM: "+bpm+" ",10,0,true);
+  g.setColor(0xFFE0).setFontAlign(1,-1).drawString("BPM: "+bpm+" ",120,20,true);
 }
 
 function startMeasure() {
   if (interval) return;
   g.clear(1);
-  g.setFont("6x8",2);
-  g.drawString("BPM: -- ",120,0,true);
+  g.setFont("Vector",16);
   x=0;
   HRS.enable();
   interval = setInterval(doread,40);
