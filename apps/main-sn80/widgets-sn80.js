@@ -1,10 +1,9 @@
-wOS.drawWidgets = function() {
+wOS.drawWidgets = function(Y) {
     var w=g.getWidth(), h=g.getHeight();
+    if(!Y) Y=10;
     var pos = {
-        tl:{x:120, y:0, r:1, c:0}, // if r==1, we're right->left
-        tr:{x:120, y:0, r:0, c:0},
-        bl:{x:30, y:h-24, r:0, c:0},
-        br:{x:w-30, y:h-24, r:1, c:0}
+        tl:{x:120, y:Y, r:1, c:0}, // if r==1, we're right->left
+        tr:{x:120, y:Y, r:0, c:0},
     };
     if (global.WIDGETS) {
       for (var wd of WIDGETS) {
@@ -16,8 +15,7 @@ wOS.drawWidgets = function() {
         p.c++;
       }
       g.reset();
-      //if (pos.tl.c || pos.tr.c) g.clearRect(0,0,w-1,23);
-     //if (pos.bl.c || pos.br.c) g.clearRect(0,h-24,w-1,h-1);
+      if (pos.tl.c || pos.tr.c) g.clearRect(pos.tl.x,Y,pos.tr.x,Y+23);
       for (wd of WIDGETS) wd.draw(wd);
     }
   };

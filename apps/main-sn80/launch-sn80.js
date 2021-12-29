@@ -43,7 +43,7 @@ function draw_icon(p,n,selected) {
 
 function drawPage(p){
     g.reset();
-    g.clearRect(0,24,w-1,h-1);
+    g.clearRect(0,34,w-1,h-1);
     var O = w/2-12*(Npages/2);
     for (var j=0;j<Npages;j++){
         var x = O+j*12;

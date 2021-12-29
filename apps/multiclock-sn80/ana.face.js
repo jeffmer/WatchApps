@@ -66,7 +66,11 @@
         g.setColor(1,1,1);
         for (let i=0;i<60;i++)
             seconds(360*i/60, 100*scale);
+        var hrs = minuteDate.getHours();
+        hrs = hrs>12?hrs-12:hrs;
+        Bangle.drawWidgets(hrs>=3 && hrs<9?50:166);
         onSecond();
+        return true;
     }
 
     return {init:drawAll, tick:onSecond, tickpersec:true};

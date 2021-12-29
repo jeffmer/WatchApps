@@ -6,7 +6,7 @@
 
         const scale = (g.getWidth()-50) / 176;
 
-        const widget = 24;
+        const widget = 44;
 
         const viewport = {
           width: g.getWidth(),

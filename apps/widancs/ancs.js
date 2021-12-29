@@ -84,7 +84,7 @@
     g.drawImage(img,this.x,this.y);
   }
     
-  WIDGETS["ancs"] ={area:"tl", width:24,draw:draw};
+  WIDGETS["ancs"] ={area:"tl", width:26,draw:draw};
 
   E.showAlert = function(msg,title) {
     return E.showPrompt(msg,{title:title,buttons:{Ok:1}});

@@ -13,7 +13,7 @@
     4: () => { moon[3](); g.setColor(MOON).fillEllipse(mx - r / 2, my - r, mx + r / 2, my + r);},
     5: () => { moon[0](); g.setColor(MOON).fillCircle(mx, my, r);},
     6: () => { moon[7](); g.setColor(MOON).fillEllipse(mx - r / 2, my - r, mx + r / 2, my + r);},
-    7: () => { moon[0](); g.setColor(MOON).fillCircle(mx, my, r).clearRect(mx, my - r, mx + r + r, my + r);},
+    7: () => { moon[0](); g.setColor(MOON).fillCircle(mx, my, r).clearRect(mx, my - r, mx + r, my + r);},
     8: () => { moon[7](); g.setColor(BLACK).fillEllipse(mx - r / 2, my - r, mx + r / 2, my + r);}
   };
 
