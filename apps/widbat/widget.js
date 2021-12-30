@@ -1,5 +1,6 @@
 (function(){
   var CHARGING = 0x07E0;
+  var Y=0;
 
   function setWidth() {
     WIDGETS["bat"].width = 40 + (wOS.isCharging()?16:0);
@@ -8,6 +9,7 @@
   function draw() {
     var s = 39;
     var x = this.x, y = this.y;
+    Y = y;
     if (wOS.isCharging()) {
       g.setColor(CHARGING).drawImage(atob("DhgBHOBzgc4HOP////////////////////3/4HgB4AeAHgB4AeAHgB4AeAHg"),x,y);
       x+=16;
@@ -22,7 +24,7 @@
 
   wOS.on('charging',function(charging) {
     setWidth();
-    wOS.drawWidgets(); // relayout widgets
+    wOS.drawWidgets(Y); // relayout widgets
     g.flip();
   });
 

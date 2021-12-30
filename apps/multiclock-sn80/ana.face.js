@@ -42,10 +42,10 @@
     var minuteDate;
     var secondDate;
 
-    function onSecond() {
+    function onSecond(notfirst) {
         g.setColor(g.theme.bg);
         hand(360*secondDate.getSeconds()/60, -5, 90, 3);
-        if (secondDate.getSeconds() === 0) {
+        if (secondDate.getSeconds() === 0 || notfirst) {
             hand(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12, -16, 60, 7);
             hand(360*minuteDate.getMinutes()/60, -16, 86, 7);
             minuteDate = new Date();
@@ -60,16 +60,19 @@
         g.fillCircle(cx,cy,2);
     }
 
-    function drawAll() {
-        secondDate = minuteDate = new Date();
+    function drawAll(notfirst) {
+        if (!notfirst) secondDate = minuteDate = new Date();
         // draw seconds
         g.setColor(1,1,1);
+        //draw bezel
+        if (!notfirst) {
         for (let i=0;i<60;i++)
             seconds(360*i/60, 100*scale);
+        }
         var hrs = minuteDate.getHours();
         hrs = hrs>12?hrs-12:hrs;
         Bangle.drawWidgets(hrs>=3 && hrs<9?50:166);
-        onSecond();
+        onSecond(notfirst);
         return true;
     }
 
