@@ -1,8 +1,8 @@
 wOS.setUI =function(mode, cb) {
-    function tt() {if (wOS.awake) setTimeout(cb,10);else wOS.wake();}
-    if (wOS.btnWatches) {
-      wOS.btnWatches.forEach(clearWatch);
-      delete wOS.btnWatches;
+    function tt() {setTimeout(cb,10);}
+    if (TC.longHandler) {
+      TC.removeListener("longtouch", TC.longHandler);
+      delete TC.longHandler;
     }
     if (TC.swipeHandler) {
       TC.removeListener("swipe", TC.swipeHandler);
@@ -14,31 +14,26 @@ wOS.setUI =function(mode, cb) {
     }
     if (!mode) return;
     else if (mode=="updown") {
-        wOS.btnWatches = [
-          setWatch(tt, BTN1, {repeat:1,edge:"falling"}),
-        ];
+       TC.longHandler = tt;
+       TC.on("longtouch", TC.longHandler);  
         TC.swipeHandler = d => {if (d==2) cb(-1); else if (d==1)  cb(1);};
-        TC.on("swipe", TC.swipeHandler);    }
+        TC.on("swipe", TC.swipeHandler);}
     else if (mode=="leftright") {
-        wOS.btnWatches = [
-          setWatch(tt, BTN1, {repeat:1,edge:"falling"}),
-        ];
+      TC.longHandler = tt;
+      TC.on("longtouch", TC.longHandler);  
         TC.swipeHandler = d => {if (d==3) cb(-1); else if (d==4)  cb(1);};
         TC.on("swipe", TC.swipeHandler);
     } else if (mode=="clock") {
-        wOS.btnWatches = [
-          setWatch(function() {if (wOS.awake) wOS.showLauncher();else wOS.wake();}, BTN1, {repeat:1,edge:"falling"}),
-        ];
+      TC.longHandler = function() {if (wOS.awake) wOS.showLauncher(); }
+      TC.on("longtouch", TC.longHandler);  
     } else if (mode=="clockupdown") {
-        wOS.btnWatches = [
-          setWatch(function() {if (wOS.awake) wOS.showLauncher();else wOS.wake();}, BTN1, {repeat:1,edge:"falling"}),
-        ];
+      TC.longHandler = function() {if (wOS.awake) wOS.showLauncher(); }
+      TC.on("longtouch", TC.longHandler);  
         TC.swipeHandler = d => {if (d==2) cb(-1); else if (d==1)  cb(1);};
         TC.on("swipe", TC.swipeHandler);    
     } else if (mode=="touch") {
-      wOS.btnWatches = [
-        setWatch(function() {if (wOS.awake) wOS.showLauncher();else wOS.wake();}, BTN1, {repeat:1,edge:"falling"}),
-      ];
+      TC.longHandler = function() {if (wOS.awake) wOS.showLauncher(); }
+      TC.on("longtouch", TC.longHandler);  
       TC.touchHandler = d => {cb(d);};
       TC.on("touch", TC.touchHandler);
     } else

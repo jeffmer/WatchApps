@@ -40,7 +40,7 @@ var SCREENACCESS = {
     stopdraw();
   },
   release:function(){
-    this.withapp=true;
+    this.withApp=true;
     startdraw(); 
     setButtons();
   }

@@ -83,7 +83,7 @@ E.showPrompt = function(msg,options) {
     wOS.setLCDPower(1); // ensure screen is on
   }
   g.clear(1); // clear screen
-  if (global.WIDGETS) wOS.drawWidgets(); // redraw widgets
+  //if (global.WIDGETS) wOS.drawWidgets(); // redraw widgets
   if (!msg) {
     wOS.setUI(); // remove watches
     return Promise.resolve();

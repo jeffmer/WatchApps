@@ -122,7 +122,8 @@ else {
     Bangle.setGPSPower = function(on){};
 }
 
-TC.longHandler = function() {if (wOS.awake) wOS.showLauncher(); }
-TC.on("longtouch", TC.longHandler);  
+wOS.btnWatches = [
+    setWatch(function() {if (wOS.awake) wOS.showLauncher(); else wOS.wake();}, BTN1, {repeat:1,edge:"falling"}),
+  ];
 
 
