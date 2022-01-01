@@ -28,26 +28,27 @@
         ]);
       }
 
-    function marks(angle,r) {
-        if (angle % 90 == 0) {
-            g.setColor(g.theme.fg);
-            drawRotRect(12,95,120,angle);
-        } else if (angle % 30 == 0){
-            g.setColor(g.theme.fg);
-            drawRotRect(8,103,120,angle);
-        } else {
-            g.setColor(0.7,0.7,0.7);
-            drawRotRect(4,110,120,angle);
+      function bezel(r){
+        g.setColor(g.theme.fg);
+        g.setFontRobotoSmall();
+        g.setFontAlign(0,0);
+        for (var i = 1; i<=12; ++i){
+            var a = i*PRad;
+            let x = cx+Math.sin(a*30)*r;
+            let y = cy-Math.cos(a*30)*r
+            if (i==12 || i==11 || i==1) y+=3;
+            g.drawString(i,x,y);
         }
-    }
+      }
+
 
     var minuteDate;
     var secondDate;
 
     function onSecond(notfirst) {
-        let hh = drawRotRect.bind(null,10,12,75);
-        let mh = drawRotRect.bind(null,6,12,90);
-        let sh = drawRotRect.bind(null,2,6,95);
+        let hh = drawRotRect.bind(null,6,6,60);
+        let mh = drawRotRect.bind(null,3,6,85);
+        let sh = drawRotRect.bind(null,2,3,95);
         g.setColor(g.theme.bg);
         sh(360*secondDate.getSeconds()/60);
         if (secondDate.getSeconds() === 0 || notfirst) {
@@ -59,11 +60,11 @@
         hh(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12);
         mh(360*minuteDate.getMinutes()/60);
         g.setColor(g.theme.fg);
-        g.fillCircle(cx, cy, 12);
+        g.fillCircle(cx, cy, 6);
         g.setColor(1,0,0);
         secondDate = new Date();
         sh(360*secondDate.getSeconds()/60);
-        g.fillCircle(cx, cy, 6);
+        g.fillCircle(cx, cy, 3);
     }
 
     function drawAll(notfirst) {
@@ -71,10 +72,7 @@
         // draw seconds
         g.setColor(1,1,1);
         //draw bezel
-        if (!notfirst) {
-        for (let i=0;i<60;i++)
-            marks(360*i/60, g.getWidth()/2);
-        }
+        if (!notfirst) bezel(108);
         var hrs = minuteDate.getHours();
         hrs = hrs>12?hrs-12:hrs;
         Bangle.drawWidgets(hrs>=3 && hrs<9?50:166);

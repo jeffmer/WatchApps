@@ -9,6 +9,7 @@ var intervalRefSec;
 var tickTimeout;
 
 require("Roboto").add(Graphics);
+require("RobotoSmall").add(Graphics);
 
 var selfmanage;
 
@@ -35,7 +36,6 @@ function startdraw(notfirst) {
   else 
     queueMinuteTick();
   if(!selfmanage) Bangle.drawWidgets(20);
-  console.log("Mem: ",process.memory().free);
 }
 
 var SCREENACCESS = {
