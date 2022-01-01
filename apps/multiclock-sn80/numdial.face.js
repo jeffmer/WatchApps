@@ -47,8 +47,8 @@
 
     function onSecond(notfirst) {
         let hh = drawRotRect.bind(null,6,6,60);
-        let mh = drawRotRect.bind(null,3,6,85);
-        let sh = drawRotRect.bind(null,2,3,95);
+        let mh = drawRotRect.bind(null,3,6,90);
+        let sh = drawRotRect.bind(null,2,3,90);
         g.setColor(g.theme.bg);
         sh(360*secondDate.getSeconds()/60);
         if (secondDate.getSeconds() === 0 || notfirst) {
