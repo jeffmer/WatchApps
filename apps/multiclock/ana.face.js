@@ -9,6 +9,10 @@
     var cy = 12+g.getHeight()/2;
     var scale = (g.getHeight()-24)/(240-24);  
     scale = scale>=1 ? 1 : scale;
+    if (process.env.BOARD=="P8"){
+        scale = scale>=1 ? 1 : scale;
+    } else 
+        scale = 1.15;
 
     function seconds(angle, r) {
         const a = angle*PRad;

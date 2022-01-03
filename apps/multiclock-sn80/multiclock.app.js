@@ -82,7 +82,7 @@ E.on('kill',()=>{
     }
 });
 
-Bangle.loadWidgets();
+Bangle.loadWidgets(true);
 g.clear();
 startdraw();
 setButtons();
