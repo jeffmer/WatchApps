@@ -14,8 +14,6 @@
         let fn = Math.ceil;
         var sina = Math.sin(a);
         var cosa = Math.cos(a);
-        const cx = 120;
-        const cy = 120;
         var x0 = -w/2;
         var x1 = +w/2; 
         var y0 = r1;

@@ -1,6 +1,6 @@
 
   /* SN80 specific */
-    function ST7789() {
+    function GC9A01() {
       var LCD_WIDTH = 240;
       var LCD_HEIGHT = 240;
       var XOFF = 0;
