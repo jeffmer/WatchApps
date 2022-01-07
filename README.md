@@ -23,7 +23,7 @@ These provide a simple Bangle emulation environment which will let you load Bang
 
 ![img](img/rock_pic.jpeg)
 
-Someone brave can try GadgetBridge which may work.....
+Note: If you want to connect GadgetBridge from an Android phone load the **Android Integration** and **Messages** apps from the official **BangleApps** loader.
 
 ### Credits
 

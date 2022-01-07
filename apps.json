@@ -17,7 +17,7 @@
     "tags": "tool,system",
     "type":"bootloader",
     "icon": "bootloader.png",
-    "version":"0.04",
+    "version":"0.05",
     "supports": ["ROCK","P8","Magic3"],
     "description": "This loads the Bangle App execution emulation environment, drivers etc",
     "storage": [
