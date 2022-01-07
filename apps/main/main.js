@@ -10,15 +10,18 @@ global.wOS = {
     time_left:10,
     ticker:undefined,
     settings:undefined,
-    buzz: (v)=>{
-        if (!wOS.VIBRATE) return;
-        v = v? v : 100;
-        if (v<=50){
-            digitalPulse(wOS.BUZZPIN,false,v);
-        } else {
-            wOS.BUZZPIN.reset();
-            setTimeout(()=>{wOS.BUZZPIN.set();},v);
-        }
+    buzz: function(v){
+        return new Promise(function(resolve, reject) {
+            v = v? v : 100;
+            if (!wOS.VIBRATE) resolve();
+            else if (v<=50){
+                digitalPulse(wOS.BUZZPIN,false,v);
+                resolve();
+            } else {
+                wOS.BUZZPIN.reset();
+                setTimeout(()=>{wOS.BUZZPIN.set();resolve();},v);
+            }
+        });
     },
     batV: () => {
         return  7.0*analogRead(wOS.BATVOLT);
@@ -156,6 +159,17 @@ if (wOS.settings.gpsclient)
     eval(STOR.read("gps.js"));
 else {
     Bangle.setGPSPower = function(on){};
+}
+
+if (STOR.read("android.boot.js")) {
+    eval(STOR.read("android.boot.js"));
+    Bangle.appRect = { x: 0, y: 24, w: 240, h: 216, x2: 239, y2: 239 };
+    TC.on("touch",function(p){
+        Bangle.emit("touch",p.y<24?1:2,p);
+    });
+    var temp = process.env;
+    temp.HWVERSION=2;
+    process.env=temp;
 }
 
 
