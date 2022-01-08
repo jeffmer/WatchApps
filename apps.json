@@ -120,14 +120,18 @@
     "readme": "README.md",
     "allow_emulator": true,
     "storage": [
-      {"name":"multiclock.app.js","url":"multiclock.app.js"},
+      {"name":"multiclock-sn80.app.js","url":"multiclock.app.js"},
       {"name":"big.face.js","url":"big.face.js"},
       {"name":"ana.face.js","url":"ana.face.js"},
       {"name":"digi.face.js","url":"digi.face.js"},
       {"name":"txt.face.js","url":"txt.face.js"},
       {"name":"dk.face.js","url":"dk.face.js"},
       {"name":"nifty.face.js","url":"nifty.face.js"},
-      {"name":"multiclock.img","url":"multiclock-icon.js","evaluate":true}
+      {"name":"nifty.face.js","url":"nifty.face.js"},
+      {"name":"dot.face.js","url":"dot.face.js"},
+      {"name":"bold.face.js","url":"bold.face.js"},
+      {"name":"numdial.face.js","url":"numdial.face.js"},
+      {"name":"multiclock-sn80.img","url":"multiclock-icon.js","evaluate":true}
     ],
     "sortorder" : -10
   },
