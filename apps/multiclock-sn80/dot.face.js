@@ -6,10 +6,7 @@
 
     var cx = g.getWidth()/2;
     var cy = g.getHeight()/2;
-    var scale = 0.9;
-
-
-      
+    
     function bezel(r){
         g.setColor(g.theme.fg);
         g.setFontRoboto();
@@ -25,16 +22,7 @@
         }
     }
 
-    function drawRotRect(w, r1, r2, angle) {
-        var w2=w/2, ll=r2-r1, theta=(angle+270)*PRad;
-        g.fillPoly(g.transformVertices([0,-w2,ll,-w2,ll,w2,0,w2], 
-          {x:cx+r1*Math.cos(theta),y:cy+r1*Math.sin(theta),rotate:theta}));
-    }
-
-    var secondhand = drawRotRect.bind(null,2,2,90*scale);
-
-    function hand(angle, r1, r2, r3) {
-        r1 = scale*r1; r2=scale*r2; r3 = scale*r3;
+    function hand(r1, r2, r3, angle) {
         var theta=(angle+270)*PRad;
         g.fillPoly(g.transformVertices([r1,0,0,-r3,r2,0,0,r3], 
           {x:cx,y:cy,rotate:theta}));
@@ -45,20 +33,23 @@
 
     function onSecond(notfirst) {
         g.setColor(g.theme.bg);
-        secondhand(360*secondDate.getSeconds()/60);
+        var sh = hand.bind(null,-16, 80, 4);
+        var mh = hand.bind(null,-16, 80, 7);
+        var hh = hand.bind(null,-16, 65, 7);
+        sh(360*secondDate.getSeconds()/60);
         if (secondDate.getSeconds() === 0 || notfirst) {
-            hand(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12, -16, 70, 7);
-            hand(360*minuteDate.getMinutes()/60, -16, 86, 7);
+            hh(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12);
+            mh(360*minuteDate.getMinutes()/60);
             minuteDate = new Date();
         }
+        g.setColor(g.theme.fg);
+        hh(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12);
+        g.setColor(g.theme.fg2);
+        mh(360*minuteDate.getMinutes()/60);
         g.setColor(1,0,0);
         secondDate = new Date();
-        secondhand(360*secondDate.getSeconds()/60);
-        g.setColor(g.theme.fg);
-        hand(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12, -16, 70, 7);
-        hand(360*minuteDate.getMinutes()/60, -16, 86, 7);
-        g.setColor(g.theme.bg);
-        g.fillCircle(cx,cy,2);
+        sh(360*secondDate.getSeconds()/60);
+        g.setColor(0,0,0).fillCircle(cx,cy,2);
     }
 
     function drawAll(notfirst) {
