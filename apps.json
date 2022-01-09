@@ -131,6 +131,8 @@
       {"name":"dot.face.js","url":"dot.face.js"},
       {"name":"bold.face.js","url":"bold.face.js"},
       {"name":"numdial.face.js","url":"numdial.face.js"},
+      {"name":"Roboto","url":"Roboto.js"},
+      {"name":"RobotoSmall","url":"RobotoSmall.js"},
       {"name":"multiclock-sn80.img","url":"multiclock-icon.js","evaluate":true}
     ],
     "sortorder" : -10

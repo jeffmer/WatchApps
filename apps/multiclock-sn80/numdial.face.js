@@ -1,30 +1,18 @@
 (() => {
 
     function getFace(){
-
-    const p = Math.PI/2;
     const PRad = Math.PI/180;
 
     var cx = g.getWidth()/2;
     var cy = g.getHeight()/2
 
 
-    function drawRotRect(w, r1,r2, angle) {
-        var a = angle*PRad;
-        let fn = Math.ceil;
-        var sina = Math.sin(a);
-        var cosa = Math.cos(a);
-        var x0 = -w/2;
-        var x1 = +w/2; 
-        var y0 = r1;
-        var y1 = r2;
-        g.fillPoly([
-          fn(cx - x0*cosa + y0*sina), fn(cy - x0*sina - y0*cosa),
-          fn(cx - x1*cosa + y0*sina), fn(cy - x1*sina - y0*cosa),
-          fn(cx - x1*cosa + y1*sina), fn(cy - x1*sina - y1*cosa),
-          fn(cx - x0*cosa + y1*sina), fn(cy - x0*sina - y1*cosa)
-        ]);
-      }
+
+    function drawRotRect(w, r1, r2, angle) {
+      var w2=w/2, ll=r2-r1, theta=(angle+270)*PRad;
+      g.fillPoly(g.transformVertices([0,-w2,ll,-w2,ll,w2,0,w2], 
+        {x:cx+r1*Math.cos(theta),y:cy+r1*Math.sin(theta),rotate:theta}));
+  }
 
       function bezel(r){
         g.setColor(g.theme.fg);

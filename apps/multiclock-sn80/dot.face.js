@@ -2,7 +2,6 @@
 
     function getFace(){
 
-    const p = Math.PI/2;
     const PRad = Math.PI/180;
 
     var cx = g.getWidth()/2;
@@ -26,50 +25,27 @@
         }
     }
 
-    function drawRotRect(angle, w, r1,r2) {
-        var a = angle*PRad;
-        let fn = Math.ceil;
-        var sina = Math.sin(a);
-        var cosa = Math.cos(a);
-        const cx = 120;
-        const cy = 120;
-        var x0 = -w/2;
-        var x1 = +w/2; 
-        var y0 = r1;
-        var y1 = r2;
-        g.fillPoly([
-          fn(cx - x0*cosa + y0*sina), fn(cy - x0*sina - y0*cosa),
-          fn(cx - x1*cosa + y0*sina), fn(cy - x1*sina - y0*cosa),
-          fn(cx - x1*cosa + y1*sina), fn(cy - x1*sina - y1*cosa),
-          fn(cx - x0*cosa + y1*sina), fn(cy - x0*sina - y1*cosa)
-        ]);
+    function drawRotRect(w, r1, r2, angle) {
+        var w2=w/2, ll=r2-r1, theta=(angle+270)*PRad;
+        g.fillPoly(g.transformVertices([0,-w2,ll,-w2,ll,w2,0,w2], 
+          {x:cx+r1*Math.cos(theta),y:cy+r1*Math.sin(theta),rotate:theta}));
     }
 
-    function secondhand(angle,r) {
-        drawRotRect(angle, 2, 2, r*scale);
-    }
+    var secondhand = drawRotRect.bind(null,2,2,90*scale);
 
-
-    function hand(angle, r1,r2, r3) {
+    function hand(angle, r1, r2, r3) {
         r1 = scale*r1; r2=scale*r2; r3 = scale*r3;
-        const a = angle*PRad;
-        g.fillPoly([
-            cx+Math.sin(a)*r1,
-            cy-Math.cos(a)*r1,
-            cx+Math.sin(a+p)*r3,
-            cy-Math.cos(a+p)*r3,
-            cx+Math.sin(a)*r2,
-            cy-Math.cos(a)*r2,
-            cx+Math.sin(a-p)*r3,
-            cy-Math.cos(a-p)*r3]);
-    }
+        var theta=(angle+270)*PRad;
+        g.fillPoly(g.transformVertices([r1,0,0,-r3,r2,0,0,r3], 
+          {x:cx,y:cy,rotate:theta}));
+      }
 
     var minuteDate;
     var secondDate;
 
     function onSecond(notfirst) {
         g.setColor(g.theme.bg);
-        secondhand(360*secondDate.getSeconds()/60,90);
+        secondhand(360*secondDate.getSeconds()/60);
         if (secondDate.getSeconds() === 0 || notfirst) {
             hand(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12, -16, 70, 7);
             hand(360*minuteDate.getMinutes()/60, -16, 86, 7);
@@ -77,7 +53,7 @@
         }
         g.setColor(1,0,0);
         secondDate = new Date();
-        secondhand(360*secondDate.getSeconds()/60,90);
+        secondhand(360*secondDate.getSeconds()/60);
         g.setColor(g.theme.fg);
         hand(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12, -16, 70, 7);
         hand(360*minuteDate.getMinutes()/60, -16, 86, 7);

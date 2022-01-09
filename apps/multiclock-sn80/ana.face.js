@@ -25,20 +25,13 @@
         }
     }
 
-    function hand(angle, r1,r2, r3) {
+    function hand(angle, r1, r2, r3) {
         r1 = scale*r1; r2=scale*r2; r3 = scale*r3;
-        const a = angle*PRad;
-        g.fillPoly([
-            cx+Math.sin(a)*r1,
-            cy-Math.cos(a)*r1,
-            cx+Math.sin(a+p)*r3,
-            cy-Math.cos(a+p)*r3,
-            cx+Math.sin(a)*r2,
-            cy-Math.cos(a)*r2,
-            cx+Math.sin(a-p)*r3,
-            cy-Math.cos(a-p)*r3]);
-    }
-
+        var theta=(angle+270)*PRad;
+        g.fillPoly(g.transformVertices([r1,0,0,-r3,r2,0,0,r3], 
+          {x:cx,y:cy,rotate:theta}));
+      }
+      
     var minuteDate;
     var secondDate;
 
