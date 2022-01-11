@@ -3,15 +3,15 @@
     function getFace(){
 
     var cx = g.getWidth()/2;
-    var cy = g.getHeight()/2
+    var cy = g.getHeight()/2;
 
     Graphics.prototype.drawRotRect = function(w, r1, r2, angle) {
         var w2=w/2, h=r2-r1, theta=angle*Math.PI/180;
-        return this.fillPoly(g.transformVertices([-w2,0,-w2,-h,w2,-h,w2,0], 
+        return this.fillPoly(this.transformVertices([-w2,0,-w2,-h,w2,-h,w2,0], 
           {x:cx+r1*Math.sin(theta),y:cy-r1*Math.cos(theta),rotate:theta}));
     }
       
-    function bezel() {
+    function dial() {
         for (let a=0;a<360;a+=6)
         if (a % 90 == 0) 
             g.setColor(g.theme.fg).drawRotRect(8,105,120,a);
@@ -29,21 +29,21 @@
         let mh = g.drawRotRect.bind(g,3,6,100);
         let sh = g.drawRotRect.bind(g,2,3,100);
         g.setColor(g.theme.bg);
-        sh(360*secondDate.getSeconds()/60);
+        sh(secondDate.getSeconds()*6);
         if (secondDate.getSeconds() === 0 || notfirst) {
-            hh(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12);
-            mh(360*minuteDate.getMinutes()/60);
+            hh(minuteDate.getHours()*30 + minuteDate.getMinutes()/2);
+            mh(minuteDate.getMinutes()*6);
             minuteDate = new Date();
         }
         drawDate();
         g.setColor(g.theme.fg);
-        hh(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12);
-        mh(360*minuteDate.getMinutes()/60);
+        hh(minuteDate.getHours()*30 + minuteDate.getMinutes()/2);
+        mh(minuteDate.getMinutes()*6);
         g.setColor(g.theme.fg);
         g.fillCircle(cx, cy, 6);
         g.setColor(1,0,0);
         secondDate = new Date();
-        sh(360*secondDate.getSeconds()/60);
+        sh(secondDate.getSeconds()*6);
         g.fillCircle(cx, cy, 3);
     }
 
@@ -65,7 +65,7 @@
         if (!notfirst) secondDate = minuteDate = new Date();
         g.setColor(1,1,1);
         //draw bezel
-        if (!notfirst) bezel();
+        if (!notfirst) dial();
         initDate(); drawDate();
         var hrs = minuteDate.getHours();
         hrs = hrs>12?hrs-12:hrs;
