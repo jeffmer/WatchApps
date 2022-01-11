@@ -5,32 +5,29 @@
     var cx = g.getWidth()/2;
     var cy = g.getHeight()/2
 
-    function drawRotRect(w, r1, r2, angle) {
-        var w2=w/2, ll=r2-r1, theta=(angle+270)*Math.PI/180;
-        g.fillPoly(g.transformVertices([0,-w2,ll,-w2,ll,w2,0,w2], 
-          {x:cx+r1*Math.cos(theta),y:cy+r1*Math.sin(theta),rotate:theta}));
+    Graphics.prototype.drawRotRect = function(w, r1, r2, angle) {
+        var w2=w/2, h=r2-r1, theta=angle*Math.PI/180;
+        return this.fillPoly(g.transformVertices([-w2,0,-w2,-h,w2,-h,w2,0], 
+          {x:cx+r1*Math.sin(theta),y:cy-r1*Math.cos(theta),rotate:theta}));
     }
       
-    function marks(angle) {
-        if (angle % 90 == 0) {
-            g.setColor(g.theme.fg);
-            drawRotRect(8,105,120,angle);
-        } else if (angle % 30 == 0){
-            g.setColor(g.theme.fg);
-            drawRotRect(4,105,120,angle);
-        } else {
-            g.setColor(0.6,0.6,0.6);
-            drawRotRect(2,110,120,angle);
-        }
+    function bezel() {
+        for (let a=0;a<360;a+=6)
+        if (a % 90 == 0) 
+            g.setColor(g.theme.fg).drawRotRect(8,105,120,a);
+        else if (a % 30 == 0)
+            g.setColor(g.theme.fg).drawRotRect(4,105,120,a);
+        else 
+            g.setColor(0.6,0.6,0.6).drawRotRect(2,110,120,a);
     }
 
     var minuteDate;
     var secondDate;
 
     function onSecond(notfirst) {
-        let hh = drawRotRect.bind(null,6,6,66);
-        let mh = drawRotRect.bind(null,3,6,100);
-        let sh = drawRotRect.bind(null,2,3,100);
+        let hh = g.drawRotRect.bind(g,6,6,66);
+        let mh = g.drawRotRect.bind(g,3,6,100);
+        let sh = g.drawRotRect.bind(g,2,3,100);
         g.setColor(g.theme.bg);
         sh(360*secondDate.getSeconds()/60);
         if (secondDate.getSeconds() === 0 || notfirst) {
@@ -55,13 +52,11 @@
 
     function initDate(){
       var date = ('0' + minuteDate.getDate()).substr(-2);
-      buf.setFont("Vector",18);
-      buf.setFontAlign(0,0).setColor(1).drawString(date,12,10);
+      buf.clear().setFont("Vector",18).setFontAlign(0,0).setColor(1).drawString(date,12,10);
     }
 
     function drawDate(x,y){
-       g.setBgColor(-1).setColor(0);
-       g.drawImage({width:24,height:20,buffer:buf.buffer},190,110);
+       g.setBgColor(-1).setColor(0).drawImage({width:24,height:20,buffer:buf.buffer},190,110);
        g.setBgColor(0).setColor(-1);
     }  
 
@@ -70,10 +65,7 @@
         if (!notfirst) secondDate = minuteDate = new Date();
         g.setColor(1,1,1);
         //draw bezel
-        if (!notfirst) {
-        for (let i=0;i<60;i++)
-            marks(360*i/60);
-        }
+        if (!notfirst) bezel();
         initDate(); drawDate();
         var hrs = minuteDate.getHours();
         hrs = hrs>12?hrs-12:hrs;
