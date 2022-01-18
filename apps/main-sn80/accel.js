@@ -36,7 +36,7 @@ var ACCEL = {
           return ((i & 0x7FFF) - (i & 0x8000))/16;
         }
         var a = ACCEL.readBytes(0xA8,6);
-        return {ax:conv(a[0],a[1]), ay:conv(a[2],a[3]), az:conv(a[4],a[5])};
+        return {x:conv(a[0],a[1]), y:conv(a[2],a[3]), z:conv(a[4],a[5])};
     },
   };
   
