@@ -53,11 +53,7 @@ var ACCEL = {
              ACCEL.activity=330; 
              if(!ACCEL.stinterval) ACCEL.stepStart();
            }
-           if (process.env.BOARD=="P8") {
-            if (v>192) ACCEL.emit("faceup");
-           } else {
-            if (v>10 && v<192) ACCEL.emit("faceup");
-           }
+          if (v>192) ACCEL.emit("faceup");
         },ACCELPIN,{repeat:true,edge:"rising",debounce:50});
         return id;
     },
