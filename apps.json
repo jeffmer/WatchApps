@@ -285,5 +285,18 @@
     "storage": [
       {"name":"widviz.wid.js","url":"widviz.wid.js"}
     ]
+  },
+  { "id": "widstep",
+    "name": "Simple Step widget",
+    "shortName":"Step Widget",
+    "icon": "widget.png",
+    "version":"0.01",
+    "description": "Only updates step count when LCD turns on.",
+    "tags": "widget",
+    "type": "widget",
+    "storage": [
+      {"name":"widstep.wid.js","url":"widstep.wid.js"}
+    ]
   }
+
  ]
