@@ -41,7 +41,9 @@
             hh(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12);
             mh(360*minuteDate.getMinutes()/60);
             minuteDate = new Date();
+            setSteps();
         }
+        drawSteps();
         g.setColor(g.theme.fg);
         hh(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12);
         mh(360*minuteDate.getMinutes()/60);
@@ -52,6 +54,24 @@
         sh(360*secondDate.getSeconds()/60);
         g.fillCircle(cx, cy, 3);
     }
+    var buf = Graphics.createArrayBuffer(40,12,1,{msb:true});
+
+    Graphics.prototype.setFontRobotoTiny = function(scale) {
+      // Actual height 10 (10 - 1)
+      this.setFontCustom(atob("AAAGAAAAwB4HgOAMAAQB/BgwgIYEP+B8AAAgAwAf8P+AAAAAQA4YYcIaGZD4gQQAAccMiERDch/wIgAQA4A0ByB/w/4AQAAH2D5hIQmIT8I8AAA/A8w0ISEJ+AeCABAAgYQ4JwHgDAAAAd4bsIiGxD/gRgMAPgMyEJDNg/gPAAADGAA="), 46, atob("AwUHBwcHBwcHBwcHAw=="), 13+(scale<<8)+(1<<16));
+      return this;
+    };
+
+    function setSteps(){
+      var steps = ('0000' + E.totalSteps()).substr(-5);
+      buf.clear().setFont("RobotoTiny").setFontAlign(0,0).setColor(1).drawString(steps,20,6);
+    }
+
+    function drawSteps(){
+       if (!wOS.STEPS) return;
+       g.setBgColor(-1).setColor(0).drawImage({width:40,height:12,buffer:buf.buffer},cx-20,175);
+       g.setBgColor(0).setColor(-1);
+    }  
 
     function drawAll(notfirst) {
         if (!notfirst) secondDate = minuteDate = new Date();
@@ -59,6 +79,7 @@
         g.setColor(1,1,1);
         //draw bezel
         if (!notfirst) bezel(108);
+        setSteps(); drawSteps();
         var hrs = minuteDate.getHours();
         hrs = hrs>12?hrs-12:hrs;
         Bangle.drawWidgets(hrs>=3 && hrs<9?50:166);
