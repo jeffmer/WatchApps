@@ -25,6 +25,7 @@
       {"name":"lcd-p8.js","url":"lcd-p8.js"},
       {"name":"main.js","url":"main.js"},
       {"name":"accel.js","url":"accel.js"},
+      {"name":"accel_step.js","url":"accel_step.js"},
       {"name":"cst816s.js","url":"cst816s.js"},
       {"name":"cst716.js","url":"cst716.js"},
       {"name":"cst716-p8.js","url":"cst716-p8.js"},
@@ -49,6 +50,7 @@
       {"name":"lcd-sn80.js","url":"lcd-sn80.js"},
       {"name":"main-sn80.js","url":"main-sn80.js"},
       {"name":"accel.js","url":"accel.js"},
+      {"name":"accel_step.js","url":"accel_step.js"},
       {"name":"cst716-sn80.js","url":"cst716-sn80.js"},
       {"name":"setui-sn80.js","url":"setui-sn80.js"},
       {"name":"menu-sn80.js","url":"menu-sn80.js"},
@@ -188,6 +190,7 @@
     "storage": [
       {"name":"setting.app.js","url":"setting.app.js"},
       {"name":"bletime.js","url":"bletime.js"},
+      {"name":"calibrate.js","url":"calibrate.js"},
       {"name":"setting.img","url":"setting-icon.js","evaluate":true }
     ],
     "sortorder" : -2

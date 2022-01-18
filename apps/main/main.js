@@ -30,12 +30,13 @@ global.wOS = {
     setLCDTimeout:(v)=>{wOS.ON_TIME=v<5?5:v;},
     setLCDBrightness:(v)=>{wOS.BRIGHT=v; wOS.brightness(v);},
     init:()=>{
-            var s = STOR.readJSON("settings.json",1)||{ontime:10, bright:0.5, timezone:1,faceup:true,vibrate:true};
+            var s = STOR.readJSON("settings.json",1)||{ontime:10, bright:0.5, timezone:1,faceup:true,vibrate:true,steps:false};
             wOS.ON_TIME=s.ontime;
             wOS.time_left=s.ontime;
             wOS.BRIGHT=s.bright;
             wOS.FACEUP=s.faceup;
             wOS.VIBRATE=(typeof s.vibrate!='undefined')?s.vibrate:true;
+            wOS.STEPS=(typeof s.steps!='undefined')?s.vibrate:false;
             wOS.settings=s;
             E.setTimeZone(s.timezone);
     },
@@ -95,7 +96,6 @@ function watchBat(){
       wOS.emit("charging",wOS.isCharging());
   },wOS.BATPIN,{edge:"both",repeat:true,debounce:500});
 }
-
 wOS.init();
 eval(STOR.read(process.env.BOARD=="P8"?"lcd-p8.js":"lcd.js"));
 var g = ST7789();
@@ -109,13 +109,14 @@ else if (process.env.BOARD=="P8")
 else   
     eval(STOR.read("cst716.js"));
 TC.start();
-//console.log("loaded touch");
-if (wOS.FACEUP && STOR.read("accel.js")){ 
+//console.log("loaded touch");   
+if (wOS.STEPS)
+    eval(STOR.read("accel_step.js"));
+else
     eval(STOR.read("accel.js"));
-    ACCEL.init();
-    ACCEL.on("faceup",()=>{if (!wOS.awake) wOS.wake();});
-    //console.log("loaded accel");
-}
+ACCEL.init();
+ACCEL.on("faceup",()=>{if (!wOS.awake) wOS.wake();});
+//console.log("loaded accel");
 wOS.ticker = setInterval(wOS.tick,1000);
 
 wOS.POWER=wOS.isCharging();

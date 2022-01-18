@@ -1,5 +1,6 @@
 // This runs after a 'fresh' boot
-var clockApp=(require("Storage").readJSON("setting.json",1)||{}).clock;
+if (E.stepInit) E.stepInit(); 
+var clockApp=(require("Storage").readJSON("settings.json",1)||{}).clock;
 if (clockApp) clockApp = require("Storage").read(clockApp);
 if (!clockApp) {
   clockApp = require("Storage").list(/\.info$/)

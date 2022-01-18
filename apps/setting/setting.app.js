@@ -4,6 +4,7 @@ const storage = require("Storage");
 var s= storage.readJSON("settings.json",1)||{ontime:5, bright:0.3, timezone:1, faceup:true};
 
 if (storage.read("bletime.js")) eval(storage.read("bletime.js"));
+if (storage.read("calibrate.js")) eval(storage.read("calibrate.js"));
 
 function doreboot(){
   E.showPrompt("Rebooting will\nreset time.\nReboot?").then((b)=>{
@@ -41,12 +42,20 @@ var mainmenu = {
                   format: () => (s.gpsclient ? 'Yes' : 'No'),
                   onchange: () => {s.gpsclient = !s.gpsclient;}
                 },
+    'Enable Steps': {
+                  value: s.steps,
+                  format: () => (s.steps ? 'Yes' : 'No'),
+                  onchange: () => {s.steps = !s.steps;}
+                },
     'Set Time from Phone':()=>{
                   if (!setTimefromPhone) return;
                   E.showMenu();
                   setTimeout(()=>{
                     setTimefromPhone(mainmenu);
                   },300);
+                },
+    'Calibrate Accel':()=>{
+                accel_calibrate(mainmenu);
                 },
     'Select Clock': ()=>showClockMenu(),
     'Theme': ()=>showThemeMenu(),

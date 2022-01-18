@@ -1,17 +1,19 @@
 var FACES = [];
 var STOR = require("Storage");
 STOR.list(/\.face\.js$/).forEach(face=>FACES.push(eval(require("Storage").read(face))));
-var lastface = STOR.readJSON("clock.json") || {pinned:0}
+var lastface = STOR.readJSON("multiclock.json") || {pinned:0}
 var iface = lastface.pinned;
 var face = FACES[iface]();
 var intervalRefSec;
 var intervalRefSec;
 var tickTimeout;
 
-function stopdraw() {
+var selfmanage;
+
+function stopdraw(notfirst) {
   if(intervalRefSec) {intervalRefSec=clearInterval(intervalRefSec);}
   if(tickTimeout) {tickTimeout=clearTimeout(tickTimeout);}
-  g.clear();
+  if (!notfirst || !selfmanage) g.clear();
 }
 
 function queueMinuteTick() {
@@ -23,14 +25,40 @@ function queueMinuteTick() {
   }, 60000 - (Date.now() % 60000));
 }
 
-function startdraw() {
+var saved;
+
+function hide_widgets(){
+  saved = [];
+  for (var wd of WIDGETS) {
+    saved.push({d:wd.draw,a:wd.area});
+    wd.draw=()=>{};
+    wd.area="";
+  }
+}
+
+function reveal_widgets(){
+  for (var wd of WIDGETS) {
+    var o = saved.shift();
+    wd.draw = o.d;
+    wd.area = o.a;
+  }
+  saved=null;
+}
+
+
+function startdraw(notfirst) {
   g.reset();
-  face.init();
+  selfmanage = face.init(notfirst);
   if (face.tickpersec)
     intervalRefSec = setInterval(face.tick,1000);
   else 
     queueMinuteTick();
-  Bangle.drawWidgets();
+  if(!selfmanage) {
+    if (saved) reveal_widgets();
+    Bangle.drawWidgets();
+  } else {
+    if (!saved) hide_widgets();
+  }
 }
 
 var SCREENACCESS = {
@@ -49,9 +77,9 @@ var SCREENACCESS = {
 Bangle.on('lcdPower',function(b) {
   if (!SCREENACCESS.withApp) return;
   if (b) {
-      startdraw();
+      startdraw(true);
   } else {
-      stopdraw();
+      stopdraw(true);
   }
 });
 
@@ -67,13 +95,13 @@ function setButtons(){
       startdraw();
     }
   }
-  Bangle.setUI("leftright", newFace);
+  Bangle.setUI("clockupdown", newFace);
 }
 
 E.on('kill',()=>{
     if (iface!=lastface.pinned){
       lastface.pinned=iface;
-      STOR.write("clock.json",lastface);
+      STOR.write("multiclock.json",lastface);
     }
 });
 
