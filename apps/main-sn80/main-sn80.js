@@ -27,14 +27,15 @@ global.wOS = {
     setLCDTimeout:(v)=>{wOS.ON_TIME=v<5?5:v;},
     setLCDBrightness:(v)=>{wOS.BRIGHT=v; wOS.brightness(v);},
     init:()=>{
-            var s = STOR.readJSON("settings.json",1)||{ontime:10, bright:0.5, timezone:1,faceup:true,vibrate:true};
-            wOS.ON_TIME=s.ontime;
-            wOS.time_left=s.ontime;
-            wOS.BRIGHT=s.bright;
-            wOS.FACEUP=s.faceup;
-            wOS.VIBRATE=(typeof s.vibrate!='undefined')?s.vibrate:true;
-            wOS.settings=s;
-            E.setTimeZone(s.timezone);
+        var s = STOR.readJSON("settings.json",1)||{ontime:10, bright:0.5, timezone:1,faceup:true,vibrate:true,steps:false};
+        wOS.ON_TIME=s.ontime;
+        wOS.time_left=s.ontime;
+        wOS.BRIGHT=s.bright;
+        wOS.FACEUP=s.faceup;
+        wOS.VIBRATE=(typeof s.vibrate!='undefined')?s.vibrate:true;
+        wOS.STEPS=(typeof s.steps!='undefined')?s.steps:false;
+        wOS.settings=s;
+        E.setTimeZone(s.timezone);
     },
     sleep:() => {
         wOS.awake = false;
@@ -92,14 +93,17 @@ eval(STOR.read("lcd-sn80.js"));
 var g = GC9A01();
 g.setTheme((wOS.settings.theme)? wOS.settings.theme : {fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true});
 wOS.brightness(wOS.BRIGHT);
-console.log("loaded lcd");
+//console.log("loaded lcd");
 eval(STOR.read("cst716-sn80.js"));
 TC.start();
-console.log("loaded touch");
-eval(STOR.read("accel.js"));
+//console.log("loaded touch");
+if (wOS.STEPS)
+    eval(STOR.read("accel_step.js"));
+else
+    eval(STOR.read("accel.js"));
 ACCEL.init();
 ACCEL.on("faceup",()=>{if (!wOS.awake) wOS.wake();});
-console.log("loaded accel");
+//console.log("loaded accel");
 wOS.ticker = setInterval(wOS.tick,1000);
 wOS.POWER=wOS.isCharging();
 watchBat();

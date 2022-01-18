@@ -1,6 +1,6 @@
 //sc7a20   - use datasheet for LIS3DH
 
-var ACCELPIN = process.env.BOARD=="P8" ? D8 : D16;
+var ACCELPIN = D8;
 var CALIBDATA = STOR.readJSON("accel.json",1)||{offset:{x:0,y:0,z:0},scale:{x:1000,y:1000,z:1000}};
 /*
 var support = E.compiledC(`

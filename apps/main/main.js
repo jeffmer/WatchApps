@@ -36,7 +36,7 @@ global.wOS = {
             wOS.BRIGHT=s.bright;
             wOS.FACEUP=s.faceup;
             wOS.VIBRATE=(typeof s.vibrate!='undefined')?s.vibrate:true;
-            wOS.STEPS=(typeof s.steps!='undefined')?s.vibrate:false;
+            wOS.STEPS=(typeof s.steps!='undefined')?s.steps:false;
             wOS.settings=s;
             E.setTimeZone(s.timezone);
     },
