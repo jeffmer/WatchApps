@@ -82,7 +82,7 @@
         setSteps(); drawSteps();
         var hrs = minuteDate.getHours();
         hrs = hrs>12?hrs-12:hrs;
-        Bangle.drawWidgets(hrs>=3 && hrs<9?50:166);
+        Bangle.drawWidgets(50);
         onSecond(notfirst);
         return true;
     }

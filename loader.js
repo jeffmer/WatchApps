@@ -53,6 +53,12 @@ const MYDEVICEINFO = [ {
     name : "SN80",
     features : ["BLE","BLEHID","NFC","GRAPHICS"],
     img : "img/sn80.jpeg"
+  },
+  {
+    id : "BEBINCA79",
+    name : "Bebinca79",
+    features : ["BLE","BLEHID","NFC","GRAPHICS"],
+    img : "img/bebinca79.jpeg"
   }
 ];
 
