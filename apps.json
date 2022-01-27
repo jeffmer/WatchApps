@@ -5,7 +5,7 @@
     "type":"bootloader",
     "icon": "bootloader.png",
     "version":"0.01",
-    "description": "THIS MUST BE LOADED FIRST USING WEBIDE IN A NEW SYSTEM THEN RESET",
+    "description": "THIS MUST BE LOADED FIRST -TWICE. The first time it will fail with the error `...ReferenceError `p` is not defined. It should load completely the second time",
     "storage": [
       {"name":".boot0","url":"boot0.js"},
       {"name":".bootcde","url":"bootloader.js"}

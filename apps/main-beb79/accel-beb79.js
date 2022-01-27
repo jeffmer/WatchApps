@@ -14,11 +14,12 @@ var ACCEL = {
         ACCEL.writeByte(0x7E, 0xB6);
         delayms(10);
         ACCEL.writeByte(0x7D, 0x04);
+        ACCEL.writeByte(0x41, 0x00); // 2g range
         ACCEL.writeByte(0x40, 0x17); 
         ACCEL.writeByte(0x7C, 0x03);
         setInterval(()=>{
           var a = ACCEL.read();
-           if ( (a.x>250 && a.x<500 && a.z>-432 && a.z <113)) {
+           if ( (a.x>500 && a.x<1000 && a.z>-864 && a.z <226)) {
              if (wOS.awake)
                wOS.time_left = wOS.ON_TIME; //reset LCD on time.
              else

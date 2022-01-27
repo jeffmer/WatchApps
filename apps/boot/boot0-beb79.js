@@ -1,4 +1,4 @@
-D7.set();
+D25.set();
 E.kickWatchdog();
 function KickWd(){
   if( (typeof(BTN1)=='undefined')||(!BTN1.read()) ) E.kickWatchdog();
