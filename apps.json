@@ -88,11 +88,14 @@
     "shortName":"Launcher",
     "icon": "launch.png",
     "version":"0.03",
+    "supports": ["ROCK","P8","Magic3","BEBINCA79","SN80"],
     "description": "Added display of widgets.",
     "tags": "tool,system,launcher",
     "type":"launch",
     "storage": [
-      {"name":"launch.js","url":"launch.js"}
+      {"name":"launch.js","url":"launch.js","supports": ["ROCK","P8","Magic3"]},
+      {"name":"launch-sn80.js","url":"launch-sn80.js","supports": ["SN80"]},
+      {"name":"launch-beb79.js","url":"launch-beb79.js","supports": ["BEBINCA79"]}
     ],
     "sortorder" : -10
   },
