@@ -5,9 +5,12 @@
     "type":"bootloader",
     "icon": "bootloader.png",
     "version":"0.01",
+    "supports": ["ROCK","P8","Magic3","BEBINCA79","SN80"],
     "description": "THIS MUST BE LOADED FIRST -TWICE. The first time it will fail with the error `...ReferenceError p is not defined`. It should load completely the second time",
     "storage": [
-      {"name":".boot0","url":"boot0.js"},
+      {"name":".boot0","url":"boot0.js","supports": ["ROCK","P8","Magic3"]},
+      {"name":".boot0","url":"boot0-sn80.js","supports": ["SN80"]},
+      {"name":".boot0","url":"boot0-beb79.js","supports": ["BEBINCA79"]},
       {"name":".bootcde","url":"bootloader.js"}
     ],
     "sortorder" : -15
