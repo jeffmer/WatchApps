@@ -44,7 +44,7 @@
     "type":"bootloader",
     "icon": "bootloader.png",
     "version":"0.04",
-    "supports": ["ROCK","P8","Magic3"],
+    "supports": ["SN80"],
     "description": "This loads the Bangle App execution emulation environment, drivers etc",
     "storage": [
       {"name":"lcd-sn80.js","url":"lcd-sn80.js"},
@@ -61,7 +61,28 @@
     ],
     "sortorder" : -10
   },
-
+  { "id": "main-beb79",
+    "name": "Main Bebinca-79",
+    "tags": "tool,system",
+    "type":"bootloader",
+    "icon": "bootloader.png",
+    "version":"0.04",
+    "supports": ["BEBINCA79"],
+    "description": "This loads the Bangle App execution emulation environment, drivers etc",
+    "storage": [
+      {"name":"lcd-beb79.js","url":"lcd-beb79.js"},
+      {"name":"main-beb79.js","url":"main-beb79.js"},
+      {"name":"accel-beb79.js","url":"accel-beb79.js"},
+      {"name":"cst816s.js","url":"cst816s.js"},
+      {"name":"setui-beb79.js","url":"setui-beb79.js"},
+      {"name":"menu-beb79.js","url":"menu-beb79.js"},
+      {"name":"prompt-beb79.js","url":"prompt-beb79.js"},
+      {"name":"locale","url":"locale.js"},
+      {"name":"widgets-beb79.js","url":"widgets-beb79.js"},
+      {"name":"gps.js","url":"gps.js"}
+    ],
+    "sortorder" : -10
+  },
   { "id": "launch",
     "name": "Launcher (Default)",
     "shortName":"Launcher",

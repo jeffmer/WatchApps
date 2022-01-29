@@ -46,13 +46,21 @@ global.wOS = {
         g.lcd_sleep();
        // setTimeout(anom89,100);
     },
+    bright:()=>{
+        var hrs = Date().getHours();
+        var ds = wOS.settings.daystart;
+        var ls = wOS.settings.lowstart;
+        var ns = wOS.settings.nightstart;
+        var b = (hrs>=ds && hrs<ls)? wOS.BRIGHT : (hrs>=ls && hrs<ns) ? wOS.settings.lowbright : wOS.settings.nightbright;
+        wOS.brightness(b);  
+    },
     wake:()=> {
         wOS.awake = true;
         wOS.time_left = wOS.ON_TIME;
         TC.start();
         g.lcd_wake();
         wOS.emit("lcdPower",true);
-        wOS.brightness(wOS.BRIGHT);
+        wOS.bright();
         wOS.ticker = setInterval(wOS.tick,1000);
     },
     setLCDPower:(b)=>{
@@ -92,7 +100,7 @@ wOS.init();
 eval(STOR.read("lcd-sn80.js"));
 var g = GC9A01();
 g.setTheme((wOS.settings.theme)? wOS.settings.theme : {fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true});
-wOS.brightness(wOS.BRIGHT);
+wOS.bright();
 //console.log("loaded lcd");
 eval(STOR.read("cst716-sn80.js"));
 TC.start();

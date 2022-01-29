@@ -19,10 +19,7 @@ var mainmenu = {
                   min:5,max:300,step:5,
                   onchange : v => { s.ontime=v;}
                 },
-    "Brightness" :{ value : s.bright,
-                  min:0.1,max:1.0,step:0.1,
-                  onchange : v => { wOS.setLCDBrightness(v); s.bright=v;}
-                },
+    "Brightness" :()=>showBrightMenu(),
     "Time Zone" :{ value : s.timezone,
                   min:-12,max:12,step:1,
                   onchange : v => {s.timezone=v;}
@@ -62,6 +59,42 @@ var mainmenu = {
     'Reboot': ()=>{E.showMenu(); setTimeout(doreboot,300)},
     "Exit" : function() { storage.writeJSON("settings.json",s); Bangle.showLauncher();}
 };
+
+function showBrightMenu(){
+  if (typeof s.lowbright=='undefined') s.lowbright=0.4;
+  if (typeof s.nightbright=='undefined') s.nightbright=0.1;
+  if (typeof s.lowstart=='undefined') s.lowstart=19;
+  if (typeof s.nightstart=='undefined') s.nightstart=23;
+  if (typeof s.daystart=='undefined') s.daystart=7;
+  const brightMenu = {
+    '< Back': ()=>showMainMenu(),
+    "Brightness" :{ value : s.bright,
+      min:0.1,max:1.0,step:0.1,
+      onchange : v => { wOS.setLCDBrightness(v); s.bright=v;}
+    },
+    "Low Bright" :{ value : s.lowbright,
+      min:0.1,max:1.0,step:0.1,
+      onchange : v => { wOS.setLCDBrightness(v); s.lowbright=v;}
+    },
+    "Night Bright" :{ value : s.nightbright,
+      min:0.1,max:1.0,step:0.1,
+      onchange : v => { wOS.setLCDBrightness(v); s.nightbright=v;}
+    },
+    "Day Start" :{ value : s.daystart,
+      min:0,max:23,step:1,
+      onchange : v => {s.daytart=v;}
+    },
+    "Low Start" :{ value : s.lowstart,
+      min:0,max:23,step:1,
+      onchange : v => {s.lowstart=v;}
+    },
+    "Night Start" :{ value : s.nightstart,
+      min:0,max:23,step:1,
+      onchange : v => {s.nightstart=v;}
+    }
+  }
+  return E.showMenu(brightMenu);
+}
 
 function showClockMenu() {
   var clockApps = require("Storage").list(/\.info$/)
