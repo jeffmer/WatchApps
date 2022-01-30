@@ -8,7 +8,7 @@ E.enableWatchdog(20, false);
 E.showMessage = function(msg,title) {}
 
 var STOR = require("Storage");
-if (STOR.read("main-beb79.js")) eval(STOR.read("main-beb79.js"));
+if (STOR.read("main-beb79.js") && !BTN2.read()) eval(STOR.read("main-beb79.js"));
 
  if (typeof(g)=='undefined') {
     // dummy g for loader
