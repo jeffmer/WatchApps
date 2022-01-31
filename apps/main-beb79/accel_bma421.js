@@ -25,7 +25,10 @@ var ACCEL = {
         ACCEL.writeByte(0x41, 0x00); // 2g range
         ACCEL.writeByte(0x40, 0x17); 
         ACCEL.writeByte(0x7C, 0x03);
-        setInterval(()=>{
+        ACCEL.readBytes(0x1C,1); // clear any previous motion interrupt
+        ACCEL.writeByte(0x56,0x20);  // map interrupt to INT 1
+        ACCEL.writeByte(0x53,0x08); //enable INT 1 output
+        setWatch(()=>{
           var a = ACCEL.read();
            if ( (a.x>500 && a.x<1000 && a.z>-864 && a.z <226)) {
              if (wOS.awake)
@@ -33,7 +36,8 @@ var ACCEL = {
              else
               ACCEL.emit("faceup");
            }
-        },200);
+           ACCEL.readBytes(0x1C,1); 
+        },ACCELPIN, {repeat:1,edge:"falling"});
         return ACCEL.readBytes(0x0,1)[0];
     },
     read:()=>{
@@ -67,6 +71,16 @@ ACCEL.configWrite=function(data,offset){
     ACCEL.writeByte(0x5E,data[j]);
   }
   ACCEL.writeByte(0x7C, 0x00); //enable sleep mode
+}
+
+ACCEL.motionInit = function(){
+  var feature = ACCEL.configRead(0x46,256);
+  feature[0][1] = 0x01;
+  feature[0][3] =  feature[0][3] | 0x20; //x-axis
+  ACCEL.configWrite(feature,256);
+  ACCEL.readBytes(0x1C,1); // clear any previous motion interrupt
+  ACCEL.writeByte(0x56,0x20);  // map interrupt to INT 1
+  ACCEL.writeByte(0x53,0x08); //enable INT 1 output
 }
 
 E.stepInit = function(){

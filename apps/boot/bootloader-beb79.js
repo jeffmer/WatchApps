@@ -1,5 +1,6 @@
 // This runs after a 'fresh' boot
 eval(STOR.read("config_bma421.js"));
+ACCEL.motionInit();
 E.stepInit();
 Bangle.buzz(50);
 var clockApp=(require("Storage").readJSON("settings.json",1)||{}).clock;

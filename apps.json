@@ -75,7 +75,8 @@
     "storage": [
       {"name":"lcd-beb79.js","url":"lcd-beb79.js"},
       {"name":"main-beb79.js","url":"main-beb79.js"},
-      {"name":"accel-beb79.js","url":"accel-beb79.js"},
+      {"name":"accel_bma421.js","url":"accel_bma421.js"},
+      {"name":"config_bma421.js","url":"config_bma421.js"},
       {"name":"cst816s.js","url":"cst816s.js"},
       {"name":"setui-beb79.js","url":"setui-beb79.js"},
       {"name":"menu-beb79.js","url":"menu-beb79.js"},

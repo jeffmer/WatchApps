@@ -51,8 +51,9 @@ var mainmenu = {
                     setTimefromPhone(mainmenu);
                   },300);
                 },
-    'Calibrate Accel':()=>{
-                accel_calibrate(mainmenu);
+    'Reset Steps':()=>{
+                  if (E.stepInit) E.stepInit(); 
+                  Bangle.buzz(50);
                 },
     'Select Clock': ()=>showClockMenu(),
     'Theme': ()=>showThemeMenu(),
