@@ -57,7 +57,7 @@ ACCEL.configRead= function(len,offset){
     ACCEL.writeByte(0x5C, (offset + (i/2)) >> 4);
     res.push(ACCEL.readBytes(0x5E, (len-i >= 16) ? 16 : (len - i)));
   }
-  ACCEL.writeByte(0x7C, 0x00); //enable sleep mode
+  ACCEL.writeByte(0x7C, 0x03); //enable sleep mode
   return res;
 }
 
@@ -70,7 +70,7 @@ ACCEL.configWrite=function(data,offset){
     ACCEL.writeByte(0x5C, (offset + (i/2)) >> 4);
     ACCEL.writeByte(0x5E,data[j]);
   }
-  ACCEL.writeByte(0x7C, 0x00); //enable sleep mode
+  ACCEL.writeByte(0x7C, 0x03); //enable sleep mode
 }
 
 ACCEL.motionInit = function(){
