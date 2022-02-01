@@ -95,7 +95,7 @@ function setButtons(){
       startdraw();
     }
   }
-  Bangle.setUI("clockupdown", newFace);
+  Bangle.setUI("clockleftright", newFace);
 }
 
 E.on('kill',()=>{

@@ -1,7 +1,6 @@
 //sc7a20   - use datasheet for LIS3DH
 
 var ACCELPIN = D8;
-var CALIBDATA = STOR.readJSON("accel.json",1)||{offset:{x:0,y:0,z:0},scale:{x:1000,y:1000,z:1000}};
 /*
 var support = E.compiledC(`
 // int conv(int,int)
@@ -66,16 +65,9 @@ var ACCEL = {
         var f = support.conv;
         return {x:f(a[0],a[1]), y:f(a[2],a[3]), z:f(a[4],a[5])};
     },
-    calibRead:()=>{
-        "ram"
-        var O = CALIBDATA.offset; var S = CALIBDATA.scale;
-        var m = ACCEL.read(); var f = support.calib;
-        m.x = f(m.x,O.x,S.x); m.y=f(m.y,O.y,S.y); m.z=f(m.z,O.z,S.z);
-        return m;
-    },
     stepStart:()=>{
         ACCEL.stinterval = setInterval(()=>{
-          var a = ACCEL.calibRead();
+          var a = ACCEL.read();
           var sts = E.stepCount(a.x,a.y,a.z);
           //if(sts>0) console.log("steps "+sts,a);
           --ACCEL.activity;
