@@ -1,6 +1,6 @@
 var wOSI2C = new I2C();
 
-wOSI2C.setup({scl:D14,sda:D15,bitrate:200000});
+wOSI2C.setup({scl:D10,sda:D9,bitrate:200000});
 
 function readByte(dev,a,d){ 
     wOSI2C.writeTo(dev,a,d);
