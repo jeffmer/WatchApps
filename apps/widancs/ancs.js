@@ -37,12 +37,12 @@
     var msg = E.decodeUTF8(m.message, unicodeRemap, replacer);
     if (current.cat!=1){
       E.showAlert(msg,ttl).then(()=>{
-        NRF.ancsAction(current.uid,0);
+        if (NRF.getSecurityStatus().connected) NRF.ancsAction(current.uid,0);
         release_screen();
       });
     } else {
       E.showPrompt(msg,{title:ttl,buttons:{"Accept":true,"Cancel":false}}).then((r)=>{
-        NRF.ancsAction(current.uid,r);
+        if (NRF.getSecurityStatus().connected) NRF.ancsAction(current.uid,r);
         release_screen();
       });
     }

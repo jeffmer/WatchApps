@@ -1,14 +1,5 @@
 eval(require("Storage").read("lcd-g5.js"));
-
-function sleep(){
-  g.brightness(0);
-  g.lcd_sleep();
-}
-
-function wake(){
-  g.lcd_wake();
-  g.brightness(255);
-}
+eval(require("Storage").read("touchtest.js"));
 
     var cx = g.getWidth()/2;
     var cy = g.getHeight()/2;
@@ -65,7 +56,27 @@ var minuteDate;
         return true;
     }
 
+D14.set();
+TC.start();
+TC.stop();
+g.lowpower(1);
+g.brightness(128);
 g.clear();
 drawAll();
-setInterval(onSecond,1000);
+var interval = setInterval(onSecond,1000);
+
+function sleep(){
+  clearInterval(interval);
+  g.brightness(0);
+  g.lcd_sleep();
+}
+
+function wake(){
+  g.lcd_wake();
+  g.brightness(128);
+  setInterval(onSecond,1000);
+  setTimeout(()=>{g.lowpower(0);},500);
+  setTimeout(()=>{g.lowpower(1);},1000);
+}
+
 

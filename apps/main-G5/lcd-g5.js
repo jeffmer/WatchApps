@@ -1,5 +1,5 @@
 
-  /* Bebinca 79 specific */
+  /* G5 specific */
   function AMOLED() {
     var LCD_WIDTH = 227;
     var LCD_HEIGHT = 227;
@@ -50,8 +50,9 @@
         });
         g.cmd = cmd;
         g.brightness = function(v){cmd(0x51,v);};
-        g.lcd_sleep = function(){D34.set();cmd(0x10);}; //set brightness 0 before sleep
-        g.lcd_wake = function(){D34.reset();cmd(0x11);};// set brightness after sleep
+        g.lowpower   = function(b){cmd(0xFE); if (b) cmd(0x39); else cmd(0x38);};
+        g.lcd_sleep = function(){D34.set();cmd(0x10);cmd(0x28);D3.reset();}; //set brightness 0 before sleep
+        g.lcd_wake = function(){D3.set();D34.reset();cmd(0x11);cmd(0x29);};// set brightness after sleep
         dispinit(rst, ()=>{g.clear(1).setColor(0xffff).setFont("6x8").setFontAlign(0,-1).drawString("Loading...",120,120);});
         return g;
     }
@@ -60,4 +61,4 @@
     return connect({spi:SPI1, dc:D27, cs:D26, rst:D40});
 }
 
-var g = AMOLED();
+

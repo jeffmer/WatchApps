@@ -1,10 +1,6 @@
-// touch driver
+// touch driver cst816s
 const TOUCH_PIN = D29;
 const RESET_PIN = D28;
-
-var wOSI2C = new I2C();
-
-wOSI2C.setup({scl:D7,sda:D6,bitrate:200000});
 
 pinMode(TOUCH_PIN,'input');
 
@@ -20,15 +16,15 @@ global.TC = {
     },
     getXY:()=>{
         var _data = TC.readBytes(0x00,8);
-        return { x:((_data[3]&0x0F)<<8)|_data[4],
-                 y:((_data[5]&0x0F)<<8)|_data[6],
+        return { x:Math.floor((((_data[3]&0x0F)<<8)|_data[4])/2),
+                 y:Math.floor((((_data[5]&0x0F)<<8)|_data[6])/2),
                  gest:_data[1]
                };
     },
     enable:()=>{TC.writeByte(0xFA, 0x11);},  // set to gesture mode
-    sleepMode:()=>{TC.writeByte(0xE5,0x03);},
+    sleepMode:()=>{TC.writeByte(0xA5,0x03);},
     touchevent:() => {
-        wOS.time_left = wOS.ON_TIME; //reset LCD on time.
+        //wOS.time_left = wOS.ON_TIME; //reset LCD on time.
         var p = TC.getXY();
         if (p.gest==TC.CLICK) TC.emit("touch",p);
         else if (p.gest>=1 && p.gest<=4) TC.emit("swipe",p.gest); 
@@ -50,6 +46,7 @@ global.TC = {
     }
 };
 
+/*
 
 TC.on("touch", (p)=>{
     console.log("touch x: "+p.x+" y:"+p.y);
@@ -62,7 +59,7 @@ TC.on("swipe", (d)=>{
 TC.on("longtouch", (p)=>{
     console.log("long touch");
 });
-
+*/
 
 
 

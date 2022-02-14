@@ -63,16 +63,21 @@ function id(){
   console.log(FCS," ",fc.send([0x9f,0,0,0],FCS)); // id
 }
 
-//14,15,16,17,18,19 second SPI
+//wp is D16
 
 var FCS = D14;
 FCS.set();
+
 var fc=new SPI(); // font chip - 2MB SPI flash
-fc.setup({sck:D15,miso:D17,mosi:D16,mode:0});
+fc.setup({sck:D19,miso:D15,mosi:D18,mode:0});
+D17.set(); //hold
+D16.set();  //wp
 
 function id(){
-  fc.send([0xab,255,255,255],FCS);
+  fc.send([0xff],FCS);
+  fc.send([0xff],FCS);
   fc.send([0xab],FCS);
+  fc.send([0xab,255,255,255],FCS);
   console.log(FCS," ",fc.send([0x90,0,0,1,0,0],FCS)); // id
   console.log(FCS," ",fc.send([0x9f,0,0,0],FCS)); // id
 }

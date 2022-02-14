@@ -14,20 +14,20 @@
     function dial() {
         for (let a=0;a<360;a+=6)
         if (a % 90 == 0) 
-            g.setColor(g.theme.fg).drawRotRect(8,105,120,a);
+            g.setColor(g.theme.fg).drawRotRect(8,110,120,a);
         else if (a % 30 == 0)
-            g.setColor(g.theme.fg).drawRotRect(4,105,120,a);
+            g.setColor(g.theme.fg).drawRotRect(4,110,120,a);
         else 
-            g.setColor(0.6,0.6,0.6).drawRotRect(2,110,120,a);
+            g.setColor(0.6,0.6,0.6).drawRotRect(2,115,120,a);
     }
 
     var minuteDate;
     var secondDate;
 
     function onSecond(notfirst) {
-        let hh = g.drawRotRect.bind(g,6,6,66);
-        let mh = g.drawRotRect.bind(g,3,6,100);
-        let sh = g.drawRotRect.bind(g,2,3,100);
+        let hh = g.drawRotRect.bind(g,6,6,70);
+        let mh = g.drawRotRect.bind(g,3,6,105);
+        let sh = g.drawRotRect.bind(g,2,3,105);
         g.setColor(g.theme.bg);
         sh(secondDate.getSeconds()*6);
         if (secondDate.getSeconds() === 0 || notfirst) {

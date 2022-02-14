@@ -5,12 +5,13 @@
     "type":"bootloader",
     "icon": "bootloader.png",
     "version":"0.01",
-    "supports": ["ROCK","P8","Magic3","BEBINCA79","SN80"],
+    "supports": ["ROCK","P8","Magic3","BEBINCA79","SN80","G5"],
     "description": "THIS MUST BE LOADED FIRST -TWICE. The first time it will fail with the error `...ReferenceError p is not defined`. It should load completely the second time",
     "storage": [
       {"name":".boot0","url":"boot0.js","supports": ["ROCK","P8","Magic3"]},
       {"name":".boot0","url":"boot0-sn80.js","supports": ["SN80"]},
       {"name":".boot0","url":"boot0-beb79.js","supports": ["BEBINCA79"]},
+      {"name":".boot0","url":"boot0-g5.js","supports": ["G5"]},
       {"name":".bootcde","url":"bootloader.js"}
     ],
     "sortorder" : -15
@@ -87,19 +88,43 @@
     ],
     "sortorder" : -10
   },
+  { "id": "main-g5",
+    "name": "Main G5",
+    "tags": "tool,system",
+    "type":"bootloader",
+    "icon": "bootloader.png",
+    "version":"0.04",
+    "supports": ["G5"],
+    "description": "This loads the Bangle App execution emulation environment, drivers etc",
+    "storage": [
+      {"name":"lcd-g5.js","url":"lcd-g5.js"},
+      {"name":"main-g5.js","url":"main-g5.js"},
+      {"name":"accel_g5.js","url":"accel_g5.js"},
+      {"name":"cst816s-g5.js","url":"cst816s-g5.js"},
+      {"name":"setui-g5.js","url":"setui-g5.js"},
+      {"name":"menu-g5.js","url":"menu-g5.js"},
+      {"name":"prompt-g5.js","url":"prompt-g5.js"},
+      {"name":"locale","url":"locale.js"},
+      {"name":"widgets-g5.js","url":"widgets-g5.js"},
+      {"name":"gps.js","url":"gps.js"}
+    ],
+    "sortorder" : -10
+  },
+
   { "id": "launch",
     "name": "Launcher (Default)",
     "shortName":"Launcher",
     "icon": "launch.png",
     "version":"0.03",
-    "supports": ["ROCK","P8","Magic3","BEBINCA79","SN80"],
+    "supports": ["ROCK","P8","Magic3","BEBINCA79","SN80","G5"],
     "description": "Added display of widgets.",
     "tags": "tool,system,launcher",
     "type":"launch",
     "storage": [
       {"name":"launch.js","url":"launch.js","supports": ["ROCK","P8","Magic3"]},
       {"name":"launch-sn80.js","url":"launch-sn80.js","supports": ["SN80"]},
-      {"name":"launch-beb79.js","url":"launch-beb79.js","supports": ["BEBINCA79"]}
+      {"name":"launch-beb79.js","url":"launch-beb79.js","supports": ["BEBINCA79"]},
+      {"name":"launch-g5.js","url":"launch-g5.js","supports": ["G5"]}
     ],
     "sortorder" : -10
   },
