@@ -49,16 +49,12 @@
             rowstart: YOFF
         });
         g.cmd = cmd;
+        g.setPaletteColor = lcd_amoled.setPaletteColor;
         g.brightness = function(v){cmd(0x51,v);};
         g.lowpower   = function(b){cmd(0xFE); if (b) cmd(0x39); else cmd(0x38);};
         g.lcd_sleep = function(){D34.set();cmd(0x10);cmd(0x28);D3.reset();}; //set brightness 0 before sleep
         g.lcd_wake = function(){D3.set();D34.reset();cmd(0x11);cmd(0x29);};// set brightness after sleep
-        dispinit(rst, ()=>{g.clear(1).setColor(0xffff).setFont("6x8").setFontAlign(0,-1).drawString("Loading...",120,120);});
+        dispinit(rst, ()=>{g.clear(1).setColor(0xffff).setFont("6x8",2).setFontAlign(0,-1).drawString("Loading...",240,240);});
         return g;
     }
-
-    SPI1.setup({sck:D5, mosi:D11, baud: 32000000});
-    return connect({spi:SPI1, dc:D27, cs:D26, rst:D40});
-}
-
 
