@@ -28,7 +28,7 @@ global.wOS = {
     brightness:(v)=>{var dv = Math.floor(255*v); g.brightness(dv);},
     setLCDBrightness:(v)=>{wOS.BRIGHT=v; wOS.brightness(v);},
     init:()=>{
-        var s = STOR.readJSON("settings.json",1)||{ontime:10, bright:0.5, timezone:1,faceup:true,vibrate:true,steps:false};
+        var s = STOR.readJSON("settings.json",1)||{ontime:30, bright:0.5, timezone:1,faceup:true,vibrate:true,steps:false};
         wOS.ON_TIME=s.ontime;
         wOS.time_left=s.ontime;
         wOS.BRIGHT=s.bright;
@@ -103,17 +103,13 @@ wOS.init();
 eval(STOR.read("lcd-g5.js"));
 var g = AMOLED();
 g.setTheme((wOS.settings.theme)? wOS.settings.theme : {fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true});
-wOS.bright();
-g.lowpower(1);
 //console.log("loaded lcd");
 eval(STOR.read("cst816s-g5.js"));
-TC.start();
 //console.log("loaded touch");
 eval(STOR.read("accel-g5.js"));
 ACCEL.init();
 ACCEL.on("faceup",()=>{if (!wOS.awake) wOS.wake();});
 //console.log("loaded accel");
-wOS.ticker = setInterval(wOS.tick,1000);
 wOS.POWER=wOS.isCharging();
 watchBat();
 
@@ -139,4 +135,7 @@ wOS.btnWatches = [
     setWatch(function() {if (wOS.awake) wOS.showLauncher(); else wOS.wake();}, BTN1, {repeat:1,edge:"falling"}),
   ];
 
+setWatch(function() {if (!wOS.awake) wOS.wake();}, BTN2, {repeat:1,edge:"falling"});
+
+wOS.wake();
 

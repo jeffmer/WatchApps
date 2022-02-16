@@ -78,7 +78,7 @@
         // draw seconds
         g.setColor(1,1,1);
         //draw bezel
-        if (!notfirst) bezel(108);
+        if (!notfirst) bezel(cx-12);
         setSteps(); drawSteps();
         var hrs = minuteDate.getHours();
         hrs = hrs>12?hrs-12:hrs;

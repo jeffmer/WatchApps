@@ -47,6 +47,16 @@ var ACCEL = {
         ACCEL.writeByte(0x21,1); //DATA_CTRL_REG --25Hz
         ACCEL.writeByte(0x1D,0x28); 
         ACCEL.writeByte(0x1B,0xA0);  //CNTL1 Off (top bit), low power, DRDYE1, 2g , Wakeup=0
+        setInterval(()=>{
+          var a = ACCEL.read();
+          E.stepCount(a.x,a.y,a.z);
+           if ( (a.y>500 && a.y<1000 && a.z>-864 && a.z <226)) {
+             if (wOS.awake)
+               wOS.time_left = wOS.ON_TIME; //reset LCD on time.
+             else
+              ACCEL.emit("faceup");
+           }
+        },80);
         return id;
     },
     read:()=>{

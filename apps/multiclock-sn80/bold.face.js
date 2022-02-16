@@ -11,14 +11,14 @@
           {x:cx+r1*Math.sin(theta),y:cy-r1*Math.cos(theta),rotate:theta}));
     }
       
-    function dial() {
+    function dial(r) {
         for (let a=0;a<360;a+=6)
         if (a % 90 == 0) 
-            g.setColor(g.theme.fg).drawRotRect(8,110,120,a);
+            g.setColor(g.theme.fg).drawRotRect(8,r-10,r,a);
         else if (a % 30 == 0)
-            g.setColor(g.theme.fg).drawRotRect(4,110,120,a);
+            g.setColor(g.theme.fg).drawRotRect(4,r-10,r,a);
         else 
-            g.setColor(0.6,0.6,0.6).drawRotRect(2,115,120,a);
+            g.setColor(0.6,0.6,0.6).drawRotRect(2,r-5,r,a);
     }
 
     var minuteDate;
@@ -26,8 +26,8 @@
 
     function onSecond(notfirst) {
         let hh = g.drawRotRect.bind(g,6,6,70);
-        let mh = g.drawRotRect.bind(g,3,6,105);
-        let sh = g.drawRotRect.bind(g,2,3,105);
+        let mh = g.drawRotRect.bind(g,3,6,cx-15);
+        let sh = g.drawRotRect.bind(g,2,3,cx-15);
         g.setColor(g.theme.bg);
         sh(secondDate.getSeconds()*6);
         if (secondDate.getSeconds() === 0 || notfirst) {
@@ -65,7 +65,7 @@
         if (!notfirst) secondDate = minuteDate = new Date();
         g.setColor(1,1,1);
         //draw bezel
-        if (!notfirst) dial();
+        if (!notfirst) dial(cx);
         initDate(); drawDate();
         var hrs = minuteDate.getHours();
         hrs = hrs>12?hrs-12:hrs;

@@ -33,8 +33,8 @@
 
     function onSecond(notfirst) {
         g.setColor(g.theme.bg);
-        var sh = hand.bind(null,-16, 80, 4);
-        var mh = hand.bind(null,-16, 80, 7);
+        var sh = hand.bind(null,-16, cx-40, 4);
+        var mh = hand.bind(null,-16, cx-40, 7);
         var hh = hand.bind(null,-16, 65, 7);
         sh(360*secondDate.getSeconds()/60);
         if (secondDate.getSeconds() === 0 || notfirst) {
@@ -57,7 +57,7 @@
         // draw seconds
         g.setColor(1,1,1);
         //draw bezel
-        if (!notfirst) bezel(100);
+        if (!notfirst) bezel(cx-20);
         var hrs = minuteDate.getHours();
         hrs = hrs>12?hrs-12:hrs;
         Bangle.drawWidgets(hrs>=3 && hrs<9?50:166);
