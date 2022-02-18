@@ -159,7 +159,7 @@
       {"name":"txt.face.js","url":"txt.face.js"},
       {"name":"dk.face.js","url":"dk.face.js"},
       {"name":"nifty.face.js","url":"nifty.face.js"},
-      {"name":"braun1.face.js","url":"braun1 .face.js"},
+      {"name":"braun1.face.js","url":"braun1.face.js"},
       {"name":"multiclock.img","url":"multiclock-icon.js","evaluate":true}
     ],
     "sortorder" : -10
