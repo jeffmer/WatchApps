@@ -84,7 +84,7 @@ Bangle.on('lcdPower',function(b) {
 });
 
 function setButtons(){
-  function newFace(inc){
+  function newFace(inc){   
     if (!inc) Bangle.showLauncher();
     else  {
       var n = FACES.length-1;
@@ -95,8 +95,9 @@ function setButtons(){
       startdraw();
     }
   }
-  Bangle.setUI("clockleftright", newFace);
-}
+  Bangle.setUI("leftright", newFace);
+  
+  }
 
 E.on('kill',()=>{
     if (iface!=lastface.pinned){
