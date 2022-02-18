@@ -139,7 +139,6 @@ function showThemeMenu() {
     g.reset = function(n) { return g._reset().setColor(th.fg).setBgColor(th.bg); };
     g.clear = function(n) { if (n) g.reset(); return g.clearRect(0,0,g.getWidth(),g.getHeight()); };
     g.clear(1);
-    Bangle.drawWidgets();
     m.draw();
   }
   var m = E.showMenu({

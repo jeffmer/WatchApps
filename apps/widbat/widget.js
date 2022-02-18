@@ -1,5 +1,5 @@
 (function(){
-  var CHARGING = 0x07E0;
+  var CHARGING = g.toColor(0,1,0);
   var Y=0;
 
   function setWidth() {

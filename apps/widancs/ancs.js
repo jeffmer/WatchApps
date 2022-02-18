@@ -78,9 +78,10 @@
   var stage = 0    
   //grey, pink, lightblue, yellow, green
   function draw(){
-    var colors = new Uint16Array([0xc618,0xf818,0x3ff,0xffe0,0x07e0,0x0000]);
     var img = E.toArrayBuffer(atob("GBgBAAAABAAADgAAHwAAPwAAf4AAP4AAP4AAP4AAHwAAH4AAD8AAB+AAA/AAAfgAAf3gAH/4AD/8AB/+AA/8AAf4AAHwAAAgAAAA"));
-    g.setColor(colors[stage]);
+    if (stage==0) g.setColor(0.5,0.5,0.5);
+    else if (stage==1) g.setColor(1,1,0);
+    else if (stage==2) g.setColor(0,1,0);
     g.drawImage(img,this.x,this.y);
   }
     
@@ -91,7 +92,7 @@
   }
   
   function changed(){
-    stage = NRF.getSecurityStatus().connected ? 4 : 3;
+    stage = NRF.getSecurityStatus().connected ? 2 : 1;
     WIDGETS["ancs"].draw();
   }
   
@@ -100,7 +101,7 @@
     NRF.on('connect',changed);
     NRF.on('disconnect',changed);
     NRF.setServices({},{ancs:true});
-    stage = NRF.getSecurityStatus().connected ? 4 : 3;
+    stage = NRF.getSecurityStatus().connected ? 2 : 1;
   }
   
   })();

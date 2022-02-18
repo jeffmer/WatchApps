@@ -16,8 +16,8 @@ global.TC = {
     },
     getXY:()=>{
         var _data = TC.readBytes(0x00,8);
-        return { x:Math.floor((((_data[3]&0x0F)<<8)|_data[4])/2),
-                 y:Math.floor((((_data[5]&0x0F)<<8)|_data[6])/2),
+        return { x:Math.floor(((_data[3]&0x0F)<<8)|_data[4]),
+                 y:Math.floor(((_data[5]&0x0F)<<8)|_data[6]),
                  gest:_data[1]
                };
     },

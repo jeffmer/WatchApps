@@ -3,7 +3,7 @@
   function AMOLED() {
     var LCD_WIDTH = 454;
     var LCD_HEIGHT = 454;
-    var XOFF = 12;
+    var XOFF = 16;
     var YOFF = 0;
     var INVERSE = 1;
     var cmd = lcd_amoled.command;
@@ -26,7 +26,7 @@
         cmd(0xFE,0x00);
         cmd(0x35,0x00);
         cmd(0x36,0xC0);
-        cmd(0x3A,0x05);  // 16 bit - was 0x72
+        cmd(0x3A,0x72);  // 8 bit 
         delayms(10);
         cmd(0x53,0x20);
         cmd(0xC4,0x80);
@@ -57,4 +57,8 @@
         dispinit(rst, ()=>{g.clear(1).setColor(0xffff).setFont("6x8",2).setFontAlign(0,-1).drawString("Loading...",240,240);});
         return g;
     }
+
+    SPI1.setup({sck:D5, mosi:D11, baud: 32000000});
+    return connect({spi:SPI1, dc:D27, cs:D26, rst:D40});
+}
 

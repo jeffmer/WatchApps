@@ -2,7 +2,7 @@
 (() => {
 
   var BLACK=g.getBgColor();
-  const MOON = 0xFFE0, MC = 29.5305882, NM = 694039.09; 
+  const MOON = g.toColor(1,1,0), MC = 29.5305882, NM = 694039.09; 
   var r = 10, mx = 3, my = 3;
 
   var moon = {

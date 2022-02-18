@@ -15,11 +15,11 @@ E.showMenu = function(items) {
   var options = items[""];
   if (options) menuItems.splice(menuItems.indexOf(""),1);
   if (!(options instanceof Object)) options = {};
-  options.fontHeight=8;
-  options.x=40;
-  options.x2=w-40;
-  options.y=40;
-  options.y2=200;
+  options.fontHeight=16;
+  options.x=80;
+  options.x2=w-80;
+  options.y=80;
+  options.y2=400;
   if (options.selected === undefined)
     options.selected = 0;
   if (!options.fontHeight)
@@ -39,7 +39,7 @@ E.showMenu = function(items) {
       if (idx!=l.lastIdx) rowmin=undefined; // redraw all if we scrolled
       l.lastIdx = idx;      
       var iy = y;
-      g.reset().setFont('6x8',1).setFontAlign(0,-1,0);
+      g.reset().setFont('6x8',2).setFontAlign(0,-1,0);
       if (rowmin===undefined && options.title) {
         g.drawString(options.title,(x+x2)/2,y-options.fontHeight-2);
         g.drawLine(x,y-2,x2,y-2);
@@ -91,7 +91,7 @@ E.showMenu = function(items) {
         0b00010000,
         0b00010000,
         0b00010000
-      )*/,w,40);
+      )*/,w,80);
       g.drawImage("\b\b\x01\x10\x10\x10\x10\xFE|8\x10"/*E.toString(8,8,1,
         0b00010000,
         0b00010000,
@@ -101,7 +101,7 @@ E.showMenu = function(items) {
         0b01111100,
         0b00111000,
         0b00010000
-      )*/,w,194);
+      )*/,w,388);
       g.drawImage("\b\b\x01\x00\b\f\x0E\xFF\x0E\f\b"/*E.toString(8,8,1,
         0b00000000,
         0b00001000,
@@ -111,8 +111,8 @@ E.showMenu = function(items) {
         0b00001110,
         0b00001100,
         0b00001000
-      )*/,w,116);
-      g.setColor(more?g.theme.fg:g.theme.bg).fillPoly([104,220,136,220,120,228]);
+      )*/,w,232);
+      g.setColor(more?g.theme.fg:g.theme.bg).fillPoly([207,400,247,400,227,430]);
       g.flip();
     },
     select : function(dir) {

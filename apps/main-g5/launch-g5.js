@@ -24,32 +24,32 @@ var maxPage = Npages-1;
 var selected = -1;
 var page = 0;
 const XOFF = 0;
-const YOFF = 40;
-const CELL = 80;
+const YOFF = 80;
+const CELL = 140;
 
 function draw_icon(p,n,selected) {
     var x = (n%3)*CELL+XOFF; 
     var y = n>2?CELL+YOFF:YOFF;
-    (selected?g.setColor(0.7,0.7,0.7):g.setColor(g.theme.bg)).fillRect(x+8,y,x+72,y+CELL-1);
+    (selected?g.setColor(0.7,0.7,0.7):g.setColor(g.theme.bg)).fillRect(x+16,y,x+144,y+CELL-1);
     g.setColor(g.theme.fg);
-    try{g.drawImage(apps[p*6+n].icon,x+10,y+4,{scale:1.25});} catch(e){}
-    g.setFontAlign(0,-1,0).setFont("6x8",1);
+    try{g.drawImage(apps[p*6+n].icon,x+30,y+8,{scale:2.0});} catch(e){}
+    g.setFontAlign(0,-1,0).setFont("6x8",2);
     var txt =  apps[p*6+n].name.split(" ");
     for (var i = 0; i < txt.length; i++) {
         txt[i] = txt[i].trim();
-        g.drawString(txt[i],x+CELL/2,y+64+i*8);
+        g.drawString(txt[i],x+CELL/2,y+110+i*16);
     }
 }
 
 function drawPage(p){
     g.reset();
-    g.clearRect(0,34,w-1,h-1);
-    var O = w/2-12*(Npages/2);
+    g.clearRect(0,68,w-1,h-1);
+    var O = w/2-24*(Npages/2);
     for (var j=0;j<Npages;j++){
-        var x = O+j*12;
+        var x = O+j*24;
         g.setColor(g.theme.fg);
-        if (j==page) g.fillCircle(x,h-30,4);
-        else g.drawCircle(x,h-30,4);
+        if (j==page) g.fillCircle(x,h-60,8);
+        else g.drawCircle(x,h-60,8);
     }
     for (var i=0;i<6;i++) {
         if (!apps[p*6+i]) return i;
@@ -85,6 +85,7 @@ function touchAction(p){
                     if (selected!=i){
                         draw_icon(page,selected,false);
                     } else {
+                        wOS.sleep();
                         load(apps[page*6+i].src);
                     }
                 }

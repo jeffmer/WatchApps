@@ -6,8 +6,8 @@ E.showMessage = function(msg,options) {
   options = options||{};
   g.clear(1); // clear screen
   //if (global.WIDGETS) wOS.drawWidgets(); // redraw widgets
-  g.reset().setFont("Vector",16).setFontAlign(0,-1);
-  var Y = 24; //global.WIDGETS ? 24 : 0;
+  g.reset().setFont("Vector",32).setFontAlign(0,-1);
+  var Y = 48; //global.WIDGETS ? 24 : 0;
   var W = g.getWidth(), H = g.getHeight()-Y, FH=g.getFontHeight();
   var titleLines = g.wrapString(options.title, W-2);
   var msgLines = g.wrapString(msg||"", W-2);
@@ -33,8 +33,8 @@ E.showPrompt = function(msg,options) {
   var btns = Object.keys(options.buttons);
   var btnPos = [];
   function draw() {
-    g.reset().setFont("Vector",16).setFontAlign(0,-1);
-    var Y = 24; //global.WIDGETS ? 24 : 0;
+    g.reset().setFont("Vector",32).setFontAlign(0,-1);
+    var Y = 48; //global.WIDGETS ? 24 : 0;
     var W = g.getWidth(), H = g.getHeight()-Y, FH=g.getFontHeight();
     var titleLines = g.wrapString(options.title, W-2);
     var msgLines = g.wrapString(msg||"", W-2);
@@ -50,10 +50,10 @@ E.showPrompt = function(msg,options) {
         drawString(titleLines.join("\n"),W/2,Y+2);    
     g.setColor(g.theme.fg).setBgColor(g.theme.bg).
       drawString(msgLines.join("\n"),W/2,y);
-    y += msgLines.length*FH+32;
-    y = y>Y+H-24?Y+H-24:y;
+    y += msgLines.length*FH+64;
+    y = y>Y+H-48?Y+H-48:y;
     var buttonWidths = 0;
-    var buttonPadding = 24;
+    var buttonPadding = 48;
     g.setFontAlign(0,0);
     btns.forEach(btn=>buttonWidths += buttonPadding+g.stringWidth(btn));
     if (buttonWidths>W) { // if they don't fit, use smaller font
@@ -67,16 +67,16 @@ E.showPrompt = function(msg,options) {
       x += (buttonPadding+w)/2;
       var bw = 6+w/2;
       btnPos.push({x1:x-bw, x2:x+bw,
-                   y1:y-24, y2:y+24});
-      var poly = [x-bw,y-16,
-                  x+bw,y-16,
-                  x+bw+4,y-12,
-                  x+bw+4,y+12,
-                  x+bw,y+16,
-                  x-bw,y+16,
-                  x-bw-4,y+12,
-                  x-bw-4,y-12,
-                  x-bw,y-16];
+                   y1:y-48, y2:y+48});
+      var poly = [x-bw,y-32,
+                  x+bw,y-32,
+                  x+bw+4,y-24,
+                  x+bw+4,y+24,
+                  x+bw,y+32,
+                  x-bw,y+32,
+                  x-bw-4,y+24,
+                  x-bw-4,y-24,
+                  x-bw,y-32];
       g.setColor(g.theme.bg2).fillPoly(poly).setColor(g.theme.fg2).drawPoly(poly).drawString(btn,x,y+1);
       x += (buttonPadding+w)/2;
     });

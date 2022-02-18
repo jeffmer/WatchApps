@@ -2,8 +2,8 @@ wOS.drawWidgets = function(Y) {
     var w=g.getWidth(), h=g.getHeight();
     if(typeof Y==undefined) Y=WIDCNTRL.Yoffset; else WIDCNTRL.Yoffset=Y;
     var pos = {
-        tl:{x:113, y:Y, r:1, c:0}, // if r==1, we're right->left
-        tr:{x:113, y:Y, r:0, c:0},
+        tl:{x:227, y:Y, r:1, c:0}, // if r==1, we're right->left
+        tr:{x:227, y:Y, r:0, c:0},
     };
     if (global.WIDGETS) {
       for (var wd of WIDGETS) {
@@ -22,11 +22,11 @@ wOS.drawWidgets = function(Y) {
 
   wOS.loadWidgets = function(hide) {
     global.WIDGETS={};
-    global.WIDCNTRL={hide:false,Yoffset:10};
+    global.WIDCNTRL={hide:false,Yoffset:20};
     if (typeof hide!=undefined) WIDCNTRL.hide = hide;
     require("Storage").list(/\.wid\.js$/).forEach(widget=>eval(require("Storage").read(widget)));
     TC.on('touch',(pt)=>{
-      if (pt.y<60) {
+      if (pt.y<120) {
         WIDCNTRL.hide = !WIDCNTRL.hide;
         wOS.drawWidgets();
       }

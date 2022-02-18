@@ -100,9 +100,9 @@ function watchBat(){
 }
 
 wOS.init();
-eval(STOR.read("lcd-g5.js"));
+eval(STOR.read("lcd-g5buff.js"));
 var g = AMOLED();
-g.setTheme((wOS.settings.theme)? wOS.settings.theme : {fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true});
+g.setTheme((wOS.settings.theme)? wOS.settings.theme : {fg:15,bg:0,fg2:8,bg2:0,fgH:15,bgH:9,dark:true});
 //console.log("loaded lcd");
 eval(STOR.read("cst816s-g5.js"));
 //console.log("loaded touch");
@@ -112,6 +112,7 @@ ACCEL.on("faceup",()=>{if (!wOS.awake) wOS.wake();});
 //console.log("loaded accel");
 wOS.POWER=wOS.isCharging();
 watchBat();
+wOS.wake();
 
 if (STOR.read("alarm.boot.js")) eval(STOR.read("alarm.boot.js"));
 
@@ -121,7 +122,7 @@ E.getBattery = function (){
     return Math.floor((v-3.7)*200);
 }
 
-wOS.showLauncher = function(){load("launch-g5.js");};
+wOS.showLauncher = function(){wOS.sleep();load("launch-g5.js");};
 eval(STOR.read("menu-g5.js"));
 eval(STOR.read("prompt-g5.js"));
 eval(STOR.read("widgets-g5.js"));
@@ -137,5 +138,4 @@ wOS.btnWatches = [
 
 setWatch(function() {if (!wOS.awake) wOS.wake();}, BTN2, {repeat:1,edge:"falling"});
 
-wOS.wake();
 
