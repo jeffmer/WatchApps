@@ -143,7 +143,7 @@
   {
     "id": "multiclock",
     "name": "Multi Clock",
-    "version": "0.07",
+    "version": "0.08",
     "description": "Clock with multiple faces.  Switch between faces with BTN1 & BTN3 or swipe left-right. For best display set theme Background 2 to cyan or some other bright colour in settings.",
     "icon": "multiclock.png",
     "type": "clock",
@@ -159,7 +159,7 @@
       {"name":"txt.face.js","url":"txt.face.js"},
       {"name":"dk.face.js","url":"dk.face.js"},
       {"name":"nifty.face.js","url":"nifty.face.js"},
-      {"name":"braun1.face.js","url":"braun1 .face.js"},
+      {"name":"braun1.face.js","url":"braun1.face.js"},
       {"name":"multiclock.img","url":"multiclock-icon.js","evaluate":true}
     ],
     "sortorder" : -10
