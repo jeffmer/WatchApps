@@ -122,7 +122,7 @@ E.getBattery = function (){
     return Math.floor((v-3.7)*200);
 }
 
-wOS.showLauncher = function(){wOS.sleep();load("launch-g5.js");};
+wOS.showLauncher = function(){load("launch-g5.js");};
 eval(STOR.read("menu-g5.js"));
 eval(STOR.read("prompt-g5.js"));
 eval(STOR.read("widgets-g5.js"));
@@ -137,5 +137,6 @@ wOS.btnWatches = [
   ];
 
 setWatch(function() {if (!wOS.awake) wOS.wake();}, BTN2, {repeat:1,edge:"falling"});
+E.on("kill",()=>{if (wOS.awake) wOS.sleep();});
 
 

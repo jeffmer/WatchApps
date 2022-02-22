@@ -85,7 +85,6 @@ function touchAction(p){
                     if (selected!=i){
                         draw_icon(page,selected,false);
                     } else {
-                        wOS.sleep();
                         load(apps[page*6+i].src);
                     }
                 }

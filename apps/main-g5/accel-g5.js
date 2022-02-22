@@ -37,7 +37,7 @@ var ACCEL = {
       wOSI2C.writeTo(0x0E, a);
         return wOSI2C.readFrom(0x0E,n); 
     },
-    activity:0,
+    step:wOS.STEPS,
     delayms: function(d) {var t = getTime()+d/1000; while(getTime()<t);},
     init:() => {
         var id = ACCEL.readBytes(0x0F,1)[0];
@@ -49,14 +49,14 @@ var ACCEL = {
         ACCEL.writeByte(0x1B,0xA0);  //CNTL1 Off (top bit), low power, DRDYE1, 2g , Wakeup=0
         setInterval(()=>{
           var a = ACCEL.read();
-          E.stepCount(a.x,a.y,a.z);
+          if (ACCEL.step) E.stepCount(a.x,a.y,a.z);
            if ( (a.y>500 && a.y<1000 && a.z>-864 && a.z <226)) {
              if (wOS.awake)
                wOS.time_left = wOS.ON_TIME; //reset LCD on time.
              else
               ACCEL.emit("faceup");
            }
-        },80);
+        },ACCEL.step?80:300);
         return id;
     },
     read:()=>{

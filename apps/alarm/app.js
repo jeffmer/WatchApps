@@ -33,7 +33,7 @@ function showMainMenu() {
       editAlarm(idx);
     };
   });
-  menu['< Back'] =  ()=>{load();};
+  menu['< Back'] =  ()=>{Bangle.showLauncher();};
   return E.showMenu(menu);
 }
 

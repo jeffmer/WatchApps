@@ -36,6 +36,7 @@
             minuteDate = new Date();
         }
         drawDate();
+        if (!WIDCNTRL.hide) Bangle.drawWidgets(320);
         g.setColor(g.theme.fg);
         hh(minuteDate.getHours()*30 + minuteDate.getMinutes()/2);
         mh(minuteDate.getMinutes()*6);

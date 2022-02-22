@@ -69,3 +69,46 @@ function find_backlight(){
         ++i; if (i>=48) clearInterval(interval);
     },4000);
 }
+
+
+/* Heart rate device test */
+function writeByte(dev,a,d){ 
+  wOSI2C.writeTo(dev,a,d);
+}
+
+function readBytes(dev,a,n){
+  wOSI2C.writeTo(dev, a);
+    return wOSI2C.readFrom(dev,n); 
+}
+
+//heartrate
+function init(){
+writeByte(0x38,1,0x13);
+writeByte(0x38,4,4);
+writeByte(0x38,5,0x0f);
+writeByte(0x38,0x0e,100);
+//writeByte(0x38,0x0f,0);
+}
+
+function hon(){
+ writeByte(0x38,0,1);
+ D36.reset();
+}
+
+
+function hoff(){
+ D36.set();
+ writeByte(0x38,0,0);
+}
+
+function readReg(a){
+  wOSI2C.writeTo(0x38, a);
+    return wOSI2C.readFrom(0x38,1)[0]; 
+}
+
+
+function hr(){
+var a = (readReg(0x1d)<<8 + readReg(0x1c))&0xffff;
+var b = readReg(0x1f)<<8 + readReg(0x1e)&0xffff;
+console.log("A= ",a," B= ",b," A-B= ",a-b);
+}

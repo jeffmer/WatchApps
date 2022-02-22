@@ -44,6 +44,7 @@
             setSteps();
         }
         drawSteps();
+        if (!WIDCNTRL.hide) Bangle.drawWidgets(320);
         g.setColor(g.theme.fg);
         hh(360*(minuteDate.getHours() + (minuteDate.getMinutes()/60))/12);
         mh(360*minuteDate.getMinutes()/60);

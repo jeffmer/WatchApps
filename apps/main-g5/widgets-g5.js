@@ -22,11 +22,11 @@ wOS.drawWidgets = function(Y) {
 
   wOS.loadWidgets = function(hide) {
     global.WIDGETS={};
-    global.WIDCNTRL={hide:false,Yoffset:20};
+    global.WIDCNTRL={hide:false,Yoffset:40};
     if (typeof hide!=undefined) WIDCNTRL.hide = hide;
     require("Storage").list(/\.wid\.js$/).forEach(widget=>eval(require("Storage").read(widget)));
     TC.on('touch',(pt)=>{
-      if (pt.y<120) {
+      if (pt.y<200) {
         WIDCNTRL.hide = !WIDCNTRL.hide;
         wOS.drawWidgets();
       }
