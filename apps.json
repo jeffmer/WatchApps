@@ -280,8 +280,8 @@
     "tags": "game",
     "allow_emulator":true,
     "storage": [
-      {"name":"life.app.js","url":"life.min.js","supports": ["ROCK","P8","Magic3","BEBINCA79","SN80"]},
-      {"name":"life.app.js","url":"life-g5.min.js","supports": ["G5"]},
+      {"name":"life.app.js","url":"life.app.js","supports": ["ROCK","P8","Magic3","BEBINCA79","SN80"]},
+      {"name":"life.app.js","url":"life-g5.app.js","supports": ["G5"]},
       {"name":"life.img","url":"life-icon.js","evaluate":true }
     ]
   },
