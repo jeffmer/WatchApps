@@ -72,24 +72,16 @@ var board = (function(){
   };
 })();
 
-var XN = 32;
-var YN = 32;
+var XN = 24;
+var YN = 24;
 var Xoff = 67;
 var Yoff = 67;
-
-var buf = Graphics.createArrayBuffer(XN*10,YN*10,1,{msb:true});
-
-function flip(c) {
- g.setColor(c);
- g.drawImage({width:XN*10,height:YN*10,bpp:1,buffer:buf.buffer},(g.getWidth()-XN*10)/2,24);
- buf.clear();
-}
 
 function initBoard(){
     "ram";
     board.init(XN,YN);
-    var Xm = XN-1;
-    var Ym = YN-1;
+    var Xm = XN;
+    var Ym = YN;
     for (let y = 0; y<Ym; ++y)
     for (let x = 0; x<Xm; ++x) {
         var r = Math.random()<0.5?1:0;
@@ -103,15 +95,16 @@ function initBoard(){
 
 function drawBoard(){
   "ram";
-  var Xm = XN-1;
-  var Ym = YN-1;
+  var Xm = XN;
+  var Ym = YN;
+  g.clearRect(Xoff,Yoff,Xoff+XN*13,Yoff+YN*13);
   g.setColor(-1);
   for (let y = 0; y<Ym; ++y)
   for (let x = 0; x<Xm; ++x) {
       if (board.readcell(x,y)){
-        var Xr=Xoff+10*x;
-        var Yr=Yoff+10*y;
-        g.fillRect(Xr,Yr, Xr+7,Yr+7);
+        var Xr=Xoff+13*x;
+        var Yr=Yoff+13*y;
+        g.fillRect(Xr,Yr, Xr+10,Yr+10);
       } 
   } 
   g.flip();
@@ -179,13 +172,12 @@ Bangle.on('lcdPower',function(on) {
   g.clear();
   Bangle.loadWidgets();
   Bangle.setUI("touch",restart);
-  buf.setFont('Vector',40);
-  buf.setFontAlign(0,0);
-  buf.drawString('LIFE',buf.getWidth()/2,buf.getHeight()/2);
-  buf.setFont('6x8',2);
-  buf.drawString("Conway's",buf.getWidth()/2,buf.getHeight()/2-60);
-  buf.drawString('(Touch Start)',buf.getWidth()/2,buf.getHeight()/2+60);
-  flip(g.theme.fg);
+  g.setFont('Vector',40);
+  g.setFontAlign(0,0);
+  g.drawString('LIFE',g.getWidth()/2,g.getHeight()/2);
+  g.setFont('6x8',2);
+  g.drawString("Conway's",g.getWidth()/2,g.getHeight()/2-60);
+  g.drawString('(Touch Start)',g.getWidth()/2,g.getHeight()/2+60);
  
   
     
