@@ -37,6 +37,12 @@ const MYDEVICEINFO = [ {
     img : "img/rock.jpeg"
   },
   {
+    id : "ROCKBUF",
+    name : "ROCKBUF",
+    features : ["BLE","BLEHID","NFC","GRAPHICS"],
+    img : "img/rock.jpeg"
+  },
+  {
     id : "Magic3",
     name : "Magic3",
     features : ["BLE","BLEHID","NFC","GRAPHICS"],

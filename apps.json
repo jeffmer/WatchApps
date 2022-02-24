@@ -22,10 +22,11 @@
     "type":"bootloader",
     "icon": "bootloader.png",
     "version":"0.05",
-    "supports": ["ROCK","P8","Magic3"],
+    "supports": ["ROCK","ROCKBUF","P8","Magic3"],
     "description": "This loads the Bangle App execution emulation environment, drivers etc",
     "storage": [
-      {"name":"lcd.js","url":"lcd.js"},
+      {"name":"lcd.js","url":"lcd.js", "supports": ["ROCK","ROCKBUF","P8","Magic3"]},
+      {"name":"lcd.js","url":"lcd-buf.js", "supports": ["ROCKBUF"]},
       {"name":"lcd-p8.js","url":"lcd-p8.js"},
       {"name":"main.js","url":"main.js"},
       {"name":"accel.js","url":"accel.js"},
