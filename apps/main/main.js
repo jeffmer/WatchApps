@@ -30,7 +30,7 @@ global.wOS = {
     setLCDTimeout:(v)=>{wOS.ON_TIME=v<5?5:v;},
     setLCDBrightness:(v)=>{wOS.BRIGHT=v; wOS.brightness(v);},
     init:()=>{
-            var s = STOR.readJSON("settings.json",1)||{ontime:10, bright:0.5, timezone:1,faceup:true,vibrate:true,steps:false};
+            var s = STOR.readJSON("settings.json",1)||{ontime:10, bright:0.5, timezone:1,faceup:true,vibrate:true,steps:false,daystart:7,lowstart:19,nightstart:23};
             wOS.ON_TIME=s.ontime;
             wOS.time_left=s.ontime;
             wOS.BRIGHT=s.bright;
