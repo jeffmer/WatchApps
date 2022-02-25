@@ -26,7 +26,7 @@
     "description": "This loads the Bangle App execution emulation environment, drivers etc",
     "storage": [
       {"name":"lcd.js","url":"lcd.js", "supports": ["P8","Magic3"]},
-      {"name":"lcd.js","url":"lcd-buf.js", "supports": ["ROCK"]},
+      {"name":"lcd.js","url":"lcd.js", "supports": ["ROCK"]},
       {"name":"lcd-p8.js","url":"lcd-p8.js"},
       {"name":"main.js","url":"main.js"},
       {"name":"accel.js","url":"accel.js"},
