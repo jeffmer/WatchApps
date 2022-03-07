@@ -193,6 +193,32 @@
     ],
     "sortorder" : -10
   },
+  {
+    "id": "multiclock-g5",
+    "name": "Multi Clock for G5",
+    "version": "0.07",
+    "description": "Clock with multiple faces.  Switch between faces with  swipe left-right. For best display set theme Background 2 to cyan or some other bright colour in settings.",
+    "icon": "multiclock.png",
+    "type": "clock",
+    "tags": "clock",
+    "supports": ["G5"],
+    "readme": "README.md",
+    "allow_emulator": true,
+    "storage": [
+      {"name":"multiclock-g5-sn80.app.js","url":"multiclock-g5.app.js"},
+      {"name":"big.face.js","url":"big.face.js"},
+      {"name":"txt.face.js","url":"txt.face.js"},
+      {"name":"dk.face.js","url":"dk.face.js"},
+      {"name":"nifty.face.js","url":"nifty.face.js"},
+      {"name":"bold.face.js","url":"bold.face.js"},
+      {"name":"numdial.face.js","url":"numdial.face.js"},
+      {"name":"Roboto","url":"Roboto.js"},
+      {"name":"RobotoSmall","url":"RobotoSmall.js"},
+      {"name":"multiclock-g5.img","url":"multiclock-icon.js","evaluate":true}
+    ],
+    "sortorder" : -10
+  },
+
   { "id": "alarm",
     "name": "Default Alarm",
     "shortName":"Alarms",
