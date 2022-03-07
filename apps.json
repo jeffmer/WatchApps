@@ -205,7 +205,7 @@
     "readme": "README.md",
     "allow_emulator": true,
     "storage": [
-      {"name":"multiclock-g5-sn80.app.js","url":"multiclock-g5.app.js"},
+      {"name":"multiclock-g5.app.js","url":"multiclock-g5.app.js"},
       {"name":"big.face.js","url":"big.face.js"},
       {"name":"txt.face.js","url":"txt.face.js"},
       {"name":"dk.face.js","url":"dk.face.js"},
