@@ -12,8 +12,8 @@ wOS.setUI =function(mode, cb) {
       TC.removeListener("touch", TC.touchHandler);
       delete TC.touchHandler;
     }
-    if (!mode) return;
-    else if (mode=="updown") {
+    if (!mode) mode = "clock";
+    if (mode=="updown") {
         wOS.btnWatches = [
           setWatch(tt, BTN1, {repeat:1,edge:"falling"}),
         ];

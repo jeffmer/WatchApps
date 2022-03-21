@@ -26,7 +26,7 @@ wOS.drawWidgets = function(Y) {
     if (typeof hide!=undefined) WIDCNTRL.hide = hide;
     require("Storage").list(/\.wid\.js$/).forEach(widget=>eval(require("Storage").read(widget)));
     TC.on('touch',(pt)=>{
-      if (pt.y<200) {
+      if (pt.y<100) {
         WIDCNTRL.hide = !WIDCNTRL.hide;
         wOS.drawWidgets();
       }
