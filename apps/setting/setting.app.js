@@ -83,7 +83,7 @@ function showBrightMenu(){
     },
     "Day Start" :{ value : s.daystart,
       min:0,max:23,step:1,
-      onchange : v => {s.daytart=v;}
+      onchange : v => {s.daystart=v;}
     },
     "Low Start" :{ value : s.lowstart,
       min:0,max:23,step:1,
