@@ -1,3 +1,6 @@
+
+//notes from discord
+// from yngv23
 SCL = D2
 SDA = D47
 SDA1 = D40
