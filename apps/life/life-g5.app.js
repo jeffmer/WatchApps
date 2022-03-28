@@ -83,7 +83,10 @@ function initBoard(){
     var Xm = XN;
     var Ym = YN;
     for (let y = 0; y<Ym; ++y)
-    for (let x = 0; x<Xm; ++x) {
+    for (let x = 0; x<Xm; ++x) 
+      board.clearcell(x,y);
+    for (let y = 6; y<Ym-6; ++y)
+    for (let x = 6; x<Xm-6; ++x) {
         var r = Math.random()<0.5?1:0;
         if (r==1){
           board.setcell(x,y);

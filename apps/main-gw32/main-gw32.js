@@ -21,11 +21,10 @@ global.wOS = {
         }
     },
     batV: () => {
-        return  6.614*analogRead(wOS.BATVOLT);
+        return  6.7*analogRead(wOS.BATVOLT);
     },
-    isCharging:()=>{return !wOS.BATPIN.read();},
+    isCharging:()=>{return wOS.BATPIN.read();},
     setLCDTimeout:(v)=>{wOS.ON_TIME=v<5?5:v;},
-    brightness:(v)=>{var dv = Math.floor(255*v); g.brightness(dv);},
     setLCDBrightness:(v)=>{wOS.BRIGHT=v; wOS.brightness(v);},
     init:()=>{
         var s = STOR.readJSON("settings.json",1)||{ontime:10, bright:0.5, timezone:1,faceup:true,vibrate:true,steps:false,lowbright:0.3,nightbright:0.1,daystart:7,lowstart:19,nightstart:23};
@@ -63,8 +62,6 @@ global.wOS = {
         wOS.emit("lcdPower",true);
         wOS.bright();
         wOS.ticker = setInterval(wOS.tick,1000);
-        setTimeout(()=>{g.lowpower(0);},500);
-        setTimeout(()=>{g.lowpower(1);},1000);
     },
     setLCDPower:(b)=>{
         if (b){
@@ -83,12 +80,10 @@ global.wOS = {
     }
 };
 
-var wOSI2C = new I2C();
 
-wOSI2C.setup({scl:D10,sda:D9,bitrate:200000});
-wOS.BATPIN = D13;
-wOS.BATVOLT = D4;
-wOS.BUZZPIN = D39;
+wOS.BATPIN = D22;
+wOS.BATVOLT = D31;
+wOS.BUZZPIN = D32;
 
 global.Bangle = wOS;
 
@@ -100,19 +95,21 @@ function watchBat(){
 }
 
 wOS.init();
-eval(STOR.read("lcd-g5buff.js"));
-var g = AMOLED();
-g.setTheme((wOS.settings.theme)? wOS.settings.theme : {fg:15,bg:0,fg2:8,bg2:0,fgH:15,bgH:9,dark:true});
+eval(STOR.read("lcd-gw32.js"));
+var g = GC9A01();
+g.setTheme((wOS.settings.theme)? wOS.settings.theme : {fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true});
+wOS.bright();
 //console.log("loaded lcd");
-eval(STOR.read("cst816s-g5.js"));
+eval(STOR.read("it7259.js"));
+TC.start();
 //console.log("loaded touch");
-eval(STOR.read("accel-g5.js"));
+eval(STOR.read("accel_gw32.js"));
 ACCEL.init();
 ACCEL.on("faceup",()=>{if (!wOS.awake) wOS.wake();});
 //console.log("loaded accel");
+wOS.ticker = setInterval(wOS.tick,1000);
 wOS.POWER=wOS.isCharging();
 watchBat();
-wOS.wake();
 
 if (STOR.read("alarm.boot.js")) eval(STOR.read("alarm.boot.js"));
 
@@ -122,22 +119,18 @@ E.getBattery = function (){
     return Math.floor((v-3.7)*200);
 }
 
-wOS.showLauncher = function(){load("launch-g5.js");};
-eval(STOR.read("menu-g5.js"));
-eval(STOR.read("prompt-g5.js"));
-eval(STOR.read("widgets-g5.js"));
+wOS.showLauncher = function(){load("launch-gw32.js");};
+eval(STOR.read("menu-gw32.js"));
+eval(STOR.read("prompt-gw32.js"));
+eval(STOR.read("widgets-gw32.js"));
 if (wOS.settings.gpsclient) 
     eval(STOR.read("gps.js"));
 else {
     Bangle.setGPSPower = function(on){};
-    Bangle.project = E.project;
 }
 
 wOS.btnWatches = [
     setWatch(function() {if (wOS.awake) wOS.showLauncher(); else wOS.wake();}, BTN1, {repeat:1,edge:"falling"}),
   ];
-
-setWatch(function() {if (!wOS.awake) wOS.wake();}, BTN2, {repeat:1,edge:"falling"});
-E.on("kill",()=>{if (wOS.awake) wOS.sleep();});
 
 

@@ -103,7 +103,7 @@ function GC9A01() {
 }
 
 
-var brightness= function(v){
+wOS.brightness= function(v){
   v = v>1?1:v<0?0:v;
   if (v==0||v==1)
       digitalWrite(D24,v);

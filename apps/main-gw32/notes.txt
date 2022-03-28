@@ -12,9 +12,28 @@ D24 is LED backlight (analog: 0=off, 1=full);
 D32 is buzzer (0 is off, 1= full)
 D31 is battery voltage.
 
+Fantastic; accelerometer appears to be a good ol' SC7A20. I pulled your accel.js from SN80, 
+changed address to 0x19 and use SDA:D27, SCL:D4. who_am_i returns 0x11
+have to work on the interrupt still, but I can brute force that
+@jeffmer  got it:  accel interrupt is D19
+
+D11 is touch interrupt
+
 
  SPI1.setup({sck:D14, mosi:D15, baud: 8000000});
     return connect({spi:SPI1, dc:D7, cs:D8, rst:D38});
 
-var PINS=[D3,D4,D5,D6,D9,D10,D11,D12,D13,D16,D17,D18,D19,D21,D22,D23,D25,D26,D27,D28,D29,D30
+
+var PINS=[D3,D5,D6,D9,D10,D11,D13,D16,D17,D18,D21,D22,D25,D26,D28,D29,D30,
     D31,D32,D33,D34,D35,D36,D37,D39,D42,D43,D44,D45,D46];
+
+var state = Int16Array(48);
+
+function readAll(){
+    for(i=0;i<PINS.length;++i) state[i] = digitalRead(PINS[i]);
+}
+
+function compare(){
+    for(i=0;i<PINS.length;++i) if (state[i] != digitalRead(PINS[i])) console.log("Pin ",PINS[i]," ",digitalRead(i));
+}
+
