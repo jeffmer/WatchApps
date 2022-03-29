@@ -96,10 +96,11 @@
     "type":"bootloader",
     "icon": "bootloader.png",
     "version":"0.04",
-    "supports": ["GW32"],
+    "supports": ["GW32","GW32UNBUF"],
     "description": "This loads the Bangle App execution emulation environment, drivers etc",
     "storage": [
-      {"name":"lcd-gw32.js","url":"lcd-gw32.js"},
+      {"name":"lcd-gw32.js","url":"lcd-gw32.js","supports": ["GW32"]},
+      {"name":"lcd-gw32.js","url":"lcd-gw32unbuf.js","supports": ["GW32UNBUF"]},
       {"name":"main-gw32.js","url":"main-gw32.js"},
       {"name":"it7259.js","url":"it7259.js"},
       {"name":"accel-gw32.js","url":"accel-gw32.js"},

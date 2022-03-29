@@ -85,6 +85,9 @@ wOS.BATPIN = D22;
 wOS.BATVOLT = D31;
 wOS.BUZZPIN = D32;
 
+var wOSI2C = new I2C();
+wOSI2C.setup({scl:D3,sda:47,bitrate:200000});
+
 global.Bangle = wOS;
 
 function watchBat(){
