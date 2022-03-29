@@ -5,12 +5,13 @@
     "type":"bootloader",
     "icon": "bootloader.png",
     "version":"0.01",
-    "supports": ["ROCK","P8","Magic3","BEBINCA79","SN80","G5"],
+    "supports": ["ROCK","P8","Magic3","BEBINCA79","SN80","G5","GW32"],
     "description": "THIS MUST BE LOADED FIRST -TWICE. The first time it will fail with the error `...ReferenceError p is not defined`. It should load completely the second time",
     "storage": [
       {"name":".boot0","url":"boot0.js","supports": ["ROCK","P8","Magic3"]},
       {"name":".boot0","url":"boot0-sn80.js","supports": ["SN80"]},
       {"name":".boot0","url":"boot0-beb79.js","supports": ["BEBINCA79"]},
+      {"name":".boot0","url":"boot0-gw32.js","supports": ["GW32"]},
       {"name":".boot0","url":"boot0-g5.js","supports": ["G5"]},
       {"name":".bootcde","url":"bootloader.js"}
     ],
@@ -89,6 +90,29 @@
     ],
     "sortorder" : -10
   },
+  { "id": "main-gw32",
+    "name": "Main GW32",
+    "tags": "tool,system",
+    "type":"bootloader",
+    "icon": "bootloader.png",
+    "version":"0.04",
+    "supports": ["GW32"],
+    "description": "This loads the Bangle App execution emulation environment, drivers etc",
+    "storage": [
+      {"name":"lcd-gw32.js","url":"lcd-gw32.js"},
+      {"name":"main-gw32.js","url":"main-gw32.js"},
+      {"name":"it7259.js","url":"it7259.js"},
+      {"name":"cst816s.js","url":"cst816s.js"},
+      {"name":"setui-gw32.js","url":"setui-gw32.js"},
+      {"name":"menu-gw32.js","url":"menu-gw32.js"},
+      {"name":"prompt-gw32.js","url":"prompt-gw32.js"},
+      {"name":"locale","url":"locale.js"},
+      {"name":"widgets-gw32.js","url":"widgets-gw32.js"},
+      {"name":"gps.js","url":"gps.js"}
+    ],
+    "sortorder" : -10
+  },
+
   { "id": "main-g5",
     "name": "Main G5",
     "tags": "tool,system",
@@ -125,6 +149,7 @@
       {"name":"launch.js","url":"launch.js","supports": ["ROCK","P8","Magic3"]},
       {"name":"launch-sn80.js","url":"launch-sn80.js","supports": ["SN80"]},
       {"name":"launch-beb79.js","url":"launch-beb79.js","supports": ["BEBINCA79"]},
+      {"name":"launch-gw32.js","url":"launch-gw32.js","supports": ["GW32"]},
       {"name":"launch-g5.js","url":"launch-g5.js","supports": ["G5"]}
     ],
     "sortorder" : -10
