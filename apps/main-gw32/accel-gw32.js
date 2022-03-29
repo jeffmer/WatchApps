@@ -19,13 +19,13 @@ var ACCEL = {
         ACCEL.writeByte(0x22,0x40); //interrupt to INT1
         ACCEL.writeByte(0x23,0x88); //BDU,MSB at high addr, HR
         ACCEL.writeByte(0x24,0x00); //latched interrupt off
-        ACCEL.writeByte(0x32,0x10); //threshold = 250 milli g's
+        ACCEL.writeByte(0x32,0x18); //threshold = 250 milli g's
         ACCEL.writeByte(0x33,0x01); //duration = 1 * 20ms
         ACCEL.writeByte(0x30,0x08); //YH interrupt 
         pinMode(ACCELPIN,"input",false);
         setWatch(()=>{
            var  v = ACCEL.read();
-           if (Math.abs(v.x)<150 && v.y>200 && v.z>0) {
+           if (Math.abs(v.x)<2000 && v.y>250 && v.z>0) {
             if (wOS.awake)
                wOS.time_left = wOS.ON_TIME; //reset LCD on time.
             else

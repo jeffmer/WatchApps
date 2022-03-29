@@ -102,7 +102,7 @@
       {"name":"lcd-gw32.js","url":"lcd-gw32.js"},
       {"name":"main-gw32.js","url":"main-gw32.js"},
       {"name":"it7259.js","url":"it7259.js"},
-      {"name":"cst816s.js","url":"cst816s.js"},
+      {"name":"accel-gw32.js","url":"accel-gw32.js"},
       {"name":"setui-gw32.js","url":"setui-gw32.js"},
       {"name":"menu-gw32.js","url":"menu-gw32.js"},
       {"name":"prompt-gw32.js","url":"prompt-gw32.js"},
@@ -112,7 +112,6 @@
     ],
     "sortorder" : -10
   },
-
   { "id": "main-g5",
     "name": "Main G5",
     "tags": "tool,system",
@@ -192,7 +191,7 @@
   },
   {
     "id": "multiclock-sn80",
-    "name": "Multi Clock for SN80",
+    "name": "Multi Clock for SN80, BEBINCA79 and GW32",
     "version": "0.07",
     "description": "Clock with multiple faces.  Switch between faces with  swipe left-right. For best display set theme Background 2 to cyan or some other bright colour in settings.",
     "icon": "multiclock.png",
