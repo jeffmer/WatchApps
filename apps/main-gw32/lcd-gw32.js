@@ -98,7 +98,7 @@ function GC9A01() {
         return g;
     }
 
-    SPI1.setup({sck:D14, mosi:D15, baud: 8000000});
+    SPI1.setup({sck:D14, mosi:D15, baud: 32000000});
     return connect({spi:SPI1, dc:D7, cs:D8, rst:D38});
 }
 
