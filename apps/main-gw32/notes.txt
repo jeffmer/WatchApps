@@ -26,10 +26,9 @@ D11 is touch interrupt
  SPI1.setup({sck:D14, mosi:D15, baud: 8000000});
     return connect({spi:SPI1, dc:D7, cs:D8, rst:D38});
 
-D25 is display enable
 
-var PINS=[D3,D5,D6,D9,D10,D13,D16,D17,D18,D21,D22,D26,D28,D29,D30,
-    D33,D34,D35,D36,D37,D39,D42,D43,D44,D45,D46];
+var PINS=[D3,D5,D6,D9,D10,D11,D13,D16,D17,D18,D21,D22,D25,D26,D28,D29,D30,
+    D31,D32,D33,D34,D35,D36,D37,D39,D42,D43,D44,D45,D46];
 
 var state = Int16Array(48);
 
@@ -41,40 +40,3 @@ function compare(){
     for(i=0;i<PINS.length;++i) if (state[i] != digitalRead(PINS[i])) console.log("Pin ",PINS[i]," ",digitalRead(i));
 }
 
-var PINS=[D3,D5,D6,D11,D13,D16,D17,D18,D20,D21,D22,D25,D26,D28,D29,D30,
-    D33,D34,D35,D37,D39,D42,D43,D44,D45,D46];
-
-function test(){
-  function readBytes(II){
-          II.writeTo(0x44, 0);
-          return II.readFrom(0x44,16); 
-  }
-  var i =0;
-  var j = 0;
-  var it = setInterval(()=>{
-      if (i!=j) {
-      var II = new I2C();
-      II.setup({scl:PINS[i],sda:PINS[j],bitrate:200000});
-      console.log(PINS[i]," ",PINS[j]," ",readBytes(II));
-      }
-      ++j; if (j>=PINS.lenght){ j=0; ++i; if (i>=PINS.length) clearInterval(it);}
-  },100);
-}
-
-
-var PINS=[D2,D3,D5,D6,D9,D10,D11,D13,D16,D17,D18,D20,D21,D22,D26,D28,D29,D30,
-    D33,D34,D35,D36,D37,D39,D42,D43,D44,D45,D46,D47];
-
-var UP = [ D3, D6, D11, D13, D16, D17, D18, D21, D26, D33, D34, D35, D37, D39, D42, D43, D45, D46, D47 ];
-
-var DOWN = [ D2, D5, D9, D10, D22, D28, D29, D30, D36, D44 ];
-
-function pr(){
-  var j =0;
-  var it = setInterval(()=>{
-    var v = PINS[j].read();
-    if (!v) {console.log(PINS[j], PINS[j].read()); DOWN.push(PINS[j]);}
-    ++j; if (j>=PINS.length) clearInterval(it);
-  },100);
-}
-  
