@@ -26,7 +26,7 @@ function ST7789() {
         
         //MADCTL: Set Memory access control (directions), 1 arg: row addr/col addr, bottom to top refresh
         if(MIRROR){
-            cmd(0x36, MADCTL_MX);
+            cmd(0x36, MADCTL_MX | MADCTL_BGR);
         }
         else{
             cmd(0x36, 0x00);
