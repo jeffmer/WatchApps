@@ -3,8 +3,15 @@ function ST7789() {
     var LCD_HEIGHT = 280;
     var XOFF = 0;
     var YOFF = process.env.BOARD=="ROCK"?24:20;
-    var INVERSE = 1;
+    var INVERSE = 0;
+    var MIRROR = 1;
     var cmd = lcd_spi_unbuf.command;
+    
+    
+    var MADCTL_MY  = 0x80;
+    var MADCTL_MX  = 0x40; 
+    var MADCTL_MV  = 0x20; 
+    var MADCTL_BGR = 0x08; 
 
     function dispinit(rst,fn) {
         function delayms(d) {var t = getTime()+d/1000; while(getTime()<t);}
@@ -16,8 +23,16 @@ function ST7789() {
         delayms(120);   // no apps to run 
         cmd(0x11); //SLPOUT
         delayms(50);
+        
         //MADCTL: Set Memory access control (directions), 1 arg: row addr/col addr, bottom to top refresh
-        cmd(0x36, 0x00);
+        if(MIRROR){
+            cmd(0x36, MADCTL_MX | MADCTL_BGR);
+        }
+        else{
+            cmd(0x36, 0x00);
+        }
+        
+        
         //COLMOD: Set color mode, 1 arg, no delay: 16-bit color
         cmd(0x3a, 0x05);
         //PORCTRL: Porch control
