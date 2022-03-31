@@ -81,6 +81,9 @@ global.wOS = {
 };
 
 
+var wOSI2C = new I2C();
+wOSI2C.setup({scl:D3,sda:D47,bitrate:200000});
+
 wOS.BATPIN = D22;
 wOS.BATVOLT = D31;
 wOS.BUZZPIN = D32;

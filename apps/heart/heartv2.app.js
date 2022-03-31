@@ -296,8 +296,8 @@ var HRS = {
 };
 
 Bangle.setLCDTimeout(300);
-var x =0;
-var lasty = 239;
+var x =20;
+var lasty = 120;
 var lastPeak =0;
 var interval;
 var bpminterval;
@@ -324,13 +324,12 @@ function doread(){
     }
     lastPeak=peakTime;
   }
-  g.setColor(0);
-  g.fillRect(x,40,x+1,239);
-  g.setColor(0x07E0);
-  g.fillRect(x,lasty,x+1,v);
-  lasty=v;
+  g.setColor(0x001f).fillRect(x,70,x+1,169);
+  var dv = v/2 + 50;
+  g.setColor(0x07E0).fillRect(x,lasty,x+1,dv);
+  lasty=dv;
   x+=2;
-  if (x>=240) x = 0;
+  if (x>=220) x = 20;
 }
 
 function showBPM(){
@@ -342,7 +341,8 @@ function startMeasure() {
   if (interval) return;
   g.clear(1);
   g.setFont("Vector",16);
-  x=0;
+  x=20;
+  g.setColor(0x001f).fillRect(20,70,219,169);
   HRS.enable();
   interval = setInterval(doread,40);
   bpminterval = setInterval(showBPM,2000);
