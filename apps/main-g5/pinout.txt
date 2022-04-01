@@ -1,0 +1,57 @@
+G5 Pinout
+
+PIN   Function
+===  ===========================
+D0
+D1
+D2   
+D3   RM67162 Display SPI EN
+D4   Battery level (analog low = 0.530, high = 0.62)
+D5   RM67162 Display SPI CLK
+D6   
+D7   RM67162 Display SPI MISO
+D8   
+
+D9   I2C DATA (KXTJ3_1057 ACCEL  (addr = 0x0E) / CST816S TP (addr = 0x15) )
+D10  I2C CLK  (KXTJ3_1057 ACCEL  (addr = 0x0E) / CST816S TP (addr = 0x15) )
+D11  RM67162 Display SPI MOSI
+D12  
+D13  Charging (on == LOW)
+D14  16MB SPI Flash CS
+D15  16MB SPI Flash IO1/MISO
+D16  16MB SPI Flash IO2/WP
+
+D17  16MB SPI Flash IO3/HOLD
+D18  16MB SPI Flash IO0/MOSI
+D19  16MB SPI Flash SCK
+D20  8MB SPI Flash CS
+D21  8MB SPI Flash WP
+D22  8MB SPI Flash IO1 / SI / MOSI
+D23  8MB SPI Flash IO1 / SO / MISO
+D24  8MB SPI Flash HOLD (set high to act like RST)
+
+D25  8MB SPI Flash CLK
+D26  RM67162 Display SPI CS/CE
+D27  RM67162 Display SPI DC
+D28  CST816S TP Reset 
+D29  CST816S TP Interrupt
+D30
+D31  
+D32  
+D33
+D34  LCD set to low to enable display output - brightness adjusted by SPI command
+D35
+D36  HR enable (?)
+D37  HR enable set to high to access HR I2C sensor as device 0x38
+D38  
+D39  Buzzer (analog)
+D40  RM67162 Display SPI RESET
+D41  
+D42
+D43
+D44  
+D45  BTN2 (set to pull_down)
+D46  BTN1 (set to pull_down)
+D47  
+
+
