@@ -15,11 +15,6 @@ int calib(int value, int offset, int scale) {
 
 `);
 */
-eval(require("Storage").read("touchtest.js"));
-D14.set();
-TC.start();
-TC.stop();
-
 
 var support = (function(){
   var bin=atob("QBpQQ0/0enOQ+/PwcEcA6wEhwfMOAAH0AEFBGhAgkfvw8HBH");
