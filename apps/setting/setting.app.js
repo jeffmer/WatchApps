@@ -1,7 +1,7 @@
 wOS.setLCDTimeout(30);
 const storage = require("Storage");
 
-var s= storage.readJSON("settings.json",1)||{ontime:5, bright:0.3, timezone:1, faceup:true};
+var s= storage.readJSON("settings.json",1)||{ontime:10, bright:0.5, timezone:1,faceup:true,vibrate:true,steps:false,lowbright:0.3,nightbright:0.1,daystart:7,lowstart:19,nightstart:23};
 
 if (storage.read("bletime.js")) eval(storage.read("bletime.js"));
 if (storage.read("calibrate.js")) eval(storage.read("calibrate.js"));
