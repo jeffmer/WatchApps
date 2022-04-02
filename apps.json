@@ -376,7 +376,7 @@
     "readme": "README.md",
     "tags": "health",
     "storage": [
-      {"name":"heart.app.js","url":"heart.app.js"},
+      {"name":"heart.app.js","url":"heart.min.js"},
       {"name":"heart.img","url":"heartrate-icon.js","evaluate":true}
     ]
   },
