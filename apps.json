@@ -121,7 +121,7 @@
     "supports": ["G5"],
     "description": "This loads the Bangle App execution emulation environment, drivers etc",
     "storage": [
-      {"name":"lcd-g5.js","url":"lcd-g5.js"},
+      {"name":"lcd-g5buff.js","url":"lcd-g5buff.js"},
       {"name":"main-g5.js","url":"main-g5.js"},
       {"name":"accel-g5.js","url":"accel-g5.js"},
       {"name":"cst816s-g5.js","url":"cst816s-g5.js"},
