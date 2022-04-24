@@ -4,6 +4,7 @@ function KickWd(){
 }
 var wdint=setInterval(KickWd,5000);
 E.enableWatchdog(20, false);
+D5.set(); //reduces idle current
 E.showMessage = function(msg,title) {}
 
 var STOR = require("Storage");

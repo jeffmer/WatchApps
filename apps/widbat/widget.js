@@ -18,7 +18,7 @@
     g.fillRect(x,y+2,x+s-4,y+21);
     g.clearRect(x+2,y+4,x+s-6,y+19);
     g.fillRect(x+s-3,y+10,x+s,y+14);
-    g.setColor(CHARGING).fillRect(x+4,y+6,x+4+E.getBattery()*(s-12)/100,y+17);
+    g.setColor(CHARGING).fillRect(x+4,y+6,x+4+Math.ceil(E.getBattery()*(s-12)/100),y+17);
     g.setColor(-1);
   }
 

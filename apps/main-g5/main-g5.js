@@ -21,7 +21,7 @@ global.wOS = {
         }
     },
     batV: () => {
-        return  6.614*analogRead(wOS.BATVOLT);
+        return  6.7*analogRead(wOS.BATVOLT);
     },
     isCharging:()=>{return !wOS.BATPIN.read();},
     setLCDTimeout:(v)=>{wOS.ON_TIME=v<5?5:v;},
