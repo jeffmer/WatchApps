@@ -14,6 +14,8 @@
                 {x:cx+r1*Math.sin(theta),y:cy-r1*Math.cos(theta),rotate:theta}));
         };
 
+        var lastd=0;
+
         function drawSteps() {
             var steps = E.totalSteps();
             g.clearRect(cx-90,cy-40,cx+90,cy+40);
@@ -21,14 +23,19 @@
             g.setFontAlign(0,0).drawString(steps,cx,cy);
             var d = Math.ceil(270*steps/10000);
             g.setColor(0,1,0);
-            for (let a=0;a<d;++a) g.drawRotRect(3,110,120,a+225);
+            for (let a=lastd;a<d;++a) g.drawRotRect(3,110,120,a+225);
+            lastd=d;
         }
 
-        function drawBG(){
-            g.setColor(0.3,0.3,0.3).fillRect(0,0,w-1,h-1);
-            g.setColor(g.theme.bg).fillCircle(cx,cy,h/2-10).fillRect(0,h-36,239,h-1);
-            g.setColor(g.theme.fg2).drawImage(img,cx-24,h-60);
+        function drawBG(notfirst){
+            if (!notfirst){
+                g.setColor(0.3,0.3,0.3).fillRect(0,0,w-1,h-1);
+                g.setColor(g.theme.bg).fillCircle(cx,cy,h/2-10).fillRect(0,h-36,239,h-1);
+                g.setColor(g.theme.fg2).drawImage(img,cx-24,h-60);
+                lastd=0;
+            }
             drawSteps();
+            return true;
         }
 
         return {init:drawBG, tick:drawSteps, tickpersec:false};
