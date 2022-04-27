@@ -106,7 +106,10 @@ wOS.bright();
 eval(STOR.read("it7259.js"));
 TC.start();
 //console.log("loaded touch");
-eval(STOR.read("accel-gw32.js"));
+if (wOS.STEPS)
+    eval(STOR.read("accel_step_gw32.js"));
+else
+    eval(STOR.read("accel-gw32.js"));
 ACCEL.init();
 ACCEL.on("faceup",()=>{if (!wOS.awake) wOS.wake();});
 //console.log("loaded accel");
