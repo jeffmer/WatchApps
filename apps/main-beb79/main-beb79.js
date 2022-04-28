@@ -96,6 +96,10 @@ function watchBat(){
   },wOS.BATPIN,{edge:"both",repeat:true,debounce:500});
 }
 
+setWatch(()=>{
+    if(!wOS.awake) wOS.wake();
+}, BTN2, {repeat:1,edge:"falling"});
+
 wOS.init();
 eval(STOR.read("lcd-beb79.js"));
 var g = GC9A01();

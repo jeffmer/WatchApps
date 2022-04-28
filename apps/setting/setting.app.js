@@ -1,8 +1,8 @@
 wOS.setLCDTimeout(30);
 const storage = require("Storage");
 
-var s= storage.readJSON("settings.json",1)||{ontime:10, bright:0.5, timezone:1,faceup:true,vibrate:true,steps:false,lowbright:0.3,nightbright:0.1,daystart:7,lowstart:19,nightstart:23};
-
+var s= storage.readJSON("settings.json",1)||{ontime:10, bright:0.5, timezone:1,faceup:true,vibrate:true,steps:false,lowbright:0.3,nightbright:0.1,daystart:7,lowstart:19,nightstart:23,target:10000};
+if (!s.target) s.target =10000;
 if (storage.read("bletime.js")) eval(storage.read("bletime.js"));
 if (storage.read("calibrate.js")) eval(storage.read("calibrate.js"));
 
@@ -44,16 +44,21 @@ var mainmenu = {
                   format: () => (s.steps ? 'Yes' : 'No'),
                   onchange: () => {s.steps = !s.steps;}
                 },
+    'Step Target': {
+                  value: s.target,
+                  min:0,max:20000,step:500,
+                  onchange : v => {s.target=v;}
+                },
+    'Reset Steps':()=>{
+                  if (E.stepInit) E.stepInit(); 
+                  Bangle.buzz(50);
+                },
     'Set Time from Phone':()=>{
                   if (!setTimefromPhone) return;
                   E.showMenu();
                   setTimeout(()=>{
                     setTimefromPhone(mainmenu);
                   },300);
-                },
-    'Reset Steps':()=>{
-                  if (E.stepInit) E.stepInit(); 
-                  Bangle.buzz(50);
                 },
     'Select Clock': ()=>showClockMenu(),
     'Theme': ()=>showThemeMenu(),
