@@ -41,7 +41,7 @@ var ACCEL = {
         ACCEL.delayms(2);
         ACCEL.writeByte(0x21,1); //DATA_CTRL_REG --25Hz
         ACCEL.writeByte(0x1D,0x28); 
-        ACCEL.writeByte(0x1B,0xA0);  //CNTL1 Off (top bit), low power, DRDYE1, 2g , Wakeup=0
+        ACCEL.writeByte(0x1B,0xA8);  //CNTL1 Off (top bit), low power, DRDYE1, 2g , Wakeup=0
         setInterval(()=>{
           var a = ACCEL.read();
           if (ACCEL.step) E.stepCount(a.x,a.y,a.z);
@@ -58,7 +58,7 @@ var ACCEL = {
         "ram"
         var a = ACCEL.readBytes(0x06,6);
         var f = support.conv;
-        return {x:f(a[0],a[1]), y:f(a[2],a[3]), z:f(a[4],a[5])};
+        return {x:2*f(a[0],a[1]), y:2*f(a[2],a[3]), z:2*f(a[4],a[5])};
     },
   };
   
