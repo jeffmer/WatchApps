@@ -97,10 +97,21 @@ function watchBat(){
 }
 
 setWatch(()=>{
-    if(!wOS.awake) wOS.wake();
+    reset();
 }, BTN2, {repeat:1,edge:"falling"});
 
+function clearStepsatMidnight(){
+    var now = new Date();
+    var secs =  now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+    var tomidnight = 86400-secs;
+    if (wOS.CLEARSTEPS) wOS.CLEARSTEPS = clearTimeout(wOS.CLEARSTEPS);
+    wOS.CLEARSTEPS = setTimeout(()=>{
+        E.stepInit(); 
+        setTimeout(clearStepsatMidnight,60000);},tomidnight*1000);
+}
+
 wOS.init();
+clearStepsatMidnight();
 eval(STOR.read("lcd-beb79.js"));
 var g = GC9A01();
 g.setTheme((wOS.settings.theme)? wOS.settings.theme : {fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true});

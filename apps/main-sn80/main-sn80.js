@@ -80,6 +80,16 @@ global.wOS = {
     }
 };
 
+function clearStepsatMidnight(){
+    var now = new Date();
+    var secs =  now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+    var tomidnight = 86400-secs;
+    if (wOS.CLEARSTEPS) wOS.CLEARSTEPS = clearTimeout(wOS.CLEARSTEPS);
+    wOS.CLEARSTEPS = setTimeout(()=>{
+        E.stepInit(); 
+        setTimeout(clearStepsatMidnight,60000);},tomidnight*1000);
+}
+
 var wOSI2C = new I2C();
 
 wOSI2C.setup({scl:D7,sda:D6,bitrate:200000});
@@ -97,6 +107,7 @@ function watchBat(){
 }
 
 wOS.init();
+clearStepsatMidnight();
 eval(STOR.read("lcd-sn80.js"));
 var g = GC9A01();
 g.setTheme((wOS.settings.theme)? wOS.settings.theme : {fg:0xffff,bg:0,fg2:0x07ff,bg2:0,fgH:0xFFFF,bgH:0x001F,dark:true});
